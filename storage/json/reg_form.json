@@ -1,0 +1,55 @@
+{
+    "fields": [
+        {
+            "name": "reg_email",
+            "type": "string"
+        },
+        {
+            "name": "reg_email_repeat",
+            "type": "string"
+        },
+        {
+            "name": "fullname",
+            "type": "string"
+        },
+        {
+            "name": "fullname_bn",
+            "type": "string"
+        },
+        {
+            "name": "mothers_name",
+            "type": "string"
+        },
+        {
+            "name": "fathers_name",
+            "type": "string"
+        },
+        {
+            "name": "mobile_no",
+            "type": "string"
+        },
+        {
+            "name": "gender",
+            "type": "radio"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "category",
+            "type": "select",
+            "options": {
+                "technology": "Technology",
+                "tips": "Tips",
+                "health": "Health"
+            }
+        }
+    ],
+    "validations": [
+        {
+            "field": "fullname",
+            "rules": "required"
+        }
+    ]
+}
