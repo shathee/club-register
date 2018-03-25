@@ -59,6 +59,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
+		echo public_path('uploads');
         return view('front.membership.create');
     }
 
@@ -89,35 +90,41 @@ class MembershipController extends Controller
 		]);
         $requestData = $request->all();
         
-
-        if ($request->hasFile('member_photo')) {
-            foreach($request['member_photo'] as $file){
-                $uploadPath = public_path('/uploads/member_photo');
-
-                $extension = $file->getClientOriginalExtension();
-                $fileName = rand(11111, 99999) . '.' . $extension;
-
-                $file->move($uploadPath, $fileName);
-                $requestData['member_photo'] = $fileName;
-            }
-        }
+	//dd($requestData);
+        
 
 
         if ($request->hasFile('member_payment_doc')) {
-            foreach($request['member_payment_doc'] as $file){
-                $uploadPath = public_path('/uploads/member_payment_doc');
+            //foreach($request['member_payment_doc'] as $file){
+				$file = $request['member_payment_doc'];
+                $uploadPath = public_path('uploads');
 
                 $extension = $file->getClientOriginalExtension();
-                $fileName = rand(11111, 99999) . '.' . $extension;
-
+                $fileName = $request->sust_reg_no. '_payment.' . $extension;
+				
                 $file->move($uploadPath, $fileName);
                 $requestData['member_payment_doc'] = $fileName;
-            }
+            //}
+        }
+		if ($request->hasFile('member_photo')) {
+            //foreach($request['member_photo'] as $file){
+                $file = $request['member_photo'];
+				$uploadPath = public_path('uploads');
+
+                $extension = $file->getClientOriginalExtension();
+                $fileName = $request->sust_reg_no . '_photo.' . $extension;
+	
+                $file->move($uploadPath, $fileName);
+                $requestData['member_photo'] = $fileName;
+				
+            //}
         }
 
-        Membership::create($requestData);
-
-        return redirect('membership')->with('flash_message', 'Membership added!');
+        //Membership::create($requestData);
+		
+		$id= Membership::create($requestData)->id;
+        //return redirect('membership')->with('flash_message', 'Membership added!');
+        return redirect('membership/'.$id)->with('flash_message', 'Your Form Has been submitted do you want to confirm?!');
     }
 
     /**

@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Sust Club Ltd') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <a class=" logo" href="{{ url('/') }}">
-                            <img src="{{ url('img/sust.png')}}" />
+                            <img src="{{ url('public/img/sust.png')}}" />
                         </a>
                     </div>
                 </div>
