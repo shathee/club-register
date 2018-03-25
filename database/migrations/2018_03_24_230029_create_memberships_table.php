@@ -1,0 +1,55 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class CreateMembershipsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('memberships', function (Blueprint $table) {
+            $table->increments('id');
+            
+            $table->string('membership_type');
+            $table->string('reg_email')->nullable();
+            $table->string('reg_email_repeat')->nullable();
+            $table->string('fullname')->nullable();
+            $table->string('fullname_bn')->nullable();
+            $table->string('mothers_name')->nullable();
+            $table->string('fathers_name')->nullable();
+            $table->string('spouse_name')->nullable();
+            $table->string('mobile_no')->nullable();
+            $table->string('gender');
+            $table->string('religion');
+            $table->text('present_address')->nullable();
+            $table->string('present_district');
+            $table->text('permanent_address')->nullable();
+            $table->string('permanent_district');
+            $table->string('sust_department');
+            $table->string('sust_reg_no')->nullable();
+            $table->string('sust_session');
+            $table->string('sust_graduation_year');
+            $table->string('member_photo')->nullable();
+            $table->string('member_payment_doc')->nullable();
+            $table->string('is_submission_confirmed');
+            $table->string('is_finance_approved');
+            $table->timestamps();
+            $table->softDeletes();
+            });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('memberships');
+    }
+}

@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','MembershipController@create');
+
+Route::resource('membership', 'MembershipController');

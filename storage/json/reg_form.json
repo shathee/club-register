@@ -1,6 +1,15 @@
 {
     "fields": [
         {
+            "name": "membership_type",
+            "type": "select",
+            "options": {
+                "": "Select",
+                "general": "General",
+                "life": "Life"
+            }
+        },
+        {
             "name": "reg_email",
             "type": "string"
         },
@@ -25,30 +34,168 @@
             "type": "string"
         },
         {
+            "name": "spouse_name",
+            "type": "string"
+        },
+        {
             "name": "mobile_no",
             "type": "string"
         },
         {
             "name": "gender",
-            "type": "radio"
+            "type": "select",
+            "options": {
+                "": "Select",
+                "female": "Female",
+                "male": "Male"
+            }
         },
         {
-            "name": "content",
+            "name": "religion",
+            "type": "select",
+            "options": {
+                "": "Select",
+                "islam": "Islam",
+                "hinduism": "Hinduism"
+            }
+        },
+        {
+            "name": "present_address",
             "type": "text"
         },
         {
-            "name": "category",
+            "name": "present_district",
             "type": "select",
             "options": {
                 "technology": "Technology",
                 "tips": "Tips",
                 "health": "Health"
             }
+        },
+        {
+            "name": "permanent_address",
+            "type": "text"
+        },
+        {
+            "name": "permanent_district",
+            "type": "select",
+            "options": {
+                "technology": "Technology",
+                "tips": "Tips",
+                "health": "Health"
+            }
+        },
+        {
+            "name": "sust_department",
+            "type": "select",
+            "options": {
+                "technology": "Technology",
+                "tips": "Tips",
+                "health": "Health"
+            }
+        },
+        {
+            "name": "sust_reg_no",
+            "type": "string"
+        },
+        {
+            "name": "sust_session",
+            "type": "select",
+            "options": {
+                "technology": "Technology",
+                "tips": "Tips",
+                "health": "Health"
+            }
+        },
+        {
+            "name": "sust_graduation_year",
+            "type": "select",
+            "options": {
+                "technology": "Technology",
+                "tips": "Tips",
+                "health": "Health"
+            }
+        },
+        {
+            "name": "member_photo",
+            "type": "file"
+        },
+        {
+            "name": "member_payment_doc",
+            "type": "file"
+        },
+        {
+            "name": "is_submission_confirmed",
+            "type": "select",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        {
+            "name": "is_finance_approved",
+            "type": "select",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
         }
     ],
     "validations": [
         {
-            "field": "fullname",
+            "field": "membership_type",
+            "rules": "required"
+        },
+        {
+            "field": "reg_email",
+            "rules": "required"
+        },
+        {
+            "field": "reg_email_repeat",
+            "rules": "required|same:reg_email"
+        },
+        {
+            "field": "mobile_no",
+            "rules": "required"
+        },
+        {
+            "field": "gender",
+            "rules": "required"
+        },
+        {
+            "field": "religion",
+            "rules": "required"
+        },
+        {
+            "field": "present_address",
+            "rules": "required"
+        },
+        {
+            "field": "permanent_address",
+            "rules": "required"
+        },
+        {
+            "field": "permanent_district",
+            "rules": "required"
+        },
+        {
+            "field": "sust_department",
+            "rules": "required"
+        },
+        {
+            "field": "sust_reg_no",
+            "rules": "required"
+        },
+        {
+            "field": "sust_session",
+            "rules": "required"
+        },
+        {
+            "field": "member_photo",
+            "rules": "required"
+        },
+        {
+            "field": "member_payment_doc",
             "rules": "required"
         }
     ]
