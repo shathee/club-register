@@ -260,7 +260,7 @@
     </div>
     
     <div class="col-md-offset-1 col-md-10">
-        <div class="text-center form-group">
+        <div class="text-center form-group my-captcha">
             <label for="answer" class="col-md-5 control-label">{{ $question.' *' }}</label>
             <div class="col-md-5">
                 <input class="form-control" name="answer" type="text" id="answer" value="" placeholder="Put Your answer here" required>

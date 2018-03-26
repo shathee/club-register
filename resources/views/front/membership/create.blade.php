@@ -8,12 +8,12 @@
                     
                 </div>
                 <div class="card">
-                    <div class="card-header text-center">
+                    <div class="card-header member-form-header text-center">
                         <h1 class="">Membership Form</h1>
-                        <h4>Fields with * are mandatory</h4>
+                        <h4 class="">Fields with * are mandatory</h4>
                         
                     </div>
-                    <div class="card-body">
+                    <div class="card-body member-form-body">
                         
                         @if(Session::has('flash_message'))
                         <p class="alert alert-info">{{ Session::get('flash_message') }}</p>

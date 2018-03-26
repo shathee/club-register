@@ -85,6 +85,7 @@
                                   <li>Bank: Dutch-Bangla Bank Ltd.</li>
                                 </ul>
                             </p>
+                            <p> For Query <a href="mailto:#">membership@sustclubltd.com</a></p>
                             
 
                         </div>

@@ -39,8 +39,8 @@ class CreateMembershipsTable extends Migration
             $table->string('member_payment_doc')->nullable();
             $table->text('member_payment_info')->nullable();
             $table->string('membership_no');
-            $table->string('is_submission_confirmed');
-            $table->string('is_finance_approved');
+            $table->string('is_submission_confirmed')->default('yes');
+            $table->string('is_finance_approved')->default('no');
             $table->timestamps();
             $table->softDeletes();
             });

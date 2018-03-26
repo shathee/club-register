@@ -1,4 +1,6 @@
-
+body{
+	background-color: #EEEBF3;
+}
 .logo img{
 width: 180px;
 height: 180px;
@@ -21,4 +23,18 @@ height: 180px;
 }
 .membership-form-view table{
 	border: none;
+}
+.member-form-header{
+	background-color: #D9CFE6;
+	padding: 5px;
+	margin: 5px 0px 20px 0px;
+}
+.member-form-header h4{
+	color: #c40000;
+}
+.member-form-body{
+	background-color: #EAE5F1;
+}
+.my-captcha{
+	font-size: 20px;
 }

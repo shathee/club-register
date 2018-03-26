@@ -40,7 +40,7 @@ class PdfController extends Controller
         //dd($membership);
         //return view('front.membership.show', compact('membership','departments'));
 
-        Mail::send('front.pdf.show', array('membership' =>$membership,'departments'=>$departments ), function ($message) use ($membership)  {
+        Mail::send('front.email.show', array('membership' =>$membership,'departments'=>$departments ), function ($message) use ($membership)  {
 
         	$message->from('membership@sustclubltd.com', 'SUST Club Ltd');
 		    $message->subject('SUST CLUB Membership Submission');

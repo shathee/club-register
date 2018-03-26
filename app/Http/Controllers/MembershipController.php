@@ -146,13 +146,16 @@ class MembershipController extends Controller
             $id= Membership::create($requestData)->id;
             
             if($request['membership_type']=='life'){
-                $requestData['membership_no'] = "LM".sprintf('%06d',$id);
+                $requestData['membership_no'] = "LM".date("Ymd").sprintf('%06d',$id);
             }else{
-                $requestData['membership_no'] = "GM".sprintf('%06d',$id);
+                $requestData['membership_no'] = "GM".date("Ymd").sprintf('%06d',$id);
             }
 
             Membership::where('id', $id)
               ->update(['membership_no' => $requestData['membership_no'] ]);
+
+            //app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
+
 
             return redirect('membership/'.$id)->with('flash_message', 'Your Submisson is successful Thank You for becoming a part of SUST Club Ltd!');
          }
@@ -179,8 +182,7 @@ class MembershipController extends Controller
         $department_path = storage_path() . "/json/department.json";
         $departments = json_decode(file_get_contents($department_path), true);
         //dd($membership);
-        app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
-
+        
         return view('front.membership.show', compact('membership','departments'));
     }
 
