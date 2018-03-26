@@ -14,3 +14,7 @@
 Route::get('/','MembershipController@create');
 
 Route::resource('membership', 'MembershipController');
+
+Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
+Route::get('submission-messages','MembershipController@messages');
+

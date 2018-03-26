@@ -34,8 +34,11 @@ class CreateMembershipsTable extends Migration
             $table->string('sust_reg_no')->nullable();
             $table->string('sust_session');
             $table->string('sust_graduation_year');
+            $table->string('blood_group');
             $table->string('member_photo')->nullable();
             $table->string('member_payment_doc')->nullable();
+            $table->text('member_payment_info')->nullable();
+            $table->string('membership_no');
             $table->string('is_submission_confirmed');
             $table->string('is_finance_approved');
             $table->timestamps();

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div id="app">
+    <div id="app print">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 
@@ -61,11 +61,34 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <a class=" logo" href="{{ url('/') }}">
+                    <div class="col-md-4 text-center">
+                        <a class="thumbnil logo" href="{{ url('/') }}">
                             <img src="{{ url('public/img/sust.png')}}" />
                         </a>
                     </div>
+                    <div class="col-md-8 text-center">
+                        <div class="alert alert-warning" role="alert">
+                            <p class="lead">You Must Deposit the Membership Fee Before Submiting this form.</p>
+                            <p>
+                            Fees for <strong>Life Membership</strong> is <strong>BDT 75000.00(Seventy Five Thousand Only)</strong> with no annual subscription fee.
+                            </p>
+                            <p>
+                            Fees for <strong>General Membership</strong> is <strong>BDT 10000.00(Ten Thousand Only)</strong>  with annual Subscription Fee.
+                            </p>
+                            <p class="lead">
+                                So please deposit the required amount in favor of the following account - 
+                                <ul class="list-unstyled b-acc info">
+                                  <li>Account Title: Md Muklasur Rahman, Rashed Rafiuddin & Kazi Gulam Kadar</li>
+                                  <li>Account Number: 2161510170000</li>
+                                  <li>Branch: Ashulia Branch</li>
+                                  <li>Bank: Dutch-Bangla Bank Ltd.</li>
+                                </ul>
+                            </p>
+                            
+
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </nav>

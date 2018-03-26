@@ -3,14 +3,21 @@
 @section('content')
     <div class="container">
         <div class="row">
-           <div class="col-md-offset-1 col-md-10">
+           <div class="col-md-12">
+                <div>
+                    
+                </div>
                 <div class="card">
                     <div class="card-header text-center">
                         <h1 class="">Membership Form</h1>
                         <h4>Fields with * are mandatory</h4>
+                        
                     </div>
                     <div class="card-body">
                         
+                        @if(Session::has('flash_message'))
+                        <p class="alert alert-info">{{ Session::get('flash_message') }}</p>
+                        @endif
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">

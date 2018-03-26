@@ -3,3 +3,18 @@ width: 180px;
 height: 180px;
 
 }
+.member-photo{
+	width: 180px;
+	height: 200px;
+}
+.membership-form-view th,td{
+	width:25%;
+}
+.b-acc{
+	font-weight: bold;
+	color: #AF3268;
+}
+.b-acc-form{
+	font-weight: bold;
+	
+}

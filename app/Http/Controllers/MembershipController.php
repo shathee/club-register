@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Membership;
 use Illuminate\Http\Request;
+use Input;
 
 class MembershipController extends Controller
 {
@@ -59,8 +60,27 @@ class MembershipController extends Controller
      */
     public function create()
     {
-		echo public_path('uploads');
-        return view('front.membership.create');
+		//echo storage_path();
+        $district_path = storage_path() . "/json/districts.json";
+        $districts = json_decode(file_get_contents($district_path), true);
+
+        $department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+
+        $session_path = storage_path() . "/json/sessions.json";
+        $sessions = json_decode(file_get_contents($session_path), true);
+
+        $blood_group_path = storage_path() . "/json/bloodgroup.json";
+        $blood_groups = json_decode(file_get_contents($blood_group_path), true);
+
+        $religions_path = storage_path() . "/json/religions.json";
+        $religions = json_decode(file_get_contents($religions_path), true);
+        //dd($departments);
+
+        Mc::putMcData();
+        $question=Mc::getMcQuestion();
+
+        return view('front.membership.create', compact('districts','departments','sessions','blood_groups','question','religions'));
     }
 
     /**
@@ -74,7 +94,7 @@ class MembershipController extends Controller
     {
         $this->validate($request, [
 			'membership_type' => 'required',
-			'reg_email' => 'required',
+			'reg_email' => 'required|unique:memberships',
 			'reg_email_repeat' => 'required|same:reg_email',
 			'mobile_no' => 'required',
 			'gender' => 'required',
@@ -83,48 +103,67 @@ class MembershipController extends Controller
 			'permanent_address' => 'required',
 			'permanent_district' => 'required',
 			'sust_department' => 'required',
-			'sust_reg_no' => 'required',
+			//'sust_reg_no' => 'required|unique:memberships',
 			'sust_session' => 'required',
-			'member_photo' => 'required',
-			'member_payment_doc' => 'required'
+            'member_photo' => 'required|image|max:3000',
+			'member_payment_info' => 'required',
+			'member_payment_doc' => 'required|max:3000'
 		]);
         $requestData = $request->all();
         
 	//dd($requestData);
-        
-
-
-        if ($request->hasFile('member_payment_doc')) {
+        $answer=$request->answer;
+        if($answer==Mc::getMcAnswer())
+         {
+            if ($request->hasFile('member_payment_doc')) {
             //foreach($request['member_payment_doc'] as $file){
-				$file = $request['member_payment_doc'];
+                $file = $request['member_payment_doc'];
                 $uploadPath = public_path('uploads');
 
                 $extension = $file->getClientOriginalExtension();
-                $fileName = $request->sust_reg_no. '_payment.' . $extension;
-				
+                //$fileName = $request->sust_reg_no. '_payment.' . $extension;
+                $fileName = $request->reg_email. '_payment.' . $extension;
+                
                 $file->move($uploadPath, $fileName);
                 $requestData['member_payment_doc'] = $fileName;
-            //}
-        }
-		if ($request->hasFile('member_photo')) {
-            //foreach($request['member_photo'] as $file){
-                $file = $request['member_photo'];
-				$uploadPath = public_path('uploads');
+                //}
+            }
+            if ($request->hasFile('member_photo')) {
+                //foreach($request['member_photo'] as $file){
+                    $file = $request['member_photo'];
+                    $uploadPath = public_path('uploads');
 
-                $extension = $file->getClientOriginalExtension();
-                $fileName = $request->sust_reg_no . '_photo.' . $extension;
-	
-                $file->move($uploadPath, $fileName);
-                $requestData['member_photo'] = $fileName;
-				
-            //}
-        }
+                    $extension = $file->getClientOriginalExtension();
+                    //$fileName = $request->sust_reg_no . '_photo.' . $extension;
+                    $fileName = $request->reg_email . '_photo.' . $extension;
+        
+                    $file->move($uploadPath, $fileName);
+                    $requestData['member_photo'] = $fileName;
+                    
+            }
 
-        //Membership::create($requestData);
-		
-		$id= Membership::create($requestData)->id;
-        //return redirect('membership')->with('flash_message', 'Membership added!');
-        return redirect('membership/'.$id)->with('flash_message', 'Your Form Has been submitted do you want to confirm?!');
+            
+            $id= Membership::create($requestData)->id;
+            
+            if($request['membership_type']=='life'){
+                $requestData['membership_no'] = "LM".sprintf('%06d',$id);
+            }else{
+                $requestData['membership_no'] = "GM".sprintf('%06d',$id);
+            }
+
+            Membership::where('id', $id)
+              ->update(['membership_no' => $requestData['membership_no'] ]);
+
+            return redirect('membership/'.$id)->with('flash_message', 'Your Submisson is successful Thank You for becoming a part of SUST Club Ltd!');
+         }
+        else
+         {
+            return redirect('membership/create')->withInput(Input::all())->withErrors(['captcha', 'captcha does not match']);
+            
+         }
+        
+
+        
     }
 
     /**
@@ -137,8 +176,10 @@ class MembershipController extends Controller
     public function show($id)
     {
         $membership = Membership::findOrFail($id);
-
-        return view('front.membership.show', compact('membership'));
+        $department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+        //dd($departments);
+        return view('front.membership.show', compact('membership','departments'));
     }
 
     /**
@@ -148,11 +189,24 @@ class MembershipController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    /*
     public function edit($id)
     {
         $membership = Membership::findOrFail($id);
 
-        return view('front.membership.edit', compact('membership'));
+        $district_path = storage_path() . "\json\districts.json";
+        $districts = json_decode(file_get_contents($district_path), true);
+
+        $department_path = storage_path() . "\json\department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+
+        $session_path = storage_path() . "\json\sessions.json";
+        $sessions = json_decode(file_get_contents($session_path), true);
+        $blood_group_path = storage_path() . "\json\bloodgroup.json";
+        $blood_groups = json_decode(file_get_contents($blood_group_path), true);
+
+        return view('front.membership.edit', compact('membership','districts','departments','sessions','blood_groups'));
     }
 
     /**
@@ -163,6 +217,7 @@ class MembershipController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
+    /*
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -176,14 +231,13 @@ class MembershipController extends Controller
 			'permanent_address' => 'required',
 			'permanent_district' => 'required',
 			'sust_department' => 'required',
-			'sust_reg_no' => 'required',
+			'sust_reg_no' => 'required|unique:memberships',
 			'sust_session' => 'required',
 			'member_photo' => 'required',
 			'member_payment_doc' => 'required'
 		]);
         $requestData = $request->all();
         
-
         if ($request->hasFile('member_photo')) {
             foreach($request['member_photo'] as $file){
                 $uploadPath = public_path('/uploads/member_photo');
@@ -214,6 +268,7 @@ class MembershipController extends Controller
 
         return redirect('membership')->with('flash_message', 'Membership updated!');
     }
+    */
 
     /**
      * Remove the specified resource from storage.
@@ -222,10 +277,28 @@ class MembershipController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
+    /*
     public function destroy($id)
     {
         Membership::destroy($id);
 
         return redirect('membership')->with('flash_message', 'Membership deleted!');
     }
+
+    */
+
+    public function submissionConfirm(Request $request, $id){
+
+        Membership::where('id', $id)
+          ->update(['is_submission_confirmed' => 'yes']);
+
+        return redirect('submission-messages')->with('flash_message', 'Dear Sustian Your Submission has been completed!');
+    }
+
+    public function messages(){
+
+       return view('front.membership.message');
+    }
+
+
 }

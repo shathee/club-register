@@ -4,32 +4,39 @@
     <div class="container">
         <div class="row">
            
-
-            <div class="col-md-offset-1 col-md-10">
+        	
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Membership {{ $membership->id }}</div>
+                    <div class="card-header"> 
+					@if(Session::has('flash_message'))
+						<p class="alert alert-info">{{ Session::get('flash_message') }}</p>
+					@endif
+					<p class="info">
+						for any query please contact membership@sustclubltd.com
+					</p>
+                    </div>
                     <div class="card-body">
-
+                    	<!--
                         <a href="{{ url('/membership') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
 
-                        
+                        -->
                         <br/>
                         <br/>
 
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table membership-form-view">
                                 <tbody>
                                    
                                     <tr>
-										<th> Membership Type </th>
+										<th>Applied Membership Type </th>
 										<td> {{ $membership->membership_type }} </td>
 										<td rowspan="6" colspan="2">
-										<a href="#" class="thumbnail"><img src="{{ url('public/uploads/'.$membership->member_photo)}}" alt="..."></a>
+										<a href="#" class="thumbnail member-photo"><img src="{{ url('public/uploads/'.$membership->member_photo)}}" alt="..."></a>
 										</td>
 									</tr>
 									
 									<tr>
-										<th> Full Name </th><td> {{ $membership->fullname }} </td>
+										<th> Full Name </th><td> {{ $membership->fullname }}<br/>{{ $membership->fullname_bn }} </td>
 										<td></td><td></td>
 									</tr>
 									<tr>
@@ -37,7 +44,15 @@
 										<td></td><td></td>
 									</tr>
 									<tr>
-										<th> Department </th><td> {{ $membership->sust_department }} </td>
+										<th> Department </th><td> {{ $departments[$membership->sust_department] }} </td>
+										<td></td><td></td>
+									</tr>
+									<tr>
+										<th> Session No </th><td> {{ $membership->sust_session }}-<?php $s2 = $membership->sust_session +1 ?> {{$s2}} </td>
+										<td></td><td></td>
+									</tr>
+									<tr>
+										<th> Registered Email </th><td> {{ $membership->reg_email }} </td>
 										<td></td><td></td>
 									</tr>
 									<tr>
@@ -45,35 +60,27 @@
 										<td></td><td></td>
 									</tr>
 									<tr>
-										<th> Reg Email </th><td> {{ $membership->reg_email }} </td>
-										<td></td><td></td>
-									<tr>
-										<td></td><td></td>
-										<th> Fathers Name </th><td> {{ $membership->fathers_name }} </td>
+										<th> Fathers Name </th>
+										<td> {{ $membership->fathers_name }} </td>
+										<th> Mothers Name </th>
+										<td> {{ $membership->mothers_name }} </td>
 									</tr>
 									<tr>
-										<td></td><td></td>
-										<th> Mothers Name </th><td> {{ $membership->mothers_name }} </td>
+									<th> Spouse Name </th><td> {{ $membership->spouse_name }} </td>
+									<th> Bloor Group </th><td> {{ $membership->blood_group }} </td>
 									</tr>
 									<tr>
-										<td></td><td></td>
-										<th> Spouse Name </th><td> {{ $membership->spouse_name }} </td>
-									</tr>
-									<tr>
-										<td></td><td></td>
 										<th> Present Addrress </th><td> {{ $membership->present_address }}, {{ $membership->present_district }}  </td>
+										<th> Parmanent Addrress </th><td> {{ $membership->permanent_address }}, {{ $membership->permanent_district }}  </td>
+									</tr>
+									
+									<tr>
+										<th> Payment Information Given </th>
+										<td> {{ $membership->member_payment_info }} </td>
 									</tr>
 									<tr>
-										<td></td><td></td>
-										<th> Parmanent Addrress </th><td> {{ $membership->parmanent_address }}, {{ $membership->parmanent_district }}  </td>
-									</tr>
-									<tr>
-										<td></td><td></td>
-										<th> Spouse Name </th><td> {{ $membership->spouse_name }} </td>
-									</tr>
-									<tr>
-										<td></td><td></td>
-										<th> Spouse Name </th><td> {{ $membership->spouse_name }} </td>
+										<th>Payment Document Uploaded</th>
+										<td>{{ link_to_asset('public/uploads/'.$membership->member_payment_doc,'Click Here To Download') }} </td>
 									</tr>
 									
 									</tr>
@@ -81,11 +88,13 @@
 								<tfoot>
 									<tr>
 										<td>
-											<form method="POST" action="{{ url('membership' . '/' . $membership->id) }}" accept-charset="UTF-8" style="display:inline">
+											<!--
+											<form method="POST" action="{{ url('submission-confirm' . '/' . $membership->id) }}" accept-charset="UTF-8" style="display:inline">
 											{{ method_field('PUT') }}
 											{{ csrf_field() }}
 											<button type="submit" class="btn btn-warning btn-sm" title="Confirm Submission" onclick="return confirm(&quot;Confirm Submission?&quot;)"> Confirm Submission</button>
 											</form>
+										-->
 										</td>
 									</tr>
 								</tfoot>
