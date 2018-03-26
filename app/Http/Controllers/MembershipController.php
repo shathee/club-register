@@ -178,7 +178,9 @@ class MembershipController extends Controller
         $membership = Membership::findOrFail($id);
         $department_path = storage_path() . "/json/department.json";
         $departments = json_decode(file_get_contents($department_path), true);
-        //dd($departments);
+        //dd($membership);
+        app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
+
         return view('front.membership.show', compact('membership','departments'));
     }
 

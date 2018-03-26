@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pdf')
 
 @section('content')
     <div class="container">
@@ -11,16 +11,13 @@
 					@if(Session::has('flash_message'))
 						<p class="alert alert-info">{{ Session::get('flash_message') }}</p>
 					@endif
-					<p class="info">
-						For any query please contact membership@sustclubltd.com
-					</p>
+					
                     </div>
                     <div class="card-body">
                     	<!--
                         <a href="{{ url('/membership') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
 
                         -->
-                         <button class="btn btn-primary hidden-print pull-right" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                         <br/>
                         <br/>
 
@@ -83,7 +80,7 @@
 									</tr>
 									<tr>
 										<th>Payment Document Uploaded</th>
-										<td colspan="3">{{ link_to_asset('public/uploads/'.$membership->member_payment_doc,'Click Here To Download', array('class'=>'hidden-print')) }} </td>
+										<td colspan="3">{{ link_to_asset('public/uploads/'.$membership->member_payment_doc,'Click Here To Download') }} </td>
 									</tr>
 									
 									</tr>

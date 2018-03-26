@@ -18,3 +18,7 @@ Route::resource('membership', 'MembershipController');
 Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
 Route::get('submission-messages','MembershipController@messages');
 
+Route::get('make-pdf/{id}','PdfController@index');
+Route::get('mailtest','PdfController@sendEmailReminder');
+
+

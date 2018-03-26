@@ -1,0 +1,12 @@
+body {
+    margin-top: 0;
+}
+@media print { 
+    .navbar {
+        display: block;
+        border-width:0 !important;
+    }
+    .navbar-toggle {
+        display:none;
+    }
+}

@@ -1,10 +1,11 @@
+
 .logo img{
 width: 180px;
 height: 180px;
 
 }
 .member-photo{
-	width: 180px;
+	width: 200px;
 	height: 200px;
 }
 .membership-form-view th,td{
@@ -17,4 +18,7 @@ height: 180px;
 .b-acc-form{
 	font-weight: bold;
 	
+}
+.membership-form-view table{
+	border: none;
 }
