@@ -142,7 +142,7 @@
                 <select name="present_district" class="form-control" id="present_district" >
                        <option value="" >Select</option>
                     @foreach ($districts as $optionKey => $optionValue)
-                       <option value="{{ $optionValue['name'] }}" {{ (isset($membership->present_district) && $membership->present_district == $optionValue['name']) ? 'selected' : ''}}>{{ $optionValue['name'] }}</option>
+                       <option value="{{ $optionValue }}" {{ (isset($membership->present_district) && $membership->present_district == $optionValue) ? 'selected' : ''}}>{{ $optionValue }}</option>
                     @endforeach
                    
                 </select>
@@ -161,10 +161,10 @@
             <div class="col-md-7">
                 <select name="permanent_district" class="form-control" id="permanent_district" required>
                        <option value="" >Select</option>
-                    @foreach ($districts as $optionKey => $optionValue)
-                       <option value="{{ $optionValue['name'] }}" {{ (isset($membership->present_district) && $membership->present_district == $optionValue['name']) ? 'selected' : ''}}>{{ $optionValue['name'] }}</option>
-                    @endforeach
-                </select>
+							@foreach ($districts as $optionKey => $optionValue)
+							   <option value="{{ $optionValue }}" {{ (isset($membership->present_district) && $membership->present_district == $optionValue) ? 'selected' : ''}}>{{ $optionValue }}</option>
+							@endforeach
+						</select>
                 {!! $errors->first('permanent_district', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
