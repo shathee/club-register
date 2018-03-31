@@ -4,15 +4,11 @@
     <div class="container">
         <div class="row">
             
-            <div class="col-md-9">
+            <div class="col-md-offset-1 col-md-10">
                 <div class="card">
-                    <div class="card-header">Membership</div>
-                    <div class="card-body">
-                        <a href="{{ url('/membership/create') }}" class="btn btn-success btn-sm" title="Add New Membership">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
+                    <div class="card-header">Search with Temorary Identification Number or SUST Registration No or Mobile No or Registered Email ID</div>
 
-                        <form method="GET" action="{{ url('/membership') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                    <form method="GET" action="{{ url('/membership') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -22,38 +18,46 @@
                                 </span>
                             </div>
                         </form>
+                    <br/>
+                    <br/>
+                    <div class="card-body">
+					<!--
+                        <a href="{{ url('/membership/create') }}" class="btn btn-success btn-sm" title="Add New Membership">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        </a>
+					-->
 
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
+                        
+                  
+                        @if(!empty($membership))
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>#</th><th>Membership Type</th><th>Reg Email</th><th>Reg Email Repeat</th><th>Actions</th>
-                                    </tr>
+                                   <tr>
+                                       <td>Name</td>
+                                       <td>Department</td>
+                                       <td>Session</td>
+                                       <td>Regitared Email</td>
+                                       <td>Status Confirmed By Finance Team?</td>
+                                   </tr> 
                                 </thead>
                                 <tbody>
-                                @foreach($membership as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->membership_type }}</td><td>{{ $item->reg_email }}</td><td>{{ $item->reg_email_repeat }}</td>
-                                        <td>
-                                            <a href="{{ url('/membership/' . $item->id) }}" title="View Membership"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/membership/' . $item->id . '/edit') }}" title="Edit Membership"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                            <form method="POST" action="{{ url('/membership' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Membership" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    <td>{{ $membership->fullname }}</td>
+                                    <td>{{ $departments[$membership->sust_department] }}</td>
+                                    <td>{{ $membership->sust_session }}-<?php $s2 = $membership->sust_session +1 ?> {{$s2}}</td>
+                                    <td>{{ $membership->reg_email }}</td>
+                                    @if($membership->is_finance_approved == 'yes'||'YES')
+                                    <td class="btn-success">{{ ucfirst($membership->is_finance_approved) }}</td>
+                                    @else
+                                    <td class="btn-danger">{{ ucfirst($membership->is_finance_approved) }}</td>
+                                    @endif
+                                    
+                                </tr>    
                                 </tbody>
+                                
                             </table>
-                            <div class="pagination-wrapper"> {!! $membership->appends(['search' => Request::get('search')])->render() !!} </div>
-                        </div>
-
+                            
+                        @endif
                     </div>
                 </div>
             </div>

@@ -1,0 +1,49 @@
+{
+    "fields": [
+        
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "email",
+            "type": "string"
+        },
+        {
+            "name": "password",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "select",
+            "options": {
+                "": "Select",
+                "Deactive": "Deactive",
+                "Active": "Active"
+            }
+        },
+        {
+            "name": "role",
+            "type": "select",
+            "options": {
+                "": "Select",
+                "User": "User",
+                "Admin": "Admin"
+            }
+        }
+    ],
+    "validations": [
+        {
+            "field": "name",
+            "rules": "required|max:255"
+        },
+        {
+            "field": "email",
+            "rules": "required|email|max:255|unique:users"
+        },
+        {
+            "field": "password",
+            "rules": "required|min:6|pass_confirmed"
+        }
+    ]
+}

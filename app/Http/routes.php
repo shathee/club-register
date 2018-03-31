@@ -22,3 +22,14 @@ Route::get('make-pdf/{id}','PdfController@index');
 Route::get('mailtest','PdfController@sendEmailReminder');
 
 
+
+Route::auth();
+
+Route::get('/admin', 'HomeController@index');
+
+Route::resource('admin/users', 'Admin\UsersController');
+Route::resource('admin/membership-manage', 'Admin\MembershipManageController');
+Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
+
+Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
+Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');

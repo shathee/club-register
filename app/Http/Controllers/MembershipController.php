@@ -22,35 +22,24 @@ class MembershipController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $membership = Membership::where('membership_type', 'LIKE', "%$keyword%")
-                ->orWhere('reg_email', 'LIKE', "%$keyword%")
-                ->orWhere('reg_email_repeat', 'LIKE', "%$keyword%")
-                ->orWhere('fullname', 'LIKE', "%$keyword%")
-                ->orWhere('fullname_bn', 'LIKE', "%$keyword%")
-                ->orWhere('mothers_name', 'LIKE', "%$keyword%")
-                ->orWhere('fathers_name', 'LIKE', "%$keyword%")
-                ->orWhere('spouse_name', 'LIKE', "%$keyword%")
-                ->orWhere('mobile_no', 'LIKE', "%$keyword%")
-                ->orWhere('gender', 'LIKE', "%$keyword%")
-                ->orWhere('religion', 'LIKE', "%$keyword%")
-                ->orWhere('present_address', 'LIKE', "%$keyword%")
-                ->orWhere('present_district', 'LIKE', "%$keyword%")
-                ->orWhere('permanent_address', 'LIKE', "%$keyword%")
-                ->orWhere('permanent_district', 'LIKE', "%$keyword%")
-                ->orWhere('sust_department', 'LIKE', "%$keyword%")
-                ->orWhere('sust_reg_no', 'LIKE', "%$keyword%")
-                ->orWhere('sust_session', 'LIKE', "%$keyword%")
-                ->orWhere('sust_graduation_year', 'LIKE', "%$keyword%")
-                ->orWhere('member_photo', 'LIKE', "%$keyword%")
-                ->orWhere('member_payment_doc', 'LIKE', "%$keyword%")
-                ->orWhere('is_submission_confirmed', 'LIKE', "%$keyword%")
-                ->orWhere('is_finance_approved', 'LIKE', "%$keyword%")
-                ->paginate($perPage);
+            $membership = Membership::where('membership_no', "$keyword")
+                ->orWhere('reg_email', "$keyword")
+                ->orWhere('mobile_no', "$keyword")
+                ->orWhere('sust_reg_no', "$keyword")
+                ->first();
+				
+				//$membership = Membership::findOrFail($id);
+				$department_path = storage_path() . "/json/department.json";
+				$departments = json_decode(file_get_contents($department_path), true);
+			     //dd($membership->get());
+            	return view('front.membership.index', compact('membership','departments'));
+			
+			
         } else {
-            $membership = Membership::paginate($perPage);
+            return view('front.membership.index', compact('membership'));
         }
 
-        return view('front.membership.index', compact('membership'));
+        
     }
 
     /**
@@ -75,7 +64,7 @@ class MembershipController extends Controller
 
         $religions_path = storage_path() . "/json/religions.json";
         $religions = json_decode(file_get_contents($religions_path), true);
-        //dd($departments);
+       // dd(sort($districts));
 
         Mc::putMcData();
         $question=Mc::getMcQuestion();
