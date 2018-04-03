@@ -30,7 +30,7 @@
                                    
                                     <tr>
 										<th>Applied Membership Type </th>
-										<td> {{ $membership->membership_type }} </td>
+										<td> {{ ucfirst($membership->membership_type) }} </td>
 										<td>&nbsp;</td>
 										<td rowspan="6" class="text-right">
 											
@@ -70,11 +70,11 @@
 									</tr>
 									<tr>
 									<th> Spouse Name </th><td> {{ $membership->spouse_name }} </td>
-									<th> Bloor Group </th><td> {{ $membership->blood_group }} </td>
+									<th> Blood Group </th><td> {{ strtoupper($membership->blood_group) }} </td>
 									</tr>
 									<tr>
-										<th> Present Addrress </th><td> {{ $membership->present_address }}, {{ $membership->present_district }}  </td>
-										<th> Parmanent Addrress </th><td> {{ $membership->permanent_address }}, {{ $membership->permanent_district }}  </td>
+										<th> Present Address </th><td> {{ $membership->present_address }}, {{ $membership->present_district }}  </td>
+										<th> Permanent Address </th><td> {{ $membership->permanent_address }}, {{ $membership->permanent_district }}  </td>
 									</tr>
 									
 									<tr>
