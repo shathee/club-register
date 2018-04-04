@@ -11,25 +11,32 @@
 |
 */
 
-Route::get('/','MembershipController@create');
+Route::group(['middleware' => ['throttle']], function () {
+    
 
-Route::resource('membership', 'MembershipController');
+	Route::get('/','MembershipController@create');
+	Route::resource('membership', 'MembershipController');
+	Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
+	Route::get('submission-messages','MembershipController@messages');
+	
+	Route::get('make-pdf/{id}','PdfController@index');
+	Route::get('mailtest','PdfController@sendEmailReminder');
 
-Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
-Route::get('submission-messages','MembershipController@messages');
-
-Route::get('make-pdf/{id}','PdfController@index');
-Route::get('mailtest','PdfController@sendEmailReminder');
 
 
+	Route::auth();
 
-Route::auth();
+	Route::get('/admin', 'HomeController@index');
 
-Route::get('/admin', 'HomeController@index');
+	Route::resource('admin/users', 'Admin\UsersController');
+	Route::resource('admin/membership-manage', 'Admin\MembershipManageController');
+	Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
 
-Route::resource('admin/users', 'Admin\UsersController');
-Route::resource('admin/membership-manage', 'Admin\MembershipManageController');
-Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
+	Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
+	Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');
 
-Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
-Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');
+
+
+});
+
+

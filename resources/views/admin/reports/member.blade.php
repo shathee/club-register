@@ -14,7 +14,7 @@
 
                         <div class="card mb-3">
                         <div class="card-header">
-                          <i class="fa fa-area-chart"></i> Area Chart Example</div>
+                          <i class="fa fa-area-chart"></i> </div>
                         <div class="card-body">
                           {!! $trend_chart->render() !!}
                         </div>

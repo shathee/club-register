@@ -22,12 +22,14 @@ class PdfController extends Controller
     	
 
     	//$pdf = PDF::loadView('front.membership.create', compact('districts','departments','sessions','blood_groups','question','religions'));
+
         $html = view('front.pdf.show', compact('membership','departments'));
+        
 
-        PDF::loadHTML($html)->setWarnings(false)->save('myfile.pdf');
+        PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$id.'.pdf');
 
 
-		///return $pdf->download('invoice.pdf');	
+		//return view('front.pdf.show', compact('membership','departments'));	
     }
 
     public function sendEmailReminder($id)
