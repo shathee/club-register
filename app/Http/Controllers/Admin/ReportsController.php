@@ -26,29 +26,45 @@ class ReportsController extends Controller
 		$department_array = json_decode(file_get_contents($department_path), true);
 	    $session_path = storage_path() . "/json/sessions.json";
         $sessions = json_decode(file_get_contents($session_path), true);
+		$batch_path = storage_path() . "/json/batch.json";
+        $batch = json_decode(file_get_contents($batch_path), true);
 
     	$trend_chart = Charts::database(Membership::all(), 'line', 'highcharts')
 	    ->title("Registration Trend")
 	    ->dimensions(1000, 500)
-	    ->responsive(false)
+		->elementLabel("No of Registrants")
+        ->responsive(true)
 	    ->lastByDay(15, false);
 
-    	$department_chart = Charts::database(Membership::all(), 'bar', 'highcharts')
+    	$department_chart = Charts::database(Membership::all(), 'bar', 'google')
+		->title("Registration Vs Department")
+		->elementLabel("No of Registrants")
 	    ->dimensions(1000, 500)
 	    ->responsive(false)
 	    ->colors($this->rand_color(30))
 	    ->groupBy('sust_department', null, $department_array);
+		
+		
+	    $batch_chart = Charts::database(Membership::all(), 'pie', 'highcharts')
+	    ->elementLabel("Batch vs Registrant")
+		->title("Batch vs Registrant")
+	    ->dimensions(1000, 500)
+	    ->responsive(false)
+	    ->colors($this->rand_color(30))
+	    ->groupBy('sust_session', null, $batch);
 
+         
 	    $session_chart = Charts::database(Membership::all(), 'pie', 'highcharts')
-	    ->elementLabel("Batch")
+	    ->elementLabel("Session vs Registrant")
 	    ->dimensions(1000, 500)
 	    ->responsive(false)
 	    ->colors($this->rand_color(30))
 	    ->groupBy('sust_session', null, $sessions);
 
+		
          
 
-        return view('admin.reports.member',compact('department_chart','session_chart','trend_chart'));
+        return view('admin.reports.member',compact('department_chart','session_chart','trend_chart','batch_chart' ));
     }
 
     function rand_color($count) {

@@ -42,6 +42,22 @@
                         <div class="card-body">
                           <div class="row">
                             <div class="col-sm-8 my-auto">
+                              {!! $batch_chart->render() !!}
+                              <canvas id="myBarChart" width="100" height="50">
+                                
+                              </canvas>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <div class="card-footer small text-muted"></div>
+                      </div>
+                      <div class="card mb-3">
+                        <div class="card-header">
+                          <i class="fa fa-bar-chart"></i>Registration vs Session </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-sm-8 my-auto">
                               {!! $session_chart->render() !!}
                               <canvas id="myBarChart" width="100" height="50">
                                 
