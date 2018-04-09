@@ -31,7 +31,7 @@ class ReportsController extends Controller
 	    ->title("Registration Trend")
 	    ->dimensions(1000, 500)
 	    ->responsive(false)
-	    ->lastByDay(10, false);
+	    ->lastByDay(15, false);
 
     	$department_chart = Charts::database(Membership::all(), 'bar', 'highcharts')
 	    ->dimensions(1000, 500)

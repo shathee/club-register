@@ -20,7 +20,11 @@ class PdfController extends Controller
         //dd($departments);
         //return view('front.membership.show', compact('membership','departments'));
     	
-
+        $path = 'public/uploads/'.$membership->member_photo;
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $membership->member_photo = $base64;
     	//$pdf = PDF::loadView('front.membership.create', compact('districts','departments','sessions','blood_groups','question','religions'));
 
         $html = view('front.pdf.show', compact('membership','departments'));
@@ -29,7 +33,21 @@ class PdfController extends Controller
         PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$id.'.pdf');
 
 
-		//return view('front.pdf.show', compact('membership','departments'));	
+		
+        //dd($membership);
+        //return view('front.pdf.show', compact('membership','departments'));
+
+        Mail::send('front.email.confirm', array('membership' =>$membership,'departments'=>$departments ), function ($message) use ($membership)  {
+
+            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
+            $message->subject('SUST CLUB Membership Confirmation');
+            //dd($membership);
+            $message->to('sat.sust@gmail.com');
+            $message->attach('public/pdf/'.$membership->id.'.pdf');
+        });
+
+        return redirect('membership/'.$id);	
+        
     }
 
     public function sendEmailReminder($id)

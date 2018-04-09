@@ -83,7 +83,7 @@
         <div class="form-group {{ $errors->has('religion') ? 'has-error' : ''}}">
             <label for="religion" class="col-md-5 control-label">{{ 'Religion' }}</label>
             <div class="col-md-7">
-                <select name="religion" class="form-control" id="religion" required>
+                <select name="religion" class="form-control" id="religion">
                     @foreach ($religions as $optionKey => $optionValue)
                         <option value="{{ $optionKey }}" {{ (isset($membership->religion) && $membership->religion == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
                     @endforeach
@@ -137,7 +137,7 @@
             </div>
         </div>
         <div class="form-group {{ $errors->has('present_district') ? 'has-error' : ''}}">
-            <label for="present_district" class="col-md-5 control-label">{{ 'Present District *' }}</label>
+            <label for="present_district" class="col-md-5 control-label">{{ 'Present District ' }}</label>
             <div class="col-md-7">
                 <select name="present_district" class="form-control" id="present_district" >
                        <option value="" >Select</option>
@@ -212,7 +212,7 @@
     -->
         
         <div class="form-group {{ $errors->has('member_photo') ? 'has-error' : ''}}">
-            <label for="member_photo" class="col-md-5 control-label">{{ 'Member Photo *' }}</label>
+            <label for="member_photo" class="col-md-5 control-label">{{ 'Member Photo * (Max File Size 5MB)' }}</label>
             <div class="col-md-7">
                 <input class="form-control" name="member_photo" type="file" id="member_photo" value="{{ $membership->member_photo or ''}}" required>
                 {!! $errors->first('member_photo', '<p class="help-block">:message</p>') !!}
@@ -226,7 +226,7 @@
             </div>
         </div>
         <div class="form-group {{ $errors->has('member_payment_doc') ? 'has-error' : ''}}">
-            <label for="member_payment_doc" class="col-md-5 control-label">{{ 'Member Payment Document *' }}<br/> <small>(Upload the scanned copy of your Deposit Slip/Receipt
+            <label for="member_payment_doc" class="col-md-5 control-label">{{ 'Member Payment Document *(Max File Size 5MB)' }}<br/> <small>(Upload the scanned copy of your Deposit Slip/Receipt
                 <p class="text-danger">Please Keep & save The original Deopsit Slip properly. It may be needed in future procedures</p>
             </small></label>
             <div class="col-md-7">

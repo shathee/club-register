@@ -88,16 +88,25 @@ class MembershipController extends Controller
 			'mobile_no' => 'required',
 			'gender' => 'required',
 			'religion' => 'required',
-			'present_address' => 'required',
+			//'present_address' => 'required',
 			'permanent_address' => 'required',
 			'permanent_district' => 'required',
 			'sust_department' => 'required',
 			//'sust_reg_no' => 'required|unique:memberships',
 			'sust_session' => 'required',
-            'member_photo' => 'required|image|max:3000',
+            'member_photo' => 'required|image|max:5000',
 			'member_payment_info' => 'required',
-			'member_payment_doc' => 'required|max:3000'
-		]);
+			'member_payment_doc' => 'required|max:5000'
+		],
+		[   
+         	   'membership_type.required'=> 'Please Select Your Membership Type.',
+       		   'reg_email.unique'  => 'Sorry, This Email Address Is Already Used By Another User. Please Try With Different One, Thank You.',
+          	   'member_photo.required' => 'You Must Upload your photograph.',
+	   	   'member_photo.max' => 'Maximum Allowable size of photograph is 5MB.',
+		   'member_payment_doc.required' => 'You Must Upload Reference Document of Payment.',
+		'member_payment_doc.max' => 'Maximum Allowable size of document is 5MB.'
+        	]
+	);
         $requestData = $request->all();
         
 	//dd($requestData);
@@ -143,7 +152,7 @@ class MembershipController extends Controller
             Membership::where('id', $id)
               ->update(['membership_no' => $requestData['membership_no'] ]);
 
-            //app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
+            app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
 
 
             return redirect('membership/'.$id)->with('flash_message', 'Your Submisson is successful Thank You for becoming a part of SUST Club Ltd!');

@@ -160,6 +160,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        //Spatie\Analytics\AnalyticsServiceProvider::class,
 
     ],
 
@@ -214,6 +215,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        //'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
 
     ],
 
