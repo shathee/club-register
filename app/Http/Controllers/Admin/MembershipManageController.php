@@ -243,20 +243,20 @@ class MembershipManageController extends Controller
 			'reg_email' => 'required',
 			'reg_email_repeat' => 'required|same:reg_email',
 			'mobile_no' => 'required',
-			'gender' => 'required',
-			'religion' => 'required',
+			//'gender' => 'required',
+			//'religion' => 'required',
 			'present_address' => 'required',
 			'permanent_address' => 'required',
 			'permanent_district' => 'required',
 			'sust_department' => 'required',
 			'sust_reg_no' => 'required',
-			'sust_session' => 'required',
-			'member_photo' => 'required',
-			'member_payment_doc' => 'required'
+			'sust_session' => 'required'
+			//'member_photo' => 'required',
+			//'member_payment_doc' => 'required'
 		]);
         $requestData = $request->all();
-        dd($request->all());
-
+        //dd($request->all());
+        /*
         if ($request->hasFile('member_photo')) {
             foreach($request['member_photo'] as $file){
                 $uploadPath = public_path('/uploads/member_photo');
@@ -281,7 +281,7 @@ class MembershipManageController extends Controller
                 $requestData['member_payment_doc'] = $fileName;
             }
         }
-
+        */
         $Membership = Membership::findOrFail($id);
         $Membership->update($requestData);
 
@@ -297,7 +297,7 @@ class MembershipManageController extends Controller
      */
     public function destroy($id)
     {
-        MembershipManage::destroy($id);
+        //MembershipManage::destroy($id);
 
         return redirect('admin/membership-manage')->with('flash_message', 'MembershipManage deleted!');
     }
@@ -307,7 +307,7 @@ class MembershipManageController extends Controller
     {
        $Membership = Membership::findOrFail($request->id);
        $Membership->update(['is_finance_approved'=>'yes']);
-       return redirect('admin/membership-manage')->with('flash_message', 'Payment Confirmed By Finance');
+       return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
     }
     
 }

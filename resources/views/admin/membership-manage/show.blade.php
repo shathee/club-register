@@ -7,10 +7,17 @@
 
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Membership Temporary Identifaction: <strong>{{ $Membership->membership_no }}</strong></div>
+                    <div class="card-header">Membership Temporary Identifaction: <strong>{{ $Membership->membership_no }}</strong><span>&nbsp; / &nbsp;<strong>Submissoin Time - {{ $Membership->created_at }} </strong> </span></div>
                     <div class="card-body">
 
                         <a href="{{ url('/admin/membership-manage') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <form method="POST" action="{{ url('/admin/membership-manage/payment-confirm') }}" accept-charset="UTF-8" style="display:inline">
+                                                
+                            {{ csrf_field() }}
+                            <input type="hidden" name="id" value="{{$Membership->id}}">
+                            <button type="submit" class="btn btn-primary btn-sm" title="Confirm Payment?" onclick="return confirm(&quot;Confirm Payment? Once it is confirmed it can not be undone&quot;)"><i class="" aria-hidden="true"></i> Confirm payment</button>
+                        </form>
+
                         @if(Auth::user()->role=='Admin')
                         <a href="{{ url('/admin/membership-manage/' . $Membership->id . '/edit') }}" title="Edit Membership"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                         

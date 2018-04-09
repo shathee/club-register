@@ -89,7 +89,7 @@
                                                 
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="id" value="{{$item->id}}">
-                                                <button type="submit" class="btn btn-primary btn-sm" title="Confirm Payment?" onclick="return confirm(&quot;Confirm Payment? Once it is confirmed it can not be undone&quot;)"><i class="" aria-hidden="true"></i> Confirm</button>
+                                                <button type="submit" class="btn btn-primary btn-sm" title="Confirm Payment?" onclick="return confirm(&quot;Confirm Payment? Once it is confirmed it can not be undone&quot;)"><i class="" aria-hidden="true"></i> Confirm Payment</button>
                                             </form>
                                         </td>
                                         @endif

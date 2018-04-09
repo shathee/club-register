@@ -104,8 +104,10 @@
         </div>
 
         <div class="form-group">
+        <!--
             <label for="" class="col-md-5 control-label text-primary">Special Note</label>
             <div class="col-md-7">
+                
                 <p class="text-danger">
                     Please Make sure that you have deposited 
                     <ul class="list-unstyled text-info">
@@ -122,7 +124,9 @@
                     </ul> 
 
                 </p>
+
             </div>
+        -->
         </div>
         
         
