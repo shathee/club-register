@@ -10,7 +10,7 @@
                     <div class="card-header">Membership Temporary Identifaction: <strong>{{ $Membership->membership_no }}</strong><span>&nbsp; / &nbsp;<strong>Submissoin Time - {{ $Membership->created_at }} </strong> </span></div>
                     <div class="card-body">
 
-                        <a href="{{ url('/admin/membership-manage') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url()->previous() }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <form method="POST" action="{{ url('/admin/membership-manage/payment-confirm') }}" accept-charset="UTF-8" style="display:inline">
                                                 
                             {{ csrf_field() }}

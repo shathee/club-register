@@ -113,7 +113,7 @@
                                 @endforelse
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $Membership->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination"> {!! $Membership->appends(['search' => Request::get('search')])->render() !!} </div>
 
 
 
