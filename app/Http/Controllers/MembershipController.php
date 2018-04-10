@@ -154,7 +154,6 @@ class MembershipController extends Controller
 
             app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
 
-
             return redirect('membership/'.$id)->with('flash_message', 'Your Submisson is successful Thank You for becoming a part of SUST Club Ltd!');
          }
         else

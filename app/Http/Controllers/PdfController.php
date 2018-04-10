@@ -29,7 +29,7 @@ class PdfController extends Controller
 
         $html = view('front.pdf.show', compact('membership','departments'));
         
-
+		PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
         PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$id.'.pdf');
 
 
@@ -66,7 +66,8 @@ class PdfController extends Controller
 
         	$message->from('membership@sustclubltd.com', 'SUST Club Ltd');
 		    $message->subject('SUST CLUB Membership Submission');
-		    //dd($membership);
+		    $message->bcc('sat.sust@gmail.com', 'Submission');
+			//dd($membership);
 		    $message->to($membership->reg_email);
 		});
 

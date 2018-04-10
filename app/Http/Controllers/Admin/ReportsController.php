@@ -62,7 +62,6 @@ class ReportsController extends Controller
 	    ->groupBy('sust_session', null, $sessions);
 
 		
-         
 
         return view('admin.reports.member',compact('department_chart','session_chart','trend_chart','batch_chart' ));
     }
