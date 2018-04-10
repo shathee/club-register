@@ -17,39 +17,26 @@ class PdfController extends Controller
     	$membership = Membership::findOrFail($id);
         $department_path = storage_path() . "/json/department.json";
         $departments = json_decode(file_get_contents($department_path), true);
-        //dd($departments);
-        //return view('front.membership.show', compact('membership','departments'));
-    	
-       // $path = 'public/uploads/'.$membership->member_photo;
-        //$type = pathinfo($path, PATHINFO_EXTENSION);
-        //$data = file_get_contents($path);
-        //$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        //$membership->member_photo = $base64;
-    	//$pdf = PDF::loadView('front.membership.create', compact('districts','departments','sessions','blood_groups','question','religions'));
+        
 
         $html = view('front.pdf.show', compact('membership','departments'));
         
-		PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$id.'.pdf');
+		
+        PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$membership->membership_no.'.pdf');
 
 
 		
         //dd($membership);
 
-        return view('front.pdf.show', compact('membership','departments'));
-/*
-        Mail::send('front.email.confirm', array('membership' =>$membership,'departments'=>$departments ), function ($message) use ($membership)  {
+        //return view('front.pdf.show', compact('membership','departments'));
 
-            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
-            $message->subject('SUST CLUB Membership Confirmation');
-            //dd($membership);
-            $message->to('sat.sust@gmail.com');
-            $message->attach('public/pdf/'.$membership->id.'.pdf');
-        });
-
-        return redirect('membership/'.$id);	
-        */
         
+    }
+
+    public function makeBulkPdf($id){
+        for($i=$id; $i<=$id+9;$i++){
+            $this->index($i);
+        }
     }
 
     public function sendEmailReminder($id)
@@ -70,6 +57,27 @@ class PdfController extends Controller
 			//dd($membership);
 		    $message->to($membership->reg_email);
 		});
+
+        return redirect('membership/'.$id);
+    }
+
+
+    public function sendConfirmEmail($id)
+    {
+       
+        $membership = Membership::findOrFail($id);
+        $pathToFile = 'public/pdf/'.$membership->membership_no.'.pdf';
+       
+        Mail::send('front.email.confirm', array('membership' =>$membership, 'pathToFile'=>$pathToFile), function ($message) use ($membership,$pathToFile)  {
+
+            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
+            $message->subject('SUST CLUB Membership Confirmation');
+            $message->bcc('sat.sust@gmail.com', 'Submission');
+            $message->attach($pathToFile);
+            //dd($membership);
+            //$message->to($membership->reg_email);
+            $message->to('sat.sust@gmail.com');
+        });
 
         return redirect('membership/'.$id);
     }

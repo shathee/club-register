@@ -15,7 +15,7 @@
                     <div class="card-body">
                     	<div class="row">
                    
-                    			<table class="table membership-form-view">
+                    			<table class="table" style="border-bottom: 1px groove #cecece;">
                     				<tr>
 	                    					<td width="20%"></td>
 	                    					<td width="30%"></td>
@@ -40,7 +40,7 @@
                     			</table>
                     	</div>
                     	<div class="row">
-                    			<table class="table membership-form-view">
+                    			<table class="table" style="padding-top: 10px;">
 	                    				<tr>
 	                    					<td width="20%"></td>
 	                    					<td width="30%"></td>
@@ -57,7 +57,7 @@
 										</tr>
 										
 										<tr>
-											<th class="th"> Full Name: </th><td> {{ $membership->fullname }} </td>
+											<th class="th"> Full Name: </th><td> {{ ucwords(strtolower($membership->fullname)) }} </td>
 											<td class="td">&nbsp;</td><td>&nbsp;</td>
 										</tr>
 										<tr>
@@ -86,28 +86,35 @@
 											<td></td><td></td>
 										</tr>
 										<tr>
-											<th class="th"> Fathers Name: </th>
-											<td class="td"> {{ $membership->fathers_name }} </td>
+											<th class="th"> Father's Name: </th>
+											<td class="td"> {{ ucwords(strtolower($membership->fathers_name)) }} </td>
 											<th class="th"> Mothers Name: </th>
-											<td class="td"> {{ $membership->mothers_name }} </td>
+											<td class="td"> {{ ucwords(strtolower($membership->mothers_name)) }} </td>
 										</tr>
 										<tr>
-										<th class="th"> Spouse Name: </th><td class="td"> {{ $membership->spouse_name }} </td>
+										<th class="th"> Spouse Name: </th><td class="td"> {{ ucwords(strtolower($membership->spouse_name)) }} </td>
 										<th class="th"> Blood Group </th><td class="td"> {{ strtoupper($membership->blood_group) }} </td>
 										</tr>
 										<tr>
-											<th class="th"> Present Address: </th><td class="td"> {{ $membership->present_address }}, {{ $membership->present_district }}  </td>
-											<th class="th"> Permanent Address: </th><td class="td"> {{ $membership->permanent_address }}, {{ $membership->permanent_district }}  </td>
+											<th class="th"> Present Address: </th><td class="td"> {{ ucwords(strtolower($membership->present_address)) }}, {{ $membership->present_district }}  </td>
+											<th class="th"> Permanent Address: </th><td class="td"> {{ ucwords(strtolower($membership->permanent_address)) }}, {{ $membership->permanent_district }}  </td>
 										</tr>
 										
 										<tr>
-											<th class="th"> Payment Information Given </th>
-											<td colspan="3" class="td"> {{ $membership->member_payment_info }} </td>
+											<th class="th"> Amount Deposited </th>
+											<td colspan="3" class="td"> @if($membership->membership_type=='life')
+											{{ 'BDT 75,000/-' }}
+											@else
+											{{ 'BDT 10,000/-' }}
+											@endif </td>
 										</tr>
 										
-										</tr>
+										
 										<tr>
-											<td colspan="4">&nbsp;
+											<th class="th"> Payment Status </th>
+											<td class="td">Confirmed
+											</td>
+											<td colspan="2">&nbsp;
 											</td>
 										</tr>
 										<tr>
@@ -115,7 +122,10 @@
 											</td>
 										</tr>
 	                               
-									
+										<tr>
+											<td colspan="4">&nbsp;
+											</td>
+										</tr>
 										<tr>
 											<td colspan="4">&nbsp;
 											</td>
@@ -123,7 +133,7 @@
 										
 										<tr style="border: none;">
 											<td colspan="3" ></td>
-											<td rowspan="2" class="td text-right">
+											<td rowspan="2" class="td" style="text-align: center;">
 												
 												<hr>
 												Signature of the Member
@@ -142,15 +152,23 @@
 											</td>
 										</tr>
 										<tr>
-											<td colspan="2" style="text-align:left;font-family: 'Righteous', cursive; font-size: .5em">Website:www.sustclubltd.com
-											</td>
-											<td colspan="2" style="text-align:right;font-family: 'Righteous', cursive; font-size: .5em">email:membership@sustclubltd.com
+											<td colspan="4">&nbsp;
 											</td>
 										</tr>
 										<tr>
 											<td colspan="4">&nbsp;
 											</td>
 										</tr>
+										
+										
+										<tr>
+											<td style="text-align:left;font-family: 'Righteous', cursive; font-size: .5em;">www.sustclubltd.com
+											</td>
+											<td colspan="2" style="text-align:center;font-family: 'Righteous', cursive; font-size: .5em;">P.S.: SUST Club Ltd. Authorty May Seek More information if needed in future. </td>
+											<td style="text-align:right;font-family: 'Righteous', cursive; font-size: .5em">membership@sustclubltd.com
+											</td>
+										</tr>
+										
 								
 	                            </table>
 

@@ -2,27 +2,31 @@
 --><link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Playfair+Display|Righteous|Roboto+Condensed|Sacramento|Ubuntu" rel="stylesheet">
 <style type="text/css" media="all">
+/* vietnamese */
+
+
+
 @page {
-   /*size: 7in 9.25in;
-   margin: 27mm 16mm 27mm 16mm;*/
+   /*size: 7in 9.25in;*/
+   margin: 10px;
+   background-color: #D9CFE6;
 }
 body{
     margin: none;
     font-family: 'garamond';
-    border: 1px solid #ccc;
+    border: 2px solid #c40000;
     background-color: #D9CFE6;
 }
 .container{
     /*background-color: #EAE5F1;*/
+    margin: none;
 }
     .card{
-        background-color: #EAE5F1;
+        /*background-color: #EAE5F1;*/
+        margin: none;
     }
     .logo img{ width:180px; text-align: center; }
-    .member-photo{
-        width:150px;
-        height: 150px;
-    }
+    
     .td_logo{
         text-align: center;
         /*background-image:url("{{ url('public/img/sust-pdf.png')}}");
@@ -37,6 +41,7 @@ body{
         font-size: 0.8em;
         font-weight: bold;
         font-family: 'Playfair Display', sans-serif;
+        vertical-align: top;
     }
 
     .td{
@@ -45,22 +50,30 @@ body{
         font-size: 0.8em;
         line-height: 2;
         font-family: 'Playfair Display', sans-serif;
-        
+        vertical-align: top;   
     }
     .table{
         margin: 0 0 0 0; 
-        padding-left: 10px;
-        width: 95%;
+        padding-left: 30px;
+        width: 100%;
     }
     .h1{
         font-size: 2.7em;
         text-align: center;
         font-family: 'Anton', sans-serif;
-        margin: 0px 0px 10px 0px;
+        margin: 0px 0px 0px 0px;
     }
     .sign{
         font-family: 'Sacramento', cursive;
     }
+    .member-photo{
+         border: 1px solid #AAA;
+        border-radius: 4px;
+        padding: 3px;
+       width:150px;
+        height: 150px;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }   
 </style>
 </head><body>
     <div id="app print">

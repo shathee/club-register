@@ -20,7 +20,9 @@ Route::group(['middleware' => ['throttle']], function () {
 	Route::get('submission-messages','MembershipController@messages');
 	
 	Route::get('make-pdf/{id}','PdfController@index');
+	Route::get('make-bulk-pdf/{id}','PdfController@makeBulkPdf');
 	Route::get('mailtest/{id}','PdfController@sendEmailReminder');
+	Route::get('confirmmailtest/{id}','PdfController@sendConfirmEmail');
 
 
 
