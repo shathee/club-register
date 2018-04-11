@@ -34,7 +34,7 @@ class ReportsController extends Controller
 	    ->dimensions(1000, 500)
 		->elementLabel("No of Registrants")
         ->responsive(true)
-	    ->lastByDay(15, false);
+	    ->lastByDay(18, false);
 
     	$department_chart = Charts::database(Membership::all(), 'bar', 'google')
 		->title("Registration Vs Department")
@@ -77,6 +77,9 @@ class ReportsController extends Controller
 	}
 
 	public function financeStatistics(){
+		
+		
+		
 		$life_fee = 75000;
 		$general_fee = 10000;
 

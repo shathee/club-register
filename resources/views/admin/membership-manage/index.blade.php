@@ -76,11 +76,15 @@
                                 <tbody>
                                 @forelse($Membership as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ ucfirst($item->membership_type) }}</td><td>{{ $item->fullname }}</td><td>{{ $departments[$item->sust_department] }}</td><td>{{ $item->sust_session }}-<?php $s2 = $item->sust_session +1 ?> {{$s2}}</td>
                                         @if($item->is_finance_approved == 'yes' or $item->is_finance_approved == 'YES')
                                         <td >
-                                            <button class="btn-success">{{ ucfirst($item->is_finance_approved) }}</button></td>
+                                            <button class="btn-success">{{ ucfirst($item->is_finance_approved) }}</button>
+                                        </td>
+										<td >
+                                            <a href="{{ url('confirmmail/'.$item->id ) }}" class="btn btn-dark" >Send Email</a>
+										</td>
                                         @else
                                         <td><button class="btn-danger">{{ ucfirst($item->is_finance_approved) }}</button></td></td>
                                         <td >
@@ -97,6 +101,7 @@
                                         <td>
                                             <a href="{{ url('/admin/membership-manage/' . $item->id) }}" title="View Membership"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             @if(Auth::user()->role=='Admin')
+											
                                             <a href="{{ url('/admin/membership-manage/' . $item->id . '/edit') }}" title="Edit Membership"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                             <form method="POST" action="{{ url('/admin/membership-manage' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">

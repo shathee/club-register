@@ -174,7 +174,7 @@ class MembershipManageController extends Controller
             Membership::where('id', $id)
               ->update(['membership_no' => $requestData['membership_no'] ]);
 
-            //app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
+            app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
 
         //Membership::create($requestData);
 
@@ -284,6 +284,8 @@ class MembershipManageController extends Controller
         */
         $Membership = Membership::findOrFail($id);
         $Membership->update($requestData);
+		
+		app(\App\Http\Controllers\PdfController::class)->sendConfirmEmail($id);
 
         return redirect('admin/membership-manage')->with('flash_message', 'MembershipManage updated!');
     }

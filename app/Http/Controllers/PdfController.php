@@ -66,20 +66,18 @@ class PdfController extends Controller
     {
        
         $membership = Membership::findOrFail($id);
-        $pathToFile = 'public/pdf/'.$membership->membership_no.'.pdf';
+        
        
-        Mail::send('front.email.confirm', array('membership' =>$membership, 'pathToFile'=>$pathToFile), function ($message) use ($membership,$pathToFile)  {
+        Mail::send('front.email.confirm', array('membership' =>$membership ), function ($message) use ($membership)  {
 
-            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
-            $message->subject('SUST CLUB Membership Confirmation');
-            $message->bcc('sat.sust@gmail.com', 'Submission');
-            $message->attach($pathToFile);
-            //dd($membership);
-            //$message->to($membership->reg_email);
-            $message->to('sat.sust@gmail.com');
-        });
-
-        return redirect('membership/'.$id);
+        	$message->from('membership@sustclubltd.com', 'SUST Club Ltd');
+		    $message->subject('SUST CLUB Membership Confirmation for '. $membership->membership_no);
+		    $message->to($membership->reg_email);
+			$message->bcc('sat.sust@gmail.com', 'Confirmation');
+		    
+		});
+		return redirect()->back();
+       
     }
     
 }
