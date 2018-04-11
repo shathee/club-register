@@ -9,6 +9,7 @@ use App\Models\Membership;
 use PDF;
 use File;
 use Mail;
+use Carbon\Carbon;
 
 class PdfController extends Controller
 {
@@ -34,6 +35,8 @@ class PdfController extends Controller
     }
 
     public function makeBulkPdf($id){
+       print Carbon::now()->toDateTimeString();
+        dd();
         for($i=$id; $i<=$id+9;$i++){
             $this->index($i);
         }

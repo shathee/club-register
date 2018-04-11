@@ -11,8 +11,11 @@ use Illuminate\Http\Request;
 class MembershipManageController extends Controller
 {
 
+    
     public function __construct()
     {
+        
+
         $this->middleware('auth');
     }
     /**
@@ -22,6 +25,7 @@ class MembershipManageController extends Controller
      */
     public function index(Request $request)
     {
+        
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -113,7 +117,7 @@ class MembershipManageController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
-    {
+    {   
         $this->validate($request, [
             'membership_type' => 'required',
             'reg_email' => 'required|unique:memberships',

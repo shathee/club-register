@@ -80,7 +80,8 @@ class MembershipController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
-    {
+    {   
+        dd($request->all());
         $this->validate($request, [
 			'membership_type' => 'required',
 			'reg_email' => 'required|unique:memberships',
