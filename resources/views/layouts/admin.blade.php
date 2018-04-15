@@ -74,6 +74,9 @@
             <li>
               <a href="{{url('/admin/reports/finance-statistics')}}">Financial Statistics</a>
             </li>
+            <li>
+              <a href="{{url('/admin/reports/custom')}}">Custom</a>
+            </li>
           </ul>
         </li>
          

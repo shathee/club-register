@@ -20,6 +20,52 @@ class ReportsController extends Controller
     }
 
 
+    public function index(Request $request)
+    {
+        $keyword = $request->get('search');
+        $membership_type = $request->get('membership_type');
+		$sust_session = $request->get('sust_session');
+        $perPage = 25;
+
+		$department_path = storage_path() . "/json/department.json";
+		$departments = json_decode(file_get_contents($department_path), true);
+		
+		$sessions_path = storage_path() . "/json/sessions.json";
+		$sessions = json_decode(file_get_contents($sessions_path), true);
+		
+		$batch_path = storage_path() . "/json/batch.json";
+		$batch = json_decode(file_get_contents($batch_path), true);
+		
+		
+        if (!empty($keyword)) {
+            $membership = Membership::where('membership_no', "$keyword")
+                ->orWhere('reg_email', "$keyword")
+                ->orWhere('mobile_no', "$keyword")
+                ->orWhere('sust_reg_no', "$keyword")
+                ->first();
+				
+				//$membership = Membership::findOrFail($id);
+				
+			     //dd($membership->get());
+            	return view('admin.reports.index', compact('membership','departments','batch','sessions'));
+			
+			
+        }else {
+			if(!empty($membership_type)){
+                $memberships = Membership::where('membership_type',$membership_type)->orderBy('id')->get();
+            }
+			
+			if(!empty($sust_session)){
+                $memberships = Membership::where('sust_session',$sust_session)->orderBy('id')->get();
+            }
+			
+            return view('admin.reports.index', compact('memberships','departments','batch','sessions'));
+        }
+
+        
+    }
+
+
     public function memberStatistics()
     {	
     	$department_path = storage_path() . "/json/department.json";
