@@ -67,23 +67,34 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
+							<div class="pagination"> 
+							
+							@include('pagination.default', ['paginator' => $Membership])
+							</div>
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Membership Type</th><th>Full Name</th><th>Department</th><th>Sessoin</th><th>Confirmed By Finance?</th><th>Actions</th>
+                                        <th>#</th><th>Membership Type</th><th>Full Name</th><th>Department</th><th>Sessoin</th><th>Confirmed By Finance?</th><th colspan="3">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @forelse($Membership as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ ucfirst($item->membership_type) }}</td><td>{{ $item->fullname }}</td><td>{{ $departments[$item->sust_department] }}</td><td>{{ $item->sust_session }}-<?php $s2 = $item->sust_session +1 ?> {{$s2}}</td>
+                                        <td>{{ ucfirst($item->membership_type) }}</td>
+										<td>{{ $item->fullname }}</td>
+										<td>{{ $departments[$item->sust_department] }}</td>
+										<td>{{ $item->sust_session }}-<?php $s2 = $item->sust_session +1 ?> {{$s2}}</td>
                                         @if($item->is_finance_approved == 'yes' or $item->is_finance_approved == 'YES')
                                         <td >
                                             <button class="btn-success">{{ ucfirst($item->is_finance_approved) }}</button>
                                         </td>
 										<td >
-                                            <a href="{{ url('confirmmail/'.$item->id ) }}" class="btn btn-dark" >Send Email</a>
+										
+											@if(Auth::user()->role=='Admin')
+												
+											<a href="{{ url('confirmmail/'.$item->id ) }}"><button class="btn btn-dark">Send Email</button></a>
+											@endif
 										</td>
                                         @else
                                         <td><button class="btn-danger">{{ ucfirst($item->is_finance_approved) }}</button></td></td>
@@ -101,14 +112,14 @@
                                         <td>
                                             <a href="{{ url('/admin/membership-manage/' . $item->id) }}" title="View Membership"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             @if(Auth::user()->role=='Admin')
-											
-                                            <a href="{{ url('/admin/membership-manage/' . $item->id . '/edit') }}" title="Edit Membership"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+												
+												<a href="{{ url('/admin/membership-manage/' . $item->id . '/edit') }}" title="Edit Membership"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/admin/membership-manage' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+												<form method="POST" action="{{ url('/admin/membership-manage' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Membership" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
+												</form>
                                             @endif
                                         </td>
                                         
@@ -118,7 +129,10 @@
                                 @endforelse
                                 </tbody>
                             </table>
-                            <div class="pagination"> {!! $Membership->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination"> 
+							{!! $Membership->appends(['search' => Request::get('search')])->render() !!}
+						
+							</div>
 
 
 

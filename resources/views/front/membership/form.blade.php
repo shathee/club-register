@@ -16,56 +16,56 @@
         <div class="form-group {{ $errors->has('reg_email') ? 'has-error' : ''}}">
             <label for="reg_email" class="col-md-5 control-label">{{ 'Email Address*' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="reg_email" type="text" id="reg_email" value="{{ $membership->reg_email or ''}}" required>
+                <input class="form-control" name="reg_email" type="text" id="reg_email" value="{{ $membership->reg_email or old('reg_email') }}" required>
                 {!! $errors->first('reg_email', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('reg_email_repeat') ? 'has-error' : ''}}">
             <label for="reg_email_repeat" class="col-md-5 control-label">{{ 'Re-Enter Email Address  *' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="reg_email_repeat" type="text" id="reg_email_repeat" value="{{ $membership->reg_email_repeat or ''}}" required>
+                <input class="form-control" name="reg_email_repeat" type="text" id="reg_email_repeat" value="{{ $membership->reg_email_repeat or old('reg_email_repeat') }}}}" required>
                 {!! $errors->first('reg_email_repeat', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('fullname') ? 'has-error' : ''}}">
             <label for="fullname" class="col-md-5 control-label">{{ 'Full Name *' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="fullname" type="text" id="fullname" value="{{ $membership->fullname or ''}}" required >
+                <input class="form-control" name="fullname" type="text" id="fullname" value="{{ $membership->fullname or old('fullname') }}" required >
                 {!! $errors->first('fullname', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('fullname_bn') ? 'has-error' : ''}}">
             <label for="fullname_bn" class="col-md-5 control-label">{{ 'Full Name (in Bangla)' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="fullname_bn" type="text" id="fullname_bn" value="{{ $membership->fullname_bn or ''}}" >
+                <input class="form-control" name="fullname_bn" type="text" id="fullname_bn" value="{{ $membership->fullname_bn or old('fullname_bn') }}" >
                 {!! $errors->first('fullname_bn', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('mothers_name') ? 'has-error' : ''}}">
             <label for="mothers_name" class="col-md-5 control-label">{{ 'Mothers Name' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="mothers_name" type="text" id="mothers_name" value="{{ $membership->mothers_name or ''}}" >
+                <input class="form-control" name="mothers_name" type="text" id="mothers_name" value="{{ $membership->mothers_name or old('mothers_name')}}" >
                 {!! $errors->first('mothers_name', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('fathers_name') ? 'has-error' : ''}}">
             <label for="fathers_name" class="col-md-5 control-label">{{ 'Fathers Name' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="fathers_name" type="text" id="fathers_name" value="{{ $membership->fathers_name or ''}}" >
+                <input class="form-control" name="fathers_name" type="text" id="fathers_name" value="{{ $membership->fathers_name or old('fathers_name') }}" >
                 {!! $errors->first('fathers_name', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('spouse_name') ? 'has-error' : ''}}">
             <label for="spouse_name" class="col-md-5 control-label">{{ 'Spouse Name' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="spouse_name" type="text" id="spouse_name" value="{{ $membership->spouse_name or ''}}" >
+                <input class="form-control" name="spouse_name" type="text" id="spouse_name" value="{{ $membership->spouse_name or old('spouse_name')}}" >
                 {!! $errors->first('spouse_name', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="form-group {{ $errors->has('mobile_no') ? 'has-error' : ''}}">
             <label for="mobile_no" class="col-md-5 control-label">{{ 'Mobile No *' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="mobile_no" type="text" id="mobile_no" value="{{ $membership->mobile_no or ''}}" required>
+                <input class="form-control" name="mobile_no" type="text" id="mobile_no" value="{{ $membership->mobile_no or old('mobile_no')}}" required>
                 {!! $errors->first('mobile_no', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -132,7 +132,7 @@
         <div class="form-group {{ $errors->has('present_address') ? 'has-error' : ''}}">
             <label for="present_address" class="col-md-5 control-label">{{ 'Present Address *' }}</label>
             <div class="col-md-7">
-                <textarea class="form-control" rows="5" name="present_address" type="textarea" id="present_address" required>{{ $membership->present_address or ''}}</textarea>
+                <textarea class="form-control" rows="5" name="present_address" type="textarea" id="present_address" required>{{ $membership->present_address or old('present_address')}}</textarea>
                 {!! $errors->first('present_address', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -152,7 +152,7 @@
         <div class="form-group {{ $errors->has('permanent_address') ? 'has-error' : ''}}">
             <label for="permanent_address" class="col-md-5 control-label">{{ 'Permanent Address *' }}</label>
             <div class="col-md-7">
-                <textarea class="form-control" rows="5" name="permanent_address" type="textarea" id="permanent_address" required>{{ $membership->permanent_address or ''}}</textarea>
+                <textarea class="form-control" rows="5" name="permanent_address" type="textarea" id="permanent_address" required>{{ $membership->permanent_address or old('permanent_address')}}</textarea>
                 {!! $errors->first('permanent_address', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -182,7 +182,7 @@
         <div class="form-group {{ $errors->has('sust_reg_no') ? 'has-error' : ''}}">
             <label for="sust_reg_no" class="col-md-5 control-label">{{ 'Sust Reg No ' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="sust_reg_no" type="text" id="sust_reg_no" value="{{ $membership->sust_reg_no or ''}}" >
+                <input class="form-control" name="sust_reg_no" type="text" id="sust_reg_no" value="{{ $membership->sust_reg_no or old('sust_reg_no')}}" >
                 {!! $errors->first('sust_reg_no', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -221,7 +221,7 @@
         <div class="form-group {{ $errors->has('member_payment_info') ? 'has-error' : ''}}">
             <label for="member_payment_info" class="col-md-5 control-label">{{ 'Write Your payment Information*' }}<br/> <small>(Write the Branch/First Track/Online Payment info in this box)</small></label>
             <div class="col-md-7">
-                <textarea class="form-control" rows="5" name="member_payment_info" type="textarea" id="member_payment_info" placeholder="Branch Name, Payment Mode, Payment Date etc" required>{{ $membership->member_payment_info or ''}}</textarea>
+                <textarea class="form-control" rows="5" name="member_payment_info" type="textarea" id="member_payment_info" placeholder="Branch Name, Payment Mode, Payment Date etc" required>{{ $membership->member_payment_info or old('member_payment_info')}}</textarea>
                 {!! $errors->first('member_payment_info', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
