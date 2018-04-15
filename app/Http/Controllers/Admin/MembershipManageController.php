@@ -289,7 +289,7 @@ class MembershipManageController extends Controller
         $Membership = Membership::findOrFail($id);
         $Membership->update($requestData);
 		
-		app(\App\Http\Controllers\PdfController::class)->sendConfirmEmail($id);
+		//app(\App\Http\Controllers\PdfController::class)->sendConfirmEmail($id);
 
         return redirect('admin/membership-manage')->with('flash_message', 'MembershipManage updated!');
     }
@@ -313,7 +313,8 @@ class MembershipManageController extends Controller
     {
        $Membership = Membership::findOrFail($request->id);
        $Membership->update(['is_finance_approved'=>'yes']);
-       return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
+       //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
+	   return redirect()->back();
     }
     
 }

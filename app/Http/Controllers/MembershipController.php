@@ -80,15 +80,14 @@ class MembershipController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
-    {   
-        dd($request->all());
+    {
         $this->validate($request, [
 			'membership_type' => 'required',
 			'reg_email' => 'required|unique:memberships',
 			'reg_email_repeat' => 'required|same:reg_email',
 			'mobile_no' => 'required',
-			'gender' => 'required',
-			'religion' => 'required',
+			//'gender' => 'required',
+			//'religion' => 'required',
 			//'present_address' => 'required',
 			'permanent_address' => 'required',
 			'permanent_district' => 'required',
@@ -103,9 +102,9 @@ class MembershipController extends Controller
          	   'membership_type.required'=> 'Please Select Your Membership Type.',
        		   'reg_email.unique'  => 'Sorry, This Email Address Is Already Used By Another User. Please Try With Different One, Thank You.',
           	   'member_photo.required' => 'You Must Upload your photograph.',
-	   	   'member_photo.max' => 'Maximum Allowable size of photograph is 5MB.',
-		   'member_payment_doc.required' => 'You Must Upload Reference Document of Payment.',
-		'member_payment_doc.max' => 'Maximum Allowable size of document is 5MB.'
+	   	       'member_photo.max' => 'Maximum Allowable size of photograph is 5MB.',
+		  'member_payment_doc.required' => 'You Must Upload Reference Document of Payment.',
+		      'member_payment_doc.max' => 'Maximum Allowable size of document is 5MB.'
         	]
 	);
         $requestData = $request->all();
@@ -154,6 +153,7 @@ class MembershipController extends Controller
               ->update(['membership_no' => $requestData['membership_no'] ]);
 
             app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
+
 
             return redirect('membership/'.$id)->with('flash_message', 'Your Submisson is successful Thank You for becoming a part of SUST Club Ltd!');
          }
