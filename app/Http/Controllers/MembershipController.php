@@ -19,8 +19,20 @@ class MembershipController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
+        $membership_type = $request->get('membership_type');
+		$sust_session = $request->get('sust_session');
         $perPage = 25;
 
+		$department_path = storage_path() . "/json/department.json";
+		$departments = json_decode(file_get_contents($department_path), true);
+		
+		$sessions_path = storage_path() . "/json/sessions.json";
+		$sessions = json_decode(file_get_contents($sessions_path), true);
+		
+		$batch_path = storage_path() . "/json/batch.json";
+		$batch = json_decode(file_get_contents($batch_path), true);
+		
+		
         if (!empty($keyword)) {
             $membership = Membership::where('membership_no', "$keyword")
                 ->orWhere('reg_email', "$keyword")
@@ -29,14 +41,21 @@ class MembershipController extends Controller
                 ->first();
 				
 				//$membership = Membership::findOrFail($id);
-				$department_path = storage_path() . "/json/department.json";
-				$departments = json_decode(file_get_contents($department_path), true);
+				
 			     //dd($membership->get());
-            	return view('front.membership.index', compact('membership','departments'));
+            	return view('front.membership.index', compact('membership','departments','batch','sessions'));
 			
 			
-        } else {
-            return view('front.membership.index', compact('membership'));
+        }else {
+			if(!empty($membership_type)){
+                $memberships = Membership::where('membership_type',$membership_type)->orderBy('id')->get();
+            }
+			
+			if(!empty($sust_session)){
+                $memberships = Membership::where('sust_session',$sust_session)->orderBy('id')->get();
+            }
+			
+            return view('front.membership.index', compact('memberships','departments','batch','sessions'));
         }
 
         
