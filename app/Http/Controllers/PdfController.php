@@ -20,7 +20,7 @@ class PdfController extends Controller
         $departments = json_decode(file_get_contents($department_path), true);
         
 
-        $html = view('front.pdf.show', compact('membership','departments'));
+       $html = view('front.pdf.show', compact('membership','departments'));
         
 		
         PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$membership->membership_no.'.pdf');
@@ -29,7 +29,7 @@ class PdfController extends Controller
 		
         //dd($membership);
 
-        //return view('front.pdf.show', compact('membership','departments'));
+        return view('front.pdf.show', compact('membership','departments'));
 
         
     }

@@ -30,17 +30,30 @@ Route::group(['middleware' => ['throttle']], function () {
 
 	Route::auth();
 
-	Route::get('/admin', 'HomeController@index');
+	Route::group(['middleware' => ['auth']], function () {
+	    
 
-	Route::resource('admin/users', 'Admin\UsersController');
-	Route::resource('admin/membership-manage', 'Admin\MembershipManageController');
-	Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
+		Route::get('/admin', 'HomeController@index');
 
-	Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
-	Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');
-	Route::get('admin/reports/custom', 'Admin\ReportsController@index');
-	Route::post('admin/reports/custom', 'Admin\ReportsController@index');
+		Route::resource('admin/users', 'Admin\UsersController');
+		Route::resource('admin/membership-manage', 'Admin\MembershipManageController');
+		
+		Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
+		Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
+		Route::post('admin/membership-manage/payment-reject', 'Admin\MembershipManageController@paymentReject');
+		Route::post('admin/membership-manage/payment-hold', 'Admin\MembershipManageController@paymentHold');
 
+		Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
+		Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');
+
+
+		Route::get('admin/reports/custom', 'Admin\ReportsController@index');
+		Route::post('admin/reports/custom', 'Admin\ReportsController@index');
+
+
+
+	});
+	
 
 
 });

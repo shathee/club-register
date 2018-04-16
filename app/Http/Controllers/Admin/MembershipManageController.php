@@ -61,7 +61,7 @@ class MembershipManageController extends Controller
         } else {
 
             if(!empty($membership_type)){
-                $Membership = Membership::where('membership_type',$membership_type)->paginate($perPage);
+                $Membership = Membership::where('membership_type',$membership_type)->paginate($perPage)->appends(request()->query());
                 
             }else{
 
@@ -315,6 +315,24 @@ class MembershipManageController extends Controller
        $Membership->update(['is_finance_approved'=>'yes']);
        //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
 	   return redirect()->back();
+    }
+
+
+    public function paymentReject(Request $request)
+    {
+       $Membership = Membership::findOrFail($request->id);
+       $Membership->update(['is_finance_approved'=>'rejected']);
+       //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
+       return redirect()->back();
+    }
+
+
+    public function paymentHold(Request $request)
+    {
+       $Membership = Membership::findOrFail($request->id);
+       $Membership->update(['is_finance_approved'=>'hold']);
+       //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
+       return redirect()->back();
     }
     
 }

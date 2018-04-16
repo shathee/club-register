@@ -25,6 +25,7 @@ class ReportsController extends Controller
         $keyword = $request->get('search');
         $membership_type = $request->get('membership_type');
 		$sust_session = $request->get('sust_session');
+		$sust_department = $request->get('sust_department');
         $perPage = 25;
 
 		$department_path = storage_path() . "/json/department.json";
@@ -57,6 +58,9 @@ class ReportsController extends Controller
 			
 			if(!empty($sust_session)){
                 $memberships = Membership::where('sust_session',$sust_session)->orderBy('id')->get();
+            }
+			if(!empty($sust_department)){
+                $memberships = Membership::where('sust_department',$sust_department)->orderBy('id')->get();
             }
 			
             return view('admin.reports.index', compact('memberships','departments','batch','sessions'));
@@ -136,6 +140,26 @@ class ReportsController extends Controller
 		$data['general_member_total_fee'] = $data['general_member_count'] * $general_fee;
 		$data['life_member_total_fee'] = $data['life_member_count'] * $life_fee;
 
+
+		$data['total_member_confirmed_count'] = Membership::where('is_finance_approved','yes')->count();
+		$data['general_member_confirmed_count'] = Membership::where('membership_type','general')->where('is_finance_approved','yes')->count();
+		$data['life_member_confirmed_count'] = Membership::where('membership_type','life')->where('is_finance_approved','yes')->count();
+		$data['general_member_confirmed_total_fee'] = $data['general_member_confirmed_count'] * $general_fee;
+		$data['life_member_confirmed_total_fee'] = $data['life_member_confirmed_count'] * $life_fee;
+
+
+		$data['total_member_onhold_count'] = Membership::where('is_finance_approved','hold')->count();
+		$data['general_member_onhold_count'] = Membership::where('membership_type','general')->where('is_finance_approved','hold')->count();
+		$data['life_member_onhold_count'] = Membership::where('membership_type','life')->where('is_finance_approved','hold')->count();
+		$data['general_member_onhold_total_fee'] = $data['general_member_onhold_count'] * $general_fee;
+		$data['life_member_onhold_total_fee'] = $data['life_member_onhold_count'] * $life_fee;
+
+
+		$data['total_member_nostatus_count'] = Membership::where('is_finance_approved','no')->count();
+		$data['general_member_nostatus_count'] = Membership::where('membership_type','general')->where('is_finance_approved','no')->count();
+		$data['life_member_nostatus_count'] = Membership::where('membership_type','life')->where('is_finance_approved','no')->count();
+		$data['general_member_nostatus_total_fee'] = $data['general_member_nostatus_count'] * $general_fee;
+		$data['life_member_nostatus_total_fee'] = $data['life_member_nostatus_count'] * $life_fee;
 		//dd($data);
 
 		return view('admin.reports.finance', $data);

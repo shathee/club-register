@@ -41,7 +41,9 @@
                                 <select name="is_finance_approved" class="form-group">
                                     <option value="">Select Payment Status</option>
                                     <option value="yes">Confirmed</option>
-                                    <option value="no">Not Confirmed</option>
+                                    <option value="hold">On Hold</option>
+                                    <option value="rejected">Rejected</option>
+                                    <option value="no">No</option>
                                 </select>
                                
                                <button type="submit" class="btn btn-primary form-group">Show</button>
@@ -69,7 +71,8 @@
                         <div class="table-responsive">
 							<div class="pagination"> 
 							
-							@include('pagination.default', ['paginator' => $Membership])
+							<!--@include('pagination.default', ['paginator' => $Membership])-->
+                            {!! $Membership->appends(['search' => Request::get('search'),'is_finance_approved' => Request::get('is_finance_approved'),'membership_type' => Request::get('membership_type')])->render() !!}
 							</div>
                             <table class="table">
                                 <thead>
@@ -86,26 +89,73 @@
 										<td>{{ $departments[$item->sust_department] }}</td>
 										<td>{{ $item->sust_session }}-<?php $s2 = $item->sust_session +1 ?> {{$s2}}</td>
                                         @if($item->is_finance_approved == 'yes' or $item->is_finance_approved == 'YES')
-                                        <td >
-                                            <button class="btn-success">{{ ucfirst($item->is_finance_approved) }}</button>
-                                        </td>
-										<td >
-										
-											@if(Auth::user()->role=='Admin')
-												
-											<a href="{{ url('confirmmail/'.$item->id ) }}"><button class="btn btn-dark">Send Email</button></a>
-											@endif
-										</td>
+                                            <td >
+                                                <button class="btn-success">{{ ucfirst('confirmed') }}</button>
+                                            </td>
+                                             <td >
+                                                <form method="POST" action="{{ url('/admin/membership-manage/payment-reject') }}" accept-charset="UTF-8" style="display:inline">
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Teject Payment?" onclick="return confirm(&quot;Reject Payment? &quot;)"><i class="" aria-hidden="true"></i> Reject Payment</button>
+                                                </form>
+                                            </td>
+
+                                             <td >
+                                                <form method="POST" action="{{ url('/admin/membership-manage/payment-hold') }}" accept-charset="UTF-8" style="display:inline">
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                                    <button type="submit" class="btn btn-warning btn-sm" title="Hold Payment?" onclick="return confirm(&quot;Hold Payment? &quot;)"><i class="" aria-hidden="true"></i> Hold Payment</button>
+                                                </form>
+                                            </td>
+                                            @if(Auth::user()->role=='Admin')
+    										<td >
+    										
+    											
+    												
+    											<a href="{{ url('confirmmail/'.$item->id ) }}"><button class="btn btn-dark">Send Email</button></a>
+    											
+    										</td>
+                                            @endif
                                         @else
-                                        <td><button class="btn-danger">{{ ucfirst($item->is_finance_approved) }}</button></td></td>
+                                        <td><button class="btn-danger">
+
+                                            {{ ucfirst($item->is_finance_approved) }}</button></td>
                                         <td >
                                            
                                             <form method="POST" action="{{ url('/admin/membership-manage/payment-confirm') }}" accept-charset="UTF-8" style="display:inline">
                                                 
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="id" value="{{$item->id}}">
-                                                <button type="submit" class="btn btn-primary btn-sm" title="Confirm Payment?" onclick="return confirm(&quot;Confirm Payment? Once it is confirmed it can not be undone&quot;)"><i class="" aria-hidden="true"></i> Confirm Payment</button>
+                                                <button type="submit" class="btn btn-primary btn-sm" title="Confirm Payment?" onclick="return confirm(&quot;Confirm Payment? &quot;)"><i class="" aria-hidden="true"></i> Confirm Payment</button>
                                             </form>
+                                           
+                                        </td>
+                                        <td >
+                                             @if($item->is_finance_approved == 'no')
+                                            <form method="POST" action="{{ url('/admin/membership-manage/payment-hold') }}" accept-charset="UTF-8" style="display:inline">
+                                                
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <button type="submit" class="btn btn-warning btn-sm" title="Hold Payment?" onclick="return confirm(&quot;Hold Payment? &quot;)"><i class="" aria-hidden="true"></i> Hold Payment</button>
+                                            </form>
+                                            @elseif($item->is_finance_approved == 'rejected')
+                                            <form method="POST" action="{{ url('/admin/membership-manage/payment-hold') }}" accept-charset="UTF-8" style="display:inline">
+                                                
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <button type="submit" class="btn btn-warning btn-sm" title="Hold Payment?" onclick="return confirm(&quot;Hold Payment? &quot;)"><i class="" aria-hidden="true"></i> Hold Payment</button>
+                                            </form>
+
+                                            @else
+                                            <form method="POST" action="{{ url('/admin/membership-manage/payment-reject') }}" accept-charset="UTF-8" style="display:inline">
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Teject Payment?" onclick="return confirm(&quot;Reject Payment? &quot;)"><i class="" aria-hidden="true"></i> Reject Payment</button>
+                                                </form>
+                                            @endif
                                         </td>
                                         @endif
                                         
@@ -130,7 +180,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination"> 
-							{!! $Membership->appends(['search' => Request::get('search')])->render() !!}
+							{!! $Membership->appends(['search' => Request::get('search'),'is_finance_approved' => Request::get('is_finance_approved'),'membership_type' => Request::get('membership_type')])->render() !!}
 						
 							</div>
 

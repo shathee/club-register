@@ -9,13 +9,14 @@
 @page {
    /*size: 7in 9.25in;*/
    margin: 10px;
-   background-color: #D9CFE6;
+   background-color: #fefefe;
 }
 body{
     margin: none;
     font-family: 'garamond';
     border: 2px solid #c40000;
-    background-color: #D9CFE6;
+    background-color: #fefefe;
+    font-size: 10px;
 }
 .container{
     /*background-color: #EAE5F1;*/
@@ -25,7 +26,7 @@ body{
         /*background-color: #EAE5F1;*/
         margin: none;
     }
-    .logo img{ width:180px; text-align: center; }
+    .logo img{ width:100px;height:100px; text-align: center; }
     
     .td_logo{
         text-align: center;
@@ -54,13 +55,20 @@ body{
     }
     .table{
         margin: 0 0 0 0; 
-        padding-left: 30px;
+        padding-left: 10px;
         width: 100%;
+        border: 1px dashed #cecece; 
     }
     .h1{
-        font-size: 2.7em;
+        font-size: 2.8em;
         text-align: center;
         font-family: 'Anton', sans-serif;
+        margin: 0px 0px 0px 0px;
+    }
+    .h4{
+        font-size: 1.8em;
+        text-align: center;
+        
         margin: 0px 0px 0px 0px;
     }
     .sign{
@@ -70,9 +78,10 @@ body{
          border: 1px solid #AAA;
         border-radius: 4px;
         padding: 3px;
-       width:150px;
-        height: 150px;
+       width:100px;
+        height: 100px;
         box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+         text-align: center;
     }   
 </style>
 </head><body>
