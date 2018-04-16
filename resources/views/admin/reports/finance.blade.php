@@ -13,17 +13,17 @@
                         <thead>
                         <tr>
                             <td></td>
-                            <td>Number of Members</td>
+                            <td>Number of Submissions</td>
                             <td>Money Deposited</td>
                          </tr> 
                         </thead>
                         <tr>
-                            <td>Life Members</td>
+                            <td>Life</td>
                             <td>{{ $life_member_confirmed_count }}</td>
                             <td>{{ $life_member_confirmed_total_fee }}</td>
                         </tr>
                         <tr>
-                            <td>General Members</td>
+                            <td>General</td>
                             <td>{{ $general_member_confirmed_count }}</td>
                             <td>{{ $general_member_confirmed_total_fee }}</td>
                         </tr>
@@ -55,17 +55,17 @@
                         <thead>
                         <tr>
                             <td></td>
-                            <td>Number of Members</td>
+                            <td>Number of Submissions</td>
                             <td>Money Deposited</td>
                          </tr> 
                         </thead>
                         <tr>
-                            <td>Life Members</td>
+                            <td>Life</td>
                             <td>{{ $life_member_onhold_count }}</td>
                             <td>{{ $life_member_onhold_total_fee }}</td>
                         </tr>
                         <tr>
-                            <td>General Members</td>
+                            <td>General</td>
                             <td>{{ $general_member_onhold_count }}</td>
                             <td>{{ $general_member_onhold_total_fee }}</td>
                         </tr>
@@ -90,7 +90,7 @@
             </div>
 
         </div>
-
+        <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-md-6">
                 <div class="card text-light bg-info">
@@ -100,17 +100,17 @@
                         <thead>
                         <tr>
                             <td></td>
-                            <td>Number of Members</td>
+                            <td>Number of Submissions</td>
                             <td>Money Deposited</td>
                          </tr> 
                         </thead>
                         <tr>
-                            <td>Life Members</td>
+                            <td>Life </td>
                             <td>{{ $life_member_count }}</td>
                             <td>{{ $life_member_total_fee }}</td>
                         </tr>
                         <tr>
-                            <td>General Members</td>
+                            <td>General </td>
                             <td>{{ $general_member_count }}</td>
                             <td>{{ $general_member_total_fee }}</td>
                         </tr>
@@ -134,23 +134,23 @@
             </div>
             <div class="col-md-6">
                 <div class="card text-light bg-secondary">
-                    <div class="card-header">Finance Status Pending for Finance Decission</div>
+                    <div class="card-header"> Pending for Finance Decission</div>
                     <div class="card-body">
                     <table class="table">
                         <thead>
                         <tr>
                             <td></td>
-                            <td>Number of Members</td>
+                            <td>Number of Submissions</td>
                             <td>Money Deposited</td>
                          </tr> 
                         </thead>
                         <tr>
-                            <td>Life Members</td>
+                            <td>Life</td>
                             <td>{{ $life_member_nostatus_count }}</td>
                             <td>{{ $life_member_nostatus_total_fee }}</td>
                         </tr>
                         <tr>
-                            <td>General Members</td>
+                            <td>General</td>
                             <td>{{ $general_member_nostatus_count }}</td>
                             <td>{{ $general_member_nostatus_total_fee }}</td>
                         </tr>
@@ -173,6 +173,49 @@
                 </div>
             </div>
 
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+                <div class="col-md-6">
+                <div class="card text-light bg-danger">
+                    <div class="card-header">Rejected by Finance </div>
+                    <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td></td>
+                            <td>Number of Submissions</td>
+                            <td>Money Deposited</td>
+                         </tr> 
+                        </thead>
+                        <tr>
+                            <td>Life</td>
+                            <td>{{ $life_member_rejected_count }}</td>
+                            <td>{{ $life_member_rejected_total_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>General</td>
+                            <td>{{ $general_member_rejected_count }}</td>
+                            <td>{{ $general_member_rejected_total_fee }}</td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                            <td>
+                                Total
+                            </td>
+                            <td>
+                                {{ $total_member_rejected_count}}
+                            </td>
+                            <td>
+                                {{ $general_member_rejected_total_fee + $life_member_rejected_total_fee }}
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>    
+                    
+                    </div>
+                </div>
+            </div>
         </div>
         
     </div>

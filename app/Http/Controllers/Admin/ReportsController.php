@@ -160,6 +160,13 @@ class ReportsController extends Controller
 		$data['life_member_nostatus_count'] = Membership::where('membership_type','life')->where('is_finance_approved','no')->count();
 		$data['general_member_nostatus_total_fee'] = $data['general_member_nostatus_count'] * $general_fee;
 		$data['life_member_nostatus_total_fee'] = $data['life_member_nostatus_count'] * $life_fee;
+
+
+		$data['total_member_rejected_count'] = Membership::where('is_finance_approved','rejected')->count();
+		$data['general_member_rejected_count'] = Membership::where('membership_type','general')->where('is_finance_approved','rejected')->count();
+		$data['life_member_rejected_count'] = Membership::where('membership_type','life')->where('is_finance_approved','rejected')->count();
+		$data['general_member_rejected_total_fee'] = $data['general_member_rejected_count'] * $general_fee;
+		$data['life_member_rejected_total_fee'] = $data['life_member_rejected_count'] * $life_fee;
 		//dd($data);
 
 		return view('admin.reports.finance', $data);
