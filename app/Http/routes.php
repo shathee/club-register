@@ -15,13 +15,31 @@
 
 Route::group(['middleware' => ['throttle']], function () {
     
+		$dt1 = Carbon\Carbon::now();
+        $dt2 = Carbon\Carbon::create(2018, 04, 19, 0, 0, 0);
+        if($dt1->gte($dt2)){
+        	Route::get('/','MembershipController@index');
+            
+        }else {
+        	Route::get('/','MembershipController@create');
+        }
 
-	Route::get('/','MembershipController@create');
+        
+
+	
+
+
 	Route::resource('membership', 'MembershipController');
+
+
+
 	Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
+
+
 	Route::get('submission-messages','MembershipController@messages');
 	
 	Route::get('make-pdf/{id}','PdfController@index');
+	Route::get('/admin/make-all-pdf','PdfController@allPdfReport');
 	Route::get('make-bulk-pdf/{id}','PdfController@makeBulkPdf');
 	Route::get('mailtest/{id}','PdfController@sendEmailReminder');
 	Route::get('confirmmail/{id}','PdfController@sendConfirmEmail');

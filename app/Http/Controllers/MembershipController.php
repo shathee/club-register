@@ -9,8 +9,10 @@ use App\Models\Membership;
 use Illuminate\Http\Request;
 use Input;
 
+
 class MembershipController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

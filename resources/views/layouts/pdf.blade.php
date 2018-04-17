@@ -10,6 +10,8 @@
    /*size: 7in 9.25in;*/
    margin: 10px;
    background-color: #fefefe;
+   page-break-after: always;
+        page-break-inside: avoid;
 }
 body{
     margin: none;
@@ -17,6 +19,8 @@ body{
     border: 2px solid #c40000;
     background-color: #fefefe;
     font-size: 10px;
+    page-break-after: always;
+        page-break-inside: avoid;
 }
 .container{
     /*background-color: #EAE5F1;*/
@@ -35,6 +39,9 @@ body{
         height: 220px;
         background-position: center bottom, center top;
         background-repeat: no-repeat, repeat;*/
+    }
+    th{
+        text-align: left;
     }
     .th{
         text-align: left;

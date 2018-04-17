@@ -23,7 +23,7 @@
         <div class="form-group {{ $errors->has('reg_email_repeat') ? 'has-error' : ''}}">
             <label for="reg_email_repeat" class="col-md-5 control-label">{{ 'Re-Enter Email Address  *' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="reg_email_repeat" type="text" id="reg_email_repeat" value="{{ $membership->reg_email_repeat or old('reg_email_repeat') }}}}" required>
+                <input class="form-control" name="reg_email_repeat" type="text" id="reg_email_repeat" value="{{ $membership->reg_email_repeat or old('reg_email_repeat') }}" required>
                 {!! $errors->first('reg_email_repeat', '<p class="help-block">:message</p>') !!}
             </div>
         </div>

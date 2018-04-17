@@ -21,9 +21,15 @@
                         Membership of SUST Club Ltd. 
                     </p>
 					
-					<p>First Meeting of Founder Members will be held on 20-04-2018 (Time &amp; Place will be announced later)</p>
+					<p>First Meeting of Founder Members will be held on 20 April, 2018 </p>
+                    <p>Time: 2:00 PM - 8:00 PM </p>
+                    <p>Venue:</p>
+                    <p>Uttara Ladies Club, Plot - 8, Road - 8, Sector - 1, Uttara, Dhaka - 1230</p>
 					<p>Best Regards</p>
 					<p>SUST Club Ltd</p>
+
+                
+
 
                     </div>
 						

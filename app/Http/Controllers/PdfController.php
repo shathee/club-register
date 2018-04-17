@@ -34,6 +34,43 @@ class PdfController extends Controller
         
     }
 
+
+
+    public function allPdfReport(){
+
+        $memberships = Membership::all()->groupBy('sust_department');
+        $department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+        
+
+        //$html = view('front.pdf.all', compact('memberships','departments'));
+        
+        
+       //PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/all.pdf');
+
+
+        
+        //dd($memberships);
+
+       // return view('front.pdf.all', compact('memberships','departments'));
+        foreach ($memberships as $key => $value) {
+            $this->deptPDF($key);
+        }
+    }
+
+    public function deptPDF($dept){
+        $memberships = Membership::where('sust_department',$dept)->orderBy('sust_session')->get();
+        $department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+//dd($memberships);
+        //return view('front.pdf.dept', compact('memberships','departments','dept'));
+        $html = view('front.pdf.dept', compact('memberships','departments','dept'));
+        
+        
+     PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$dept.'.pdf');
+
+    }
+
     public function makeBulkPdf($id){
        print Carbon::now()->toDateTimeString();
         dd();
