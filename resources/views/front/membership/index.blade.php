@@ -7,10 +7,17 @@
             
             <div class="col-md-8">
                 <div class="card">
-                    
-					
+                	<?php
+                    $dt1 = Carbon\Carbon::now();
+			        $dt2 = Carbon\Carbon::create(2018, 04, 19, 0, 0, 0);
+			        if($dt1->gte($dt2)){
+			        	echo "<h1>Dear SUSTIAN </br>Registration for founder member is closed</h1>";
+			            
+			        }	
+			        
+					?>
                     <div class="card-body">
-					
+					<!--
                        		<table class="table table-hover">
 									<thead>
 									   <tr>
@@ -57,12 +64,13 @@
 									
 								</table>
 						
-                        
+                       --> 
                     </div>
                 </div>
             </div>
 			
 			<div class="col-md-4">
+		<!--
 			<div class="">
 				<h6>Search with Temorary Identification Number or SUST Registration No or Mobile No or Registered Email ID</h6>
 
@@ -75,6 +83,7 @@
      
                     </form>
 			</div>
+		
 			<div class="">
 					<h6>Search with Membership Type</h6>
 					<form method="GET" action="{{ url('/membership') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
@@ -102,6 +111,7 @@
 						
 					</form>
 			</div>
+
 			<div>
 			<h6>Search by Department</h6>
                     <form method="GET" action="{{ url('/membership') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
@@ -116,6 +126,7 @@
 						
 					</form>
 			</div>
+			-->
 			
 			
 			

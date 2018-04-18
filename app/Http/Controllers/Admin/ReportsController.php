@@ -86,7 +86,7 @@ class ReportsController extends Controller
         ->responsive(true)
 	    ->lastByDay(18, false);
 
-    	$department_chart = Charts::database(Membership::all(), 'bar', 'google')
+    	$department_chart = Charts::database(Membership::orderBy('sust_department')->get(), 'bar', 'google')
 		->title("Registration Vs Department")
 		->elementLabel("No of Registrants")
 	    ->dimensions(1000, 500)
@@ -95,7 +95,7 @@ class ReportsController extends Controller
 	    ->groupBy('sust_department', null, $department_array);
 		
 		
-	    $batch_chart = Charts::database(Membership::all(), 'pie', 'highcharts')
+	    $batch_chart = Charts::database(Membership::orderBy('sust_session')->get(), 'pie', 'highcharts')
 	    ->elementLabel("Batch vs Registrant")
 		->title("Batch vs Registrant")
 	    ->dimensions(1000, 500)
@@ -104,7 +104,7 @@ class ReportsController extends Controller
 	    ->groupBy('sust_session', null, $batch);
 
          
-	    $session_chart = Charts::database(Membership::all(), 'pie', 'highcharts')
+	    $session_chart = Charts::database(Membership::orderBy('sust_session')->get(), 'pie', 'highcharts')
 	    ->elementLabel("Session vs Registrant")
 	    ->dimensions(1000, 500)
 	    ->responsive(false)
@@ -128,8 +128,7 @@ class ReportsController extends Controller
 
 	public function financeStatistics(){
 		
-		
-		
+	
 		$life_fee = 75000;
 		$general_fee = 10000;
 
@@ -173,6 +172,8 @@ class ReportsController extends Controller
 	}
 
 	public function allMemberStat(){
+		//$d = Membership::select('id','fullname')->where('gender','_empty_')->get();
+		//dd($d);
 
 		
 		$department_path = storage_path() . "/json/department.json";
@@ -197,6 +198,12 @@ class ReportsController extends Controller
 
 
         $members_confirmed_by_gender = DB::table('memberships')
+         ->select('gender', DB::raw('count(*) as total'))
+         ->where('is_finance_approved','yes')
+         ->groupBy('gender')
+         ->pluck('total','gender');
+
+         $members_confirmed_by_type = DB::table('memberships')
          ->select('gender', DB::raw('count(*) as total'))
          ->where('is_finance_approved','yes')
          ->groupBy('gender')
@@ -246,10 +253,6 @@ class ReportsController extends Controller
 	    ->groupBy('gender', null, $sessions);
 
 
-		
-
-        
-        
 		return view('admin.reports.confirmed_member', compact('members_confirmed_by_department','departments','members_confirmed_by_batch','batch','members_confirmed_by_gender','department_chart','batch_chart','session_chart','gender_chart'));
 	}	
 

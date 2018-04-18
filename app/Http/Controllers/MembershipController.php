@@ -70,7 +70,9 @@ class MembershipController extends Controller
      */
     public function create()
     {
-		//echo storage_path();
+		dd();
+
+
         $district_path = storage_path() . "/json/districts.json";
         $districts = json_decode(file_get_contents($district_path), true);
 
@@ -102,6 +104,8 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
+        dd();
+
         $this->validate($request, [
 			'membership_type' => 'required',
 			'reg_email' => 'required|unique:memberships',

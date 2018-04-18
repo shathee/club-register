@@ -133,5 +133,35 @@ class PdfController extends Controller
 		return redirect()->back();
        
     }
+
+    public function sendInvitation($id){
+        for($i=$id; $i<=$id+9;$i++){
+            $m = Membership::findOrFail($i);
+            print $i."-".$m->is_finance_approved."</br>";
+            if($m->is_finance_approved=='yes'){
+                $this->sendInvitationMail($i);
+            }else{
+                echo "Mail Not sent for". $i."</br>";
+            }
+        }
+        
+    }
+    public function sendInvitationMail($id)
+    {
+       
+        $membership = Membership::findOrFail($id);
+        
+       
+        Mail::send('front.email.invitation', array('membership' =>$membership ), function ($message) use ($membership)  {
+
+            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
+            $message->subject('Invitation for Founder Members Meeting');
+            $message->to($membership->reg_email);
+            $message->bcc('sat.sust@gmail.com', 'Confirmation');
+            
+        });
+        //return redirect()->back();
+       
+    }
     
 }

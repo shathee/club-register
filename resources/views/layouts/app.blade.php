@@ -16,7 +16,7 @@
     <link href="{{ asset('public/css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="startTime()">
     <div id="app print">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -33,6 +33,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
+                        
                         <!-- Authentication Links -->
                         <!--
                         @if (Auth::guest())
@@ -99,7 +101,7 @@
             <div class="col-md-12 text-center">
                     <!-- Display the countdown timer in an element -->
                     
-                    <p class="text-center text-danger" id="demo"></p>
+                    <!-- <p class="text-center text-danger" id="demo"></p>-->
                     
 
                     <script>

@@ -38,11 +38,7 @@ Route::group(['middleware' => ['throttle']], function () {
 
 	Route::get('submission-messages','MembershipController@messages');
 	
-	Route::get('make-pdf/{id}','PdfController@index');
-	Route::get('/admin/make-all-pdf','PdfController@allPdfReport');
-	Route::get('make-bulk-pdf/{id}','PdfController@makeBulkPdf');
-	Route::get('mailtest/{id}','PdfController@sendEmailReminder');
-	Route::get('confirmmail/{id}','PdfController@sendConfirmEmail');
+	
 
 
 
@@ -50,6 +46,13 @@ Route::group(['middleware' => ['throttle']], function () {
 
 	Route::group(['middleware' => ['auth']], function () {
 	    
+		Route::get('make-pdf/{id}','PdfController@index');
+		Route::get('/admin/make-all-pdf','PdfController@allPdfReport');
+		Route::get('make-bulk-pdf/{id}','PdfController@makeBulkPdf');
+		Route::get('mailtest/{id}','PdfController@sendEmailReminder');
+		Route::get('confirmmail/{id}','PdfController@sendConfirmEmail');
+		Route::get('admin/invitationmail/{id}','PdfController@sendInvitation');
+
 
 		Route::get('/admin', 'HomeController@index');
 
