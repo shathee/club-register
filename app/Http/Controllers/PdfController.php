@@ -53,9 +53,9 @@ class PdfController extends Controller
         //dd($memberships);
 
        // return view('front.pdf.all', compact('memberships','departments'));
-        foreach ($memberships as $key => $value) {
-            $this->attendancePDF($key);
-        }
+        //foreach ($memberships as $key => $value) {
+            $this->attendancePDF('cse');
+        //}
     }
 
     public function deptPDF($dept){
@@ -83,6 +83,7 @@ class PdfController extends Controller
         
         PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/attendance_'.$dept.'.pdf');
 
+        
     }
 
     public function makeBulkPdf($id){

@@ -6,25 +6,24 @@
 
 
 
-@page {
-   /*size: 7in 9.25in;*/
-   margin: 10px;
-   background-color: #fefefe;
-   page-break-after: always;
-        page-break-inside: avoid;
+@page{
+   size: 8.27in 11.69in;
+/*size: A4 portrait;*/
+         
 }
 body{
     margin: none;
     font-family: 'garamond';
-    border: 2px solid #c40000;
+    border: 1px solid #c40000;
     background-color: #fefefe;
     font-size: 10px;
-    page-break-after: always;
-        page-break-inside: avoid;
+        
 }
 .container{
     /*background-color: #EAE5F1;*/
+    page:container;
     margin: none;
+    
 }
     .card{
         /*background-color: #EAE5F1;*/
