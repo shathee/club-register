@@ -68,6 +68,9 @@ Route::group(['middleware' => ['throttle']], function () {
 		Route::get('admin/reports/custom', 'Admin\ReportsController@index');
 		Route::post('admin/reports/custom', 'Admin\ReportsController@index');
 
+		Route::get('admin/reports/all-member-statistics', 'Admin\ReportsController@allMemberStat');
+		Route::get('admin/reports/member-address', 'Admin\ReportsController@allMemberAddress');
+
 
 
 	});

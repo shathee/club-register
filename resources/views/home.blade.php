@@ -25,11 +25,11 @@
         <div class="col-md-6">
             <div class="card">
                  <div class="card-body">
-				<h5 class="card-title">No of Registrants per Department </h5>
+				<h5 class="card-title">No of Submissions per Department </h5>
 				<table class="table table-sm">
 				<tr>
 					<th>Department</th>
-					<th>No of Registrants</th>
+					<th>No of Submissions</th>
 				</tr>
 				<?php $i=0; ?>
 				@foreach($members_by_department as $k=>$m)
@@ -50,11 +50,11 @@
 		<div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-				<h5 class="card-title">No of Registrants per Batch </h5>
+				<h5 class="card-title">No of Submissions per Batch </h5>
 				<table class="table table-sm">
 				<tr>
 					<th>Batch</th>
-					<th>No of Registrants</th>
+					<th>No of Submissions</th>
 				</tr>
 				<?php $i=0; ?>
 				@foreach($members_by_batch as $k=>$m)
@@ -73,5 +73,8 @@
 			
         </div>
     </div>
+
+
+
 </div>
 @endsection

@@ -122,7 +122,7 @@
                       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                       // Display the result in the element with id="demo"
-                      document.getElementById("demo").innerHTML = "<h3>" + hours + "</b>&nbsp;Hrours "
+                      document.getElementById("demo").innerHTML = "<h3>" + hours + "</b>&nbsp;Hours "
                       + "<b>" + minutes + "</b>&nbsp;Minutes " + "<b>" + seconds + "</b>&nbsp;Seconds </h3><h4>Remaining for Founder Member Registration</h4>";
 
                       // If the count down is finished, write some text 

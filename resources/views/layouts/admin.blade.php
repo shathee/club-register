@@ -69,13 +69,19 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseComponents">
             <li>
-              <a href="{{url('/admin/reports/member-statistics')}}">Membership Statistics</a>
+              <a href="{{url('/admin/reports/member-statistics')}}">Membership Submission Statistics</a>
+            </li>
+            <li>
+              <a href="{{url('/admin/reports/all-member-statistics')}}">Membership Statistics</a>
             </li>
             <li>
               <a href="{{url('/admin/reports/finance-statistics')}}">Financial Statistics</a>
             </li>
             <li>
               <a href="{{url('/admin/reports/custom')}}">Custom</a>
+            </li>
+            <li>
+              <a href="{{url('/admin/reports/member-address')}}">Custom</a>
             </li>
           </ul>
         </li>

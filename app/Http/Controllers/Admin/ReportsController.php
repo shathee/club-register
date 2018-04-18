@@ -170,8 +170,108 @@ class ReportsController extends Controller
 		//dd($data);
 
 		return view('admin.reports.finance', $data);
+	}
+
+	public function allMemberStat(){
+
+		
+		$department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+		
+		$batch_path = storage_path() . "/json/batch.json";
+        $batch = json_decode(file_get_contents($batch_path), true);
+		
+
+        $members_confirmed_by_department = DB::table('memberships')
+                 ->select('sust_department', DB::raw('count(*) as total'))
+                 ->where('is_finance_approved','yes')
+                 ->groupBy('sust_department')
+                 ->pluck('total','sust_department');
+        
+        
+        $members_confirmed_by_batch = DB::table('memberships')
+         ->select('sust_session', DB::raw('count(*) as total'))
+         ->where('is_finance_approved','yes')
+         ->groupBy('sust_session')
+         ->pluck('total','sust_session');
+
+
+        $members_confirmed_by_gender = DB::table('memberships')
+         ->select('gender', DB::raw('count(*) as total'))
+         ->where('is_finance_approved','yes')
+         ->groupBy('gender')
+         ->pluck('total','gender');
+
+
+// charts
+
+        $department_path = storage_path() . "/json/department.json";
+		$department_array = json_decode(file_get_contents($department_path), true);
+	    $session_path = storage_path() . "/json/sessions.json";
+        $sessions = json_decode(file_get_contents($session_path), true);
+		
+		
+
+    	$department_chart = Charts::database(Membership::where('is_finance_approved','yes')->orderBy('sust_department')->get(), 'bar', 'google')
+		->title("Registration Vs Department")
+		->elementLabel("No of Registrants")
+	    ->dimensions(1000, 500)
+	    ->responsive(false)
+	    ->colors($this->rand_color(30))
+	    ->groupBy('sust_department', null, $department_array);
+		
+		
+	    $batch_chart = Charts::database(Membership::where('is_finance_approved','yes')->orderBy('sust_session')->get(), 'pie', 'highcharts')
+	    ->elementLabel("Batch vs Registrant")
+		->title("Batch vs Registrant")
+	    ->dimensions(1000, 500)
+	    ->responsive(false)
+	    ->colors($this->rand_color(30))
+	    ->groupBy('sust_session', null, $batch);
+
+         
+	    $session_chart = Charts::database(Membership::where('is_finance_approved','yes')->orderBy('sust_session')->get(), 'pie', 'highcharts')
+	    ->elementLabel("Session vs Registrant")
+	    ->dimensions(1000, 500)
+	    ->responsive(false)
+	    ->colors($this->rand_color(30))
+	    ->groupBy('sust_session', null, $sessions);  
+
+	    $gender_chart = Charts::database(Membership::where('is_finance_approved','yes')->get(), 'donut', 'highcharts')
+	    ->elementLabel("Male vs Female")
+	    ->title("Male vs Female")
+	    ->dimensions(1000, 500)
+	    ->responsive(false)
+	    ->colors($this->rand_color(30))
+	    ->groupBy('gender', null, $sessions);
+
+
+		
+
+        
+        
+		return view('admin.reports.confirmed_member', compact('members_confirmed_by_department','departments','members_confirmed_by_batch','batch','members_confirmed_by_gender','department_chart','batch_chart','session_chart','gender_chart'));
 	}	
 
+
+	public function allMemberAddress(){
+
+		$department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+		
+		$batch_path = storage_path() . "/json/batch.json";
+        $batch = json_decode(file_get_contents($batch_path), true);
+//        $members_address = Membership::all();
+        $members_address = DB::table('memberships')
+        ->where('present_district', '=', '')
+        ->orWhereNull('present_district')
+        ->where('is_finance_approved','yes')
+        ->orderBy('sust_department')
+        ->orderBy('id')
+        ->get();
+        
+		return view('admin.reports.members_address', compact('members_address','departments','batch'));
+	}	
 
 
   

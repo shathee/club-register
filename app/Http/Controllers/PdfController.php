@@ -54,7 +54,7 @@ class PdfController extends Controller
 
        // return view('front.pdf.all', compact('memberships','departments'));
         foreach ($memberships as $key => $value) {
-            $this->deptPDF($key);
+            $this->attendancePDF($key);
         }
     }
 
@@ -68,6 +68,20 @@ class PdfController extends Controller
         
         
      PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/'.$dept.'.pdf');
+
+    }
+
+    public function attendancePDF($dept){
+        $memberships = Membership::where('sust_department',$dept)->orderBy('sust_session')->get();
+        $department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+        $batch_path = storage_path() . "/json/batch.json";
+        $batch = json_decode(file_get_contents($batch_path), true);
+//dd($memberships);
+        //return view('front.pdf.attendance', compact('memberships','departments','dept','batch'));
+        $html = view('front.pdf.attendance', compact('memberships','departments','dept','batch'));
+        
+        PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/attendance_'.$dept.'.pdf');
 
     }
 
