@@ -200,7 +200,7 @@ class MembershipController extends Controller
      * @return \Illuminate\View\View
      */
     public function show($id)
-    {
+    {	dd();
         $membership = Membership::findOrFail($id);
         $department_path = storage_path() . "/json/department.json";
         $departments = json_decode(file_get_contents($department_path), true);

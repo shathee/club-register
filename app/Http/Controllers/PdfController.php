@@ -53,9 +53,9 @@ class PdfController extends Controller
         //dd($memberships);
 
        // return view('front.pdf.all', compact('memberships','departments'));
-        //foreach ($memberships as $key => $value) {
-            $this->attendancePDF('cse');
-        //}
+        foreach ($memberships as $key => $value) {
+            $this->attendancePDF($key);
+        }
     }
 
     public function deptPDF($dept){
@@ -83,7 +83,6 @@ class PdfController extends Controller
         
         PDF::loadHTML($html)->setWarnings(false)->save('public/pdf/attendance_'.$dept.'.pdf');
 
-        
     }
 
     public function makeBulkPdf($id){
@@ -136,10 +135,10 @@ class PdfController extends Controller
     }
 
     public function sendInvitation($id){
-        for($i=$id; $i<=$id+9;$i++){
+        for($i=$id; $i<=$id+29;$i++){
             $m = Membership::findOrFail($i);
             print $i."-".$m->is_finance_approved."</br>";
-            if($m->is_finance_approved=='yes'){
+            if($m->is_finance_approved=='hold'){
                 $this->sendInvitationMail($i);
             }else{
                 echo "Mail Not sent for". $i."</br>";

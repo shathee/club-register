@@ -2,7 +2,7 @@
 <style>
     td{
         
-        line-height: 3;
+        line-height: 4.5;
     }
 
 
@@ -14,7 +14,7 @@
 body{
     margin: none;
     font-family: 'garamond';
-    border: 1px solid #c40000;
+    
     background-color: #fefefe;
     font-size: 10px;
         
@@ -49,22 +49,30 @@ body{
         font-weight: bold;
         font-family: 'Playfair Display', sans-serif;
         vertical-align: top;
+		border: 1px solid black;
     }
 
     .td{
         text-align: left;
         padding: 3px;
         font-size: 0.8em;
-        line-height: 2;
+        
         font-family: 'Playfair Display', sans-serif;
-        vertical-align: top;   
+        vertical-align: top;  
+		border: 1px solid black;		
     }
     .table{
         margin: 0 0 0 0; 
-        padding-left: 10px;
+        border-collapse: collapse;
         width: 100%;
-        border: 1px dashed #cecece; 
+		border: 1px solid black;
+		
+        
     }
+	table{table-layout: auto;}
+	
+	   
+	
     .h1{
         font-size: 2.8em;
         text-align: center;
@@ -81,24 +89,24 @@ body{
         font-family: 'Sacramento', cursive;
     }
     .member-photo{
-         border: 1px solid #AAA;
-        border-radius: 4px;
-        padding: 3px;
-       width:100px;
-        height: 100px;
-        box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-         text-align: center;
+		border: 1px solid #AAA;
+		border-radius: 4px;
+		padding: 3px;
+		width:100px;
+		height: 100px;
+		box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+		text-align: center;
     }   
 
 </style>
     <div class="container">
-        <table class="table">
+        <table style="margin: 0 0 0 0; width: 100%;">
             <tr>
                 <td style="width:150px;">
                     <img class="logo" src="{{ url('public/img/sust.png')}}" />
                 </td>
                 <td>
-                    <h3 style="text-align: right; vertical-align: top; font-size: 12px;">Founder Members Meeting on <?php echo date("d/m/Y");?></h3>
+                    <h3 style="text-align: right; vertical-align: top; font-size: 12px;">Founder Members Meeting on 20-04-2018</h3>
                 </td>
             </tr>
         </table>
@@ -108,31 +116,31 @@ body{
             <div class="col-md-9">
             
                 <div class="card" style="page-break-after: always;">
-                    <div class="card-header"><h3>Department : {{ $departments[$dept] }}</h3></div>
+                    <div class="card-header"><h3 style="text-align:center">Department : {{ $departments[$dept] }}</h3></div>
                     <div class="card-body">
                         
                         <div class="table-responsive">
                             <table class="table" >
                                 <thead>
                                     <tr>
-                                        <th style="text-align: left">SL</th>
-                                        <th style="text-align: left">Temporary Identifocation</th>
+                                        <th class="th" style="text-align: left">SL</th>
+                                        <th class="th" style="text-align: left">Temporary Identification</th>
                                         
-                                        <th>Full Name</th>
-                                        <th>Batch(Session)</th>
-                                        <th>Signature</th>
+                                        <th class="th">Full Name</th>
+                                        <th class="th">Batch(Session)</th>
+                                        <th class="th" width="20%">Signature</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i=1;?>
                                     @foreach($memberships as $m)
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>{{ $m->membership_no }}</td>
-                                        <td>{{ ucfirst(strtolower($m->fullname)) }}</td>
-                                        <td>{{ $batch[$m->sust_session] }}({{ $m->sust_session }}&nbsp;-&nbsp;<?php $s2 = $m->sust_session +1; ?>{{$s2}})</td>
-                                        <td>
-                                            {{ '______________________________' }}
+                                        <td class="td">{{ $i }}</td>
+                                        <td class="td">{{ $m->membership_no }}</td>
+                                        <td class="td">{{ ucwords(strtolower($m->fullname)) }}</td>
+                                        <td class="td">{{ $batch[$m->sust_session] }}({{ $m->sust_session }}&nbsp;-&nbsp;<?php $s2 = $m->sust_session +1; ?>{{$s2}})</td>
+                                        <td class="td">
+                                            {{ ' ' }}
 
                                         </td>
                                     </tr>
