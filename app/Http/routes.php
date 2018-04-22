@@ -21,7 +21,7 @@ Route::group(['middleware' => ['throttle']], function () {
         	Route::get('/','MembershipController@index');
             
         }else {
-        	Route::get('/','MembershipController@create');
+        	//Route::get('/','MembershipController@create');
         }
 
         

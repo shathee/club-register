@@ -44,8 +44,10 @@ class HomeController extends Controller
 		
 		$batch_path = storage_path() . "/json/batch.json";
         $batch = json_decode(file_get_contents($batch_path), true);
+
+         
 		
         
-		return view('home', compact('members_by_department','departments','members_by_batch','batch'));
+		return view('home', compact('members_by_department','departments','members_by_batch','batch','members_by_gender'));
     }
 }

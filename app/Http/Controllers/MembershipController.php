@@ -57,7 +57,8 @@ class MembershipController extends Controller
                 $memberships = Membership::where('sust_session',$sust_session)->orderBy('id')->get();
             }
 			
-            return view('front.membership.index', compact('memberships','departments','batch','sessions'));
+           $memberships = Membership::paginate($perPage);
+           return view('front.membership.index', compact('memberships','departments','batch','sessions'));
         }
 
         

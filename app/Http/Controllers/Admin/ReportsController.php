@@ -79,6 +79,22 @@ class ReportsController extends Controller
 		$batch_path = storage_path() . "/json/batch.json";
         $batch = json_decode(file_get_contents($batch_path), true);
 
+        $members_by_gender = DB::table('memberships')
+         ->select('gender', DB::raw('count(*) as total'))
+         ->groupBy('gender')
+         ->pluck('total','gender');
+
+         $members_by_department = DB::table('memberships')
+                 ->select('sust_department', DB::raw('count(*) as total'))
+                 ->groupBy('sust_department')
+				 ->pluck('total','sust_department');
+		
+		$members_by_batch = DB::table('memberships')
+		 ->select('sust_session', DB::raw('count(*) as total'))
+		 ->groupBy('sust_session')
+		 ->pluck('total','sust_session');
+		
+		
     	$trend_chart = Charts::database(Membership::all(), 'line', 'highcharts')
 	    ->title("Registration Trend")
 	    ->dimensions(1000, 500)
@@ -113,7 +129,7 @@ class ReportsController extends Controller
 
 		
 
-        return view('admin.reports.member',compact('department_chart','session_chart','trend_chart','batch_chart' ));
+        return view('admin.reports.member',compact('department_chart','session_chart','trend_chart','batch_chart','members_by_gender','members_by_department','members_by_batch','department_array','batch'));
     }
 
     function rand_color($count) {

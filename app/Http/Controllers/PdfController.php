@@ -135,14 +135,10 @@ class PdfController extends Controller
     }
 
     public function sendInvitation($id){
-        for($i=$id; $i<=$id+29;$i++){
-            $m = Membership::findOrFail($i);
-            print $i."-".$m->is_finance_approved."</br>";
-            if($m->is_finance_approved=='hold'){
-                $this->sendInvitationMail($i);
-            }else{
-                echo "Mail Not sent for". $i."</br>";
-            }
+        for($i=$id; $i>=$id-50;$i--){
+            //$m = Membership::findOrFail($i);
+            $this->sendInvitationMail($i);
+         
         }
         
     }
