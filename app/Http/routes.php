@@ -13,8 +13,13 @@
 
 
 
+
+
 Route::group(['middleware' => ['throttle']], function () {
-    
+  Route::get('/',function(){
+  	 return view('welcome'); 
+  });
+   /* 
 		$dt1 = Carbon\Carbon::now();
         $dt2 = Carbon\Carbon::create(2018, 04, 19, 0, 0, 0);
         if($dt1->gte($dt2)){
@@ -23,7 +28,7 @@ Route::group(['middleware' => ['throttle']], function () {
         }else {
         	//Route::get('/','MembershipController@create');
         }
-
+*/
         
 
 	
