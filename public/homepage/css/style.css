@@ -161,8 +161,7 @@ section {
 ================================================== */
 #header {
   /*background: #DFD7EC;*/
-	background: rgb(14,91,14);
-background: linear-gradient(180deg, rgba(14,91,14,1) 0%, rgba(254,254,254,1) 76%);
+	background: #fefefe;
 	height: 200px;
 }
 

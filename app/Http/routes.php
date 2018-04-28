@@ -42,7 +42,8 @@ Route::group(['middleware' => ['throttle']], function () {
 
 	Route::get('submission-messages','MembershipController@messages');
 	
-	
+	Route::get('admin', 'HomeController@index');
+		Route::get('/admin/dashboard', 'HomeController@index');
 
 
 
@@ -58,7 +59,7 @@ Route::group(['middleware' => ['throttle']], function () {
 		Route::get('admin/invitationmail/{id}','PdfController@sendInvitation');
 
 
-		Route::get('/admin', 'HomeController@index');
+		
 
 		Route::resource('admin/users', 'Admin\UsersController');
 		Route::resource('admin/membership-manage', 'Admin\MembershipManageController');

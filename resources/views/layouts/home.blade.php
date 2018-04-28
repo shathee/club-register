@@ -49,17 +49,20 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <a href="index.html"><img src="{{ asset('homepage/img/sustt.png')}}" alt="" title="" /></img></a>
+        <a href="{{ url('/')}}"><img src="{{ asset('homepage/img/sustt.png')}}" alt="" title="" /></img></a>
         <!-- Uncomment below if you prefer to use a text image -->
         <!--<h1><a href="#hero">Bell</a></h1>-->
       </div>
 
       <nav id="nav-menu-container">
-	    <ul class="nav-menu">
+      	
+
+	    <ul class="nav-menu ">
+
           <li><a href="#">About Us</a></li>
-		  <li><a href="{{ url('hompage/docs/SUST-Club-Limited-Memorandum-of-Association.pdf')}}" download="Memorandum of Association.pdf">Memorandum of Association</a></li>
-          <li><a href="{{ url('hompage/docs/SUST-Club-Limited-Articles-of-Association.pdf')}}" download="Articles of Association.pdf">Articles of Association</a></li>
-          <li><a href="{{ url('hompage/docs/SUST-Club-Limited-The-Club-By-Laws.pdf')}}" download="By Lawsf">By Laws</a></li>
+		  <li><a href="{{ url('docs/SUST-Club-Limited-Memorandum-of-Association.pdf')}}" download="Memorandum of Association.pdf">Memorandum of Association</a></li>
+          <li><a href="{{ url('docs/SUST-Club-Limited-Articles-of-Association.pdf')}}" download="Articles of Association.pdf">Articles of Association</a></li>
+          <li><a href="{{ url('docs/SUST-Club-Limited-The-Club-By-Laws.pdf')}}" download="By Lawsf">By Laws</a></li>
 			
           <li><a href="#">Contact Us</a></li>
         </ul>
@@ -208,19 +211,19 @@
 
 
   <!-- Required JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/superfish/hoverIntent.js"></script>
-  <script src="lib/superfish/superfish.min.js"></script>
-  <script src="lib/tether/js/tether.min.js"></script>
-  <script src="lib/stellar/stellar.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/easing/easing.js"></script>
-  <script src="lib/stickyjs/sticky.js"></script>
-  <script src="lib/parallax/parallax.js"></script>
-  <script src="lib/lockfixed/lockfixed.min.js"></script>
+  <script src="{{ asset('homepage/lib/jquery/jquery.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/jquery/jquery-migrate.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/superfish/hoverIntent.js')}}"></script>
+  <script src="{{ asset('homepage/lib/superfish/superfish.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/tether/js/tether.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/stellar/stellar.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/counterup/counterup.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/waypoints/waypoints.min.js')}}"></script>
+  <script src="{{ asset('homepage/lib/easing/easing.js')}}"></script>
+  <script src="{{ asset('homepage/lib/stickyjs/sticky.js')}}"></script>
+  <script src="{{ asset('homepage/lib/parallax/parallax.js')}}"></script>
+  <script src="{{ asset('homepage/lib/lockfixed/lockfixed.min.js')}}"></script>
 
   <!-- Template Specisifc Custom Javascript File -->
   <script src="js/custom.js"></script>
