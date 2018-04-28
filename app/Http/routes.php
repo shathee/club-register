@@ -19,16 +19,15 @@ Route::group(['middleware' => ['throttle']], function () {
   Route::get('/',function(){
   	 return view('welcome'); 
   });
-   /* 
-		$dt1 = Carbon\Carbon::now();
-        $dt2 = Carbon\Carbon::create(2018, 04, 19, 0, 0, 0);
-        if($dt1->gte($dt2)){
-        	Route::get('/','MembershipController@index');
+    
+		//$dt1 = Carbon\Carbon::now();
+        //$dt2 = Carbon\Carbon::create(2018, 04, 19, 0, 0, 0);
+        //if($dt1->gte($dt2)){
+       // 	Route::get('/apply','MembershipController@index');
             
-        }else {
-        	//Route::get('/','MembershipController@create');
-        }
-*/
+        //}else {
+        	Route::get('/apply','MembershipController@create');
+       // }
         
 
 	

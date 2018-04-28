@@ -71,7 +71,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-		dd();
+		//dd();
 
 
         $district_path = storage_path() . "/json/districts.json";
@@ -105,7 +105,7 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
-        dd();
+        dd($request);
 
         $this->validate($request, [
 			'membership_type' => 'required',

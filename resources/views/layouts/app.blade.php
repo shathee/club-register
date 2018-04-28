@@ -11,9 +11,9 @@
     <title>{{ config('app.name', 'Sust Club Ltd') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('public/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/print.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body onload="startTime()">
@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <a class="thumbnil logo" href="{{ url('/') }}">
-                            <img src="{{ url('public/img/sust.png')}}" />
+                            <img src="{{ url('img/sust.png')}}" />
                         </a>
                     </div>
                     <div class="col-md-8">

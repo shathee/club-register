@@ -9,13 +9,13 @@
   <meta name="author" content="">
   <title>SUST Club Ltd</title>
   <!-- Bootstrap core CSS-->
-  <link href="{{ url('public/admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url('admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="{{ url('public/admin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('admin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
   <!-- Page level plugin CSS-->
-  <link href="{{ url('public/admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+  <link href="{{ url('admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="{{ url('public/admin/css/sb-admin.css') }}" rel="stylesheet">
+  <link href="{{ url('admin/css/sb-admin.css') }}" rel="stylesheet">
 
 
 
@@ -145,19 +145,19 @@
     </a>
   
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ url('public/admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url('public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Core plugin JavaScript-->
-    <script src="{{ url('public/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ url('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="{{ url('public/admin/vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ url('public/admin/vendor/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ url('public/admin/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ url('admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ url('admin/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url('admin/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
     <!-- Custom scripts for all pages-->
-    <script src="{{ url('public/admin/js/sb-admin.min.js') }}"></script>
+    <script src="{{ url('admin/js/sb-admin.min.js') }}"></script>
     <!-- Custom scripts for this page-->
-    <script src="{{ url('public/admin/js/sb-admin-datatables.min.js') }}"></script>
-    <!--<script src="{{ url('public/admin/js/sb-admin-charts.js') }}"></script>-->
+    <script src="{{ url('admin/js/sb-admin-datatables.min.js') }}"></script>
+    <!--<script src="{{ url('admin/js/sb-admin-charts.js') }}"></script>-->
     <script type="text/javascript">
         function myFunction() {
             window.print();

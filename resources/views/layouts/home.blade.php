@@ -28,13 +28,13 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="{{ asset('public/homepage/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('homepage/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="{{ asset('public/homepage/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('homepage/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="{{ asset('public/homepage/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('homepage/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -49,7 +49,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <a href="index.html"><img src="{{ asset('public/homepage/img/sustt.png')}}" alt="" title="" /></img></a>
+        <a href="index.html"><img src="{{ asset('homepage/img/sustt.png')}}" alt="" title="" /></img></a>
         <!-- Uncomment below if you prefer to use a text image -->
         <!--<h1><a href="#hero">Bell</a></h1>-->
       </div>
@@ -57,9 +57,9 @@
       <nav id="nav-menu-container">
 	    <ul class="nav-menu">
           <li><a href="#">About Us</a></li>
-		  <li><a href="{{ url('public/hompage/docs/SUST-Club-Limited-Memorandum-of-Association.pdf')}}" download="Memorandum of Association.pdf">Memorandum of Association</a></li>
-          <li><a href="{{ url('public/hompage/docs/SUST-Club-Limited-Articles-of-Association.pdf')}}" download="Articles of Association.pdf">Articles of Association</a></li>
-          <li><a href="{{ url('public/hompage/docs/SUST-Club-Limited-The-Club-By-Laws.pdf')}}" download="By Lawsf">By Laws</a></li>
+		  <li><a href="{{ url('hompage/docs/SUST-Club-Limited-Memorandum-of-Association.pdf')}}" download="Memorandum of Association.pdf">Memorandum of Association</a></li>
+          <li><a href="{{ url('hompage/docs/SUST-Club-Limited-Articles-of-Association.pdf')}}" download="Articles of Association.pdf">Articles of Association</a></li>
+          <li><a href="{{ url('hompage/docs/SUST-Club-Limited-The-Club-By-Laws.pdf')}}" download="By Lawsf">By Laws</a></li>
 			
           <li><a href="#">Contact Us</a></li>
         </ul>
@@ -190,7 +190,7 @@
 			</p>
 			
 			<p class="text-center">
-				<a href="apply/">
+				<a href="{{ url('membership')}}">
 				<button type="button" class="btn btn-warning">List of Submissions for Founder Member</button></a>
 			</p>
 		</div>
