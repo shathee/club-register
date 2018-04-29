@@ -69,15 +69,16 @@
                             <img src="{{ url('img/sust.png')}}" />
                         </a>
                     </div>
+                    @if(!isset($membership))
                     <div class="col-md-8">
                         
                         <div class="alert alert-warning hidden-print" role="alert">
-                            <h3>
+                            {{-- <h3>
                             <p>Dear Primary Members</p>
                             <p>List of Submissions for founder members has been published here.</p>
                             <p class="text-danger">Please note that the actual numbers of founding members will be confirmed after payment verification.</p>
-                            </h3>
-                            <!--
+                            </h3> --}}
+                            
                             <p class="lead">You Must Deposit the Membership Fee Before Submiting this form.</p>
                             <p>
                             Fees for <strong>Life Membership</strong> is <strong>BDT 75000.00(Seventy Five Thousand Only)</strong> with no annual subscription fee.
@@ -94,12 +95,13 @@
                                   <li>Bank: Dutch-Bangla Bank Ltd.</li>
                                 </ul>
                             </p>
-                            <p> For Query <a href="mailto:#">membership@sustclubltd.com</a></p>
-                             -->
+                            <p> For Query <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a></p>
+                             
 
                         </div>
                    
                     </div>
+                    @endif
                    
                 </div>
             </div>

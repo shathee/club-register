@@ -121,32 +121,32 @@
 	  
 		
 		<div class="col-md-10 offset-md-1 text-justify">
-			<p>Dear Primary Members(Registered Life & General Members Only),</p>
+			{{-- <p>Dear Primary Members(Registered Life & General Members Only),</p>
                         <p>You are cordially invited to attend the first Founder Members' meeting of 
                         SUST Club Limited on <strong>April 20, 2018, Friday 3:00 PM </strong> Onward at <strong>Uttara Ladies Club, Road 8, Block 8, Sector 1, Uttara, Dhaka</strong>. Your participation and valuable inputs for the formation of first Executive Committee and registration formalities of the club would be highly appreciated.</p>
                         <p>Kind regards,</p>
-                        <p>SUST Club Limited</p>
+                        <p>SUST Club Limited</p> --}}
                    
-			<!--			
+						
 			<p>Dear SUSTians,</p>
-			<p>Heartiest welcome to all of you. The Registration for Founder Members has been ended </p>
+			{{-- <p>Heartiest welcome to all of you. The Registration for Founder Members has been ended </p> --}}
 			
 			
-			<p>Heartiest welcome to all of you. As per the road map presented in the last general meeting call for The SUST Club membership (Primary Members i.e. Life Member and General Member) 
-			is on set. Starting from today the application for the membership will end at <strong>April 15, 2018</strong>. 
+			<p>Heartiest welcome to all of you. You will be glad to know that, the opportunity of being a proud Founder Member of SUST Club Limited  
+			has been extend due to mass request. Starting from today the application for the membership will end at <strong>11:59 PM on May 10, 2018 (Dhaka Time)</strong> sharp. 
 			Please be informed that Any Sustian who becomes a primary member (Life Member / General Member) fulfilling the required criteria within this timeframe will be
 			a founder member. The Memorandum of Association, The Articles of association and The By Laws are hereby attached in the following links.
 			Please read the documents to have the detail insights about membership criteria. If you find yourself eligible according to the membership 
 			criteria’s stated in the articles you can step forward towards becoming a primary member. 
-			The membership application form will be found <a href="apply/membership/create">here</a>. The submission of the membership form will require proper document of payment. 
-			So please pay the required amount in favor of the following account – </p>
-				-->	
+			The membership application form will be found <a href="{{ route('membership.create') }}">here</a>. The submission of the membership form will require proper document of payment. 
+			</p>
+					
 		</div>
 		
 	  </div>
 	  <div class="row">
 	
-		<!--
+		
 		<div class="col-md-7 offset-md-1 text-justify ">
 			<p class="">
 					Fees for <strong>Life Membership</strong> is <strong>BDT 75000.00(Seventy Five Thousand Only)</strong> with no annual subscription fee.
@@ -166,36 +166,42 @@
 					<p> For Query <a href="mailto:#">membership@sustclubltd.com</a></p>
 			<p>
 			
-			After Successful payment  please fill up the <a href="apply/membership/create">Membership Form</a> with payment information (Upload a scan copy of Deposit Slip). You will be given a notification after your membership is confirmed.
+			After Successful payment  please fill up the <a href="{{ route('membership.create') }}">Membership Form</a> with payment information (Upload a scan copy of Deposit Slip). You will be given a notification after your membership is confirmed.
 			Thank You
 			
 			</p>
 		
 		</div>
-		-->
+		
 		
 		<div class="col-md-10 offset-md-1">
 			
-			<p class="text-center">
-				<a href="docs/SUST-Club-Limited-Memorandum-of-Association.pdf" download="Memorandum of Association.pdf">
-				<button type="button" class="btn btn-primary">Memorandum of Association</button>
-				</a>
-			</p>
-			<p class="text-center">
-				
-				<a href="docs/SUST-Club-Limited-Articles-of-Association.pdf" download="Articles of Association.pdf">
-				<button type="button" class="btn btn-info">Articles of Association</button></a>
-				
-			</p>
-			<p class="text-center">
-				<a href="docs/SUST-Club-Limited-The-Club-By-Laws.pdf" download="By Lawsf">
-				<button type="button" class="btn btn-info">By Laws</button></a>
-			</p>
+            <p class="text-center">
+                <a href="{{ route('membership.create') }}">
+                <button type="button" class="btn btn-primary">Apply for Membership</button></a>
+            </p>
+
+            <p class="text-center">
+                <a href="docs/SUST-Club-Limited-Memorandum-of-Association.pdf" download="Memorandum-of-Association.pdf">
+                <button type="button" class="btn btn-info">Memorandum of Association</button>
+                </a>
+            </p>
+            <p class="text-center">
+                
+                <a href="docs/SUST-Club-Limited-Articles-of-Association.pdf" download="Articles-of-Association.pdf">
+                <button type="button" class="btn btn-info">Articles of Association</button></a>
+                
+            </p>
+            <p class="text-center">
+                <a href="docs/SUST-Club-Limited-The-Club-By-Laws.pdf" download="By-Laws.pdf">
+                <button type="button" class="btn btn-info">By Laws</button></a>
+            </p>
+
 			
-			<p class="text-center">
+			{{-- <p class="text-center">
 				<a href="{{ url('membership')}}">
 				<button type="button" class="btn btn-warning">List of Submissions for Founder Member</button></a>
-			</p>
+			</p> --}}
 		</div>
 		
 		

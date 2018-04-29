@@ -16,10 +16,7 @@
 					</p>
                     </div>
                     <div class="card-body">
-                    	<!--
-                        <a href="{{ url('/membership') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-
-                        -->
+                        {{-- <a href="{{ url('/membership') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a> --}}
                          <button class="btn btn-primary hidden-print pull-right" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
                         <br/>
                         <br/>
@@ -34,7 +31,7 @@
 										<td>&nbsp;</td>
 										<td rowspan="6" class="text-right">
 											
-												<img class="img-thumbnail member-photo" src="{{ url('public/uploads/'.$membership->member_photo)}}" alt="...">		
+												<img class="img-thumbnail member-photo" src="{{ url('uploads/'.$membership->member_photo) }}" alt="{{$membership->fullname}}">
 										</td>
 									</tr>
 									
@@ -83,7 +80,7 @@
 									</tr>
 									<tr>
 										<th>Payment Document Uploaded</th>
-										<td colspan="3">{{ link_to_asset('public/uploads/'.$membership->member_payment_doc,'Click Here To Download', array('class'=>'hidden-print')) }} </td>
+										<td colspan="3">{{ link_to_asset('uploads/'.$membership->member_payment_doc,'Click Here To Download', array('class'=>'hidden-print', 'download' => $membership->member_payment_doc)) }} </td>
 									</tr>
 									
 									</tr>
@@ -91,13 +88,11 @@
 								<tfoot>
 									<tr>
 										<td>
-											<!--
-											<form method="POST" action="{{ url('submission-confirm' . '/' . $membership->id) }}" accept-charset="UTF-8" style="display:inline">
+											{{-- <form method="POST" action="{{ url('submission-confirm' . '/' . $membership->id) }}" accept-charset="UTF-8" style="display:inline">
 											{{ method_field('PUT') }}
 											{{ csrf_field() }}
 											<button type="submit" class="btn btn-warning btn-sm" title="Confirm Submission" onclick="return confirm(&quot;Confirm Submission?&quot;)"> Confirm Submission</button>
-											</form>
-										-->
+											</form> --}}
 										</td>
 									</tr>
 								</tfoot>
