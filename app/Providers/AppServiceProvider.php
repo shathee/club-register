@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() == 'local') {
             $this->app->register('Appzcoder\CrudGenerator\CrudGeneratorServiceProvider');
         }
+
+        $this->app->instance('path.public', base_path(env('PUBLIC_DIR', 'public')));
     }
 }
