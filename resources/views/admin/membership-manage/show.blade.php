@@ -44,7 +44,7 @@
                                         <td>&nbsp;</td>
                                         <td rowspan="6" class="text-right">
                                             
-                                                <img class="img-thumbnail member-photo" src="{{ url('public/uploads/'.$Membership->member_photo)}}" alt="...">      
+                                                <img class="img-thumbnail member-photo" src="{{ url('/uploads/'.$Membership->member_photo)}}" alt="...">      
                                         </td>
                                     </tr>
                                     
@@ -93,7 +93,7 @@
                                     </tr>
                                     <tr>
                                         <th>Payment Document Uploaded</th>
-                                        <td colspan="3">{{ link_to_asset('public/uploads/'.$Membership->member_payment_doc,'Click Here To Download', array('class'=>'hidden-print')) }} </td>
+                                        <td colspan="3">{{ link_to_asset('/uploads/'.$Membership->member_payment_doc,'Click Here To Download', array('class'=>'hidden-print')) }} </td>
                                     </tr>
                                     
                                     </tr>
