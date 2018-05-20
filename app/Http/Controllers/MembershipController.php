@@ -64,7 +64,7 @@ class MembershipController extends Controller {
      * @return \Illuminate\View\View
      */
     public function create() {
-        //dd();
+        dd();
 
         $district_path = storage_path() . "/json/districts.json";
         $districts = json_decode(file_get_contents($district_path), true);
@@ -96,6 +96,7 @@ class MembershipController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request) {
+        dd();
         $this->validate($request, [
             'membership_type' => 'required',
             'reg_email' => 'required|unique:memberships',
@@ -178,6 +179,7 @@ class MembershipController extends Controller {
      * @return \Illuminate\View\View
      */
     public function show($id) {
+        dd();
         $membership = Membership::findOrFail($id);
         $department_path = storage_path() . "/json/department.json";
         $departments = json_decode(file_get_contents($department_path), true);

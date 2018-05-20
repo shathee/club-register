@@ -36,7 +36,7 @@
                                 <tbody>
                                 @foreach($users as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->email }}</td><td>{{ $item->role }}</td><td>{{ $item->status }}</td>
                                         <td>
                                             <a href="{{ url('/admin/users/' . $item->id) }}" title="View User"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

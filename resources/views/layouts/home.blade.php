@@ -81,9 +81,11 @@
 					</a>
 					<div class="dropdown-menu" aria-labelledby="About-DropDown">
 						<a class="dropdown-item" href="#">About SUST Club</a>
+						<!--
 		             	<a class="dropdown-item" href="#">Executive Commitee</a>
 		             	<a class="dropdown-item" href="#">Awareness Team</a>
 		             	<a class="dropdown-item" href="#"></a>
+		             	-->
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -156,38 +158,9 @@
  
     <div class="container-fluid">
       <div class="row">
-		<div class="col-md-10 offset-md-1 text-center">
-			
-		<script>
-			// Set the date we're counting down to
-			var countDownDate = new Date("Apr 18, 2018 23:59:59").getTime();
-
-			// Update the count down every 1 second
-			var x = setInterval(function() {
-
-			  // Get todays date and time
-			  var now = new Date().getTime();
-
-			  // Find the distance between now an the count down date
-			  var distance = countDownDate - now;
-
-			  // Time calculations for days, hours, minutes and seconds
-			  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-			  // Display the result in the element with id="demo"
-			  document.getElementById("demo").innerHTML = "<h3>" + hours + "</b>&nbsp;Hours "
-			  + "<b>" + minutes + "</b>&nbsp;Minutes " + "<b>" + seconds + "</b>&nbsp;Seconds </h3><h4>Remaining for Founder Member Registration</h4>";
-
-			  // If the count down is finished, write some text 
-			  if (distance < 0) {
-				clearInterval(x);
-				document.getElementById("demo").innerHTML = "EXPIRED";
-			  }
-			}, 1000);
-			</script>
+		<div class="col-md-10 offset-md-1 ">
+		@yield('content')	
+		
 			
 			
 		</div>
@@ -195,60 +168,20 @@
 	  <div class="row">
 		
 		<div class="col-md-10 offset-md-1 text-justify">
-			{{-- <p>Dear Primary Members(Registered Life & General Members Only),</p>
-                        <p>You are cordially invited to attend the first Founder Members' meeting of 
-                        SUST Club Limited on <strong>April 20, 2018, Friday 3:00 PM </strong> Onward at <strong>Uttara Ladies Club, Road 8, Block 8, Sector 1, Uttara, Dhaka</strong>. Your participation and valuable inputs for the formation of first Executive Committee and registration formalities of the club would be highly appreciated.</p>
-                        <p>Kind regards,</p>
-                        <p>SUST Club Limited</p> --}}
-                   
-						
-			<p>Dear SUSTians,</p>
-			{{-- <p>Heartiest welcome to all of you. The Registration for Founder Members has been ended </p> --}}
 			
-			
-			<p>Heartiest welcome to all of you. You will be glad to know that, the opportunity of being a proud Founder Member of SUST Club Limited  
-			has been extend due to mass request. Starting from today the application for the membership will end at <strong>11:59 PM on May 10, 2018 (Dhaka Time)</strong> sharp. 
-			Please be informed that Any Sustian who becomes a primary member (Life Member / General Member) fulfilling the required criteria within this timeframe will be
-			a founder member. The Memorandum of Association, The Articles of association and The By Laws are hereby attached in the following links.
-			Please read the documents to have the detail insights about membership criteria. If you find yourself eligible according to the membership 
-			criteria’s stated in the articles you can step forward towards becoming a primary member. 
-			The membership application form will be found <a href="{{ route('membership.create') }}">here</a>. The submission of the membership form will require proper document of payment. 
-			</p>
 		</div>
 
         <div class="col-md-10 offset-md-1 text-justify ">
-            <p class="">
-                    Fees for <strong>Life Membership</strong> is <strong>BDT 75000.00(Seventy Five Thousand Only)</strong> with no annual subscription fee.
-                    </p>
-                    <p>
-                    Fees for <strong>General Membership</strong> is <strong>BDT 10000.00(Ten Thousand Only)</strong>  with annual Subscription Fee.
-                    </p>
-                    <p class="lead">
-                        So please deposit the required amount in favor of the following account - 
-                        <ul class="list-unstyled b-acc info">
-                          <li>Account Title: Md Muklasur Rahman, Rashed Rafiuddin & Kazi Gulam Kadar</li>
-                          <li>Account Number: 2161510170000</li>
-                          <li>Branch: Ashulia Branch</li>
-                          <li>Bank: Dutch-Bangla Bank Ltd.</li>
-                        </ul>
-                    </p>
-                    <p> For Query <a href="mailto:#">membership@sustclubltd.com</a></p>
-            <p>
             
-            After Successful payment  please fill up the <a href="{{ route('membership.create') }}">Membership Form</a> with payment information (Upload a scan copy of Deposit Slip). You will be given a notification after your membership is confirmed.
-            Thank You
-            
-            </p>
         
         </div>
         
     
         
         <div class="offset-md-4 col-md-4">
-            
             <p class="text-center">
-                <a href="{{ route('membership.create') }}">
-                <button type="button" class="btn btn-block btn-primary">Apply for Membership</button></a>
+                <a href="{{ action('MemberListController@index') }}">
+                <button type="button" class="btn btn-block btn-primary">View Founder Members List</button></a>
             </p>
 
             <p class="text-center">
@@ -275,6 +208,7 @@
         </div>
 
 	  </div>
+	  <!--
 	  <div class="row">
 		<div class="holder col-md-4 offset-md-1">
 		  <ul id="ticker01">
@@ -302,6 +236,7 @@
 			</ul>
 		</div>
       </div>
+  -->
     </div>
 
   <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
@@ -328,7 +263,7 @@
   <script src="contactform/contactform.js"></script>
 
   <script type="text/javascript">
-  	
+  	/**
   	jQuery.fn.liScroll = function(settings) {
 		settings = jQuery.extend({
 			travelocity: 0.03
@@ -365,6 +300,7 @@
 	$(function(){
 	    $("ul#ticker01").liScroll();
 	});
+	**/
   </script>
 
 </body>

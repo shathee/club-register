@@ -29,7 +29,7 @@ Route::group(['middleware' => ['throttle']], function () {
         	// Route::get('/apply','MembershipController@create');
        // }
         
-
+  	Route::get('member-list','MemberListController@index');
 	
 
 
