@@ -165,49 +165,8 @@
 			
 		</div>
 	  </div>
-	  <div class="row">
-		
-		<div class="col-md-10 offset-md-1 text-justify">
-			
-		</div>
-
-        <div class="col-md-10 offset-md-1 text-justify ">
-            
-        
-        </div>
-        
-    
-        
-        <div class="offset-md-4 col-md-4">
-            <p class="text-center">
-                <a href="{{ action('MemberListController@index') }}">
-                <button type="button" class="btn btn-block btn-primary">View Founder Members List</button></a>
-            </p>
-
-            <p class="text-center">
-                <a href="docs/SUST-Club-Limited-Memorandum-of-Association.pdf" download="Memorandum-of-Association.pdf">
-                <button type="button" class="btn btn-block btn-info">Memorandum of Association</button>
-                </a>
-            </p>
-            <p class="text-center">
-                
-                <a href="docs/SUST-Club-Limited-Articles-of-Association.pdf" download="Articles-of-Association.pdf">
-                <button type="button" class="btn btn-block btn-info">Articles of Association</button></a>
-                
-            </p>
-            <p class="text-center">
-                <a href="docs/SUST-Club-Limited-The-Club-By-Laws.pdf" download="By-Laws.pdf">
-                <button type="button" class="btn btn-block btn-info">By Laws</button></a>
-            </p>
-
-            
-            {{-- <p class="text-center">
-                <a href="{{ url('membership')}}">
-                <button type="button" class="btn btn-secondary btn-block">List of Submissions for Founder Member</button></a>
-            </p> --}}
-        </div>
-
-	  </div>
+	  	@yield('bottom-content')
+	  
 	  <!--
 	  <div class="row">
 		<div class="holder col-md-4 offset-md-1">
