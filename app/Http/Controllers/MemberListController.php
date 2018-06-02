@@ -29,12 +29,14 @@ class MemberListController extends Controller
 
         if (!empty($keyword1)) {
 
-            $memberships = Membership::where('sust_department', $keyword1)->paginate($perPage);
+            $memberships = Membership::where('sust_department', $keyword1)->
+            where('is_finance_approved','yes')->paginate($perPage);
             return view('front.memberList.index', compact('memberships', 'departments', 'batch', 'sessions'));
 
         }elseif (!empty($keyword2)) {
 
-            $memberships = Membership::where('sust_session', $keyword2)->paginate($perPage);
+            $memberships = Membership::where('sust_session', $keyword2)->
+            where('is_finance_approved','yes')->paginate($perPage);
             return view('front.memberList.index', compact('memberships', 'departments', 'batch', 'sessions'));
 
         }else {

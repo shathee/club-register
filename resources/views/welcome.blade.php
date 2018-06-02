@@ -18,9 +18,11 @@
                                 Draft list of founder members has been published. Only the submissions those payments have been confirmed are published here. There are some submissions whose payments were not confirmed due to non availabilty of document or unclear document. 
                             </p>
                             <p>
-                                If you have submitted all your documents properly but your name is not in the list, please contact to 01xxx-xxxxxx or mail to membership@sustclubltd.com
+                                If you have submitted all your documents properly but your name is not in the list, please mail to  <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a>
                             </p>
-                        </div>  
+                            --}}
+                        </div> 
+                        {{-- 
                         <div class="text-left alert alert-danger">
                             <p>
                                 This is for information of all primary members, if it is found later that any of the primary members --- 
@@ -39,6 +41,7 @@
                                 Also we request everyone  that if anyone has any knowledge regarding any members who might be ineligible according to the article 11(c) & (d) of Articles of Association, Please let us know(membership@sustclubltd.com).
                             </p>
                         </div>
+                        --}}
                 </div>
             </div>
         </div>
@@ -61,10 +64,12 @@
     
         
         <div class="offset-md-4 col-md-4">
+            {{--
             <p class="text-center">
-                <a href="{{ action('MemberListController@index') }}">
+                <a href="{{ action('MewemberLeweistController@inwewedex') }}">
                 <button type="button" class="btn btn-block btn-primary">View Draft Members List</button></a>
             </p>
+            --}}
 
             <p class="text-center">
                 <a href="docs/SUST-Club-Limited-Memorandum-of-Association.pdf" download="Memorandum-of-Association.pdf">

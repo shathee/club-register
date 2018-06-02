@@ -19,7 +19,7 @@
                 				Draft list of founder members has been published. Only the submissions those payments have been confirmed are published here. There are some submissions whose payments were not confirmed due to non availabilty of document or unclear document. 
                 			</p>
                 			<p>
-                				If you have submitted all your documents properly but your name is not in the list, please contact to 01xxx-xxxxxx or mail to membership@sustclubltd.com
+                				If you have submitted all your documents properly but your name is not in the list, please mail to  <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a>
                 			</p>
                 		</div>	
                 		<div class="text-left alert alert-danger">
@@ -41,7 +41,10 @@
                 			</p>
                 		</div>
                 		<div class="row">
-                			<div class="col-md-5">
+                			<div class="col-md-2">
+								<a class="nav-link" href="{{ url('/member-list') }}"><strong>Show ALL</strong></a>
+							</div>
+                			<div class="col-md-4 ">
 				                    <form method="GET" action="{{ url('/member-list') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
 											<span>Show by batch/session &nbsp;</span>
 											<select name="sust_session" class="form-control" id="sust_session" required>
@@ -51,7 +54,7 @@
 											</select>
 									</form>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-6">
 							
 				                    <form method="GET" action="{{ url('/member-list') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
 											<span>Show by Department &nbsp;</span>
@@ -62,13 +65,16 @@
 											</select>
 									</form>
 							</div>
+							
 						</div>
+						<div>&nbsp;</div>
 						<div class="row">
 							<div class="col-md-8">
 							<p>
-                			<strong>	Showing {{$memberships->firstItem()}}
+                			<strong>
+                				Showing {{$memberships->firstItem()}}
                 				To {{$memberships->lastItem()}} of 
-                				Total Confirmed {{$memberships->total()}}
+                				Total {{$memberships->total()}}
                 			</strong>
                 			</p>
                 			</div>
@@ -89,7 +95,7 @@
 										   
 									   </tr> 
 								</thead>
-									<?php $i=1;?>	
+									<?php $i=$memberships->firstItem();?>	
 									@foreach ($memberships as $membership)
 										<tr>
 											<td>{{ $i }}</td>
