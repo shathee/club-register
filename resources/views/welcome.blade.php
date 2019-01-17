@@ -20,7 +20,7 @@
                             <p>
                                 If you have submitted all your documents properly but your name is not in the list, please mail to  <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a>
                             </p>
-                            --}}
+                           
                         </div> 
                         {{-- 
                         <div class="text-left alert alert-danger">
@@ -64,12 +64,12 @@
     
         
         <div class="offset-md-4 col-md-4">
-            {{--
+           
             <p class="text-center">
-                <a href="{{ action('MewemberLeweistController@inwewedex') }}">
+                <a href="{{ action('MemberListController@index') }}">
                 <button type="button" class="btn btn-block btn-primary">View Draft Members List</button></a>
             </p>
-            --}}
+           
 
             <p class="text-center">
                 <a href="docs/SUST-Club-Limited-Memorandum-of-Association.pdf" download="Memorandum-of-Association.pdf">

@@ -135,25 +135,25 @@ class PdfController extends Controller
     }
 
     public function sendInvitation($id){
-        for($i=$id; $i>=$id-50;$i--){
-            //$m = Membership::findOrFail($i);
-            $this->sendInvitationMail($i);
+        // for($i=$id; $i>$id-50;$i--){
+        //     //$m = Membership::findOrFail($i);
+        //     $this->sendInvitationMail($i);
          
-        }
-        
+        // }
+        $this->sendInvitationMail($id);
     }
     public function sendInvitationMail($id)
     {
        
-        $membership = Membership::findOrFail($id);
+        $membership = Membership::where('id', $id)->where('is_finance_approved','yes')->firstOrFail();
         
        
-        Mail::send('front.email.invitation', array('membership' =>$membership ), function ($message) use ($membership)  {
+        Mail::send(array('html'=>'front.email.picnic'), array('membership' =>$membership ), function ($message) use ($membership)  {
 
-            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
-            $message->subject('Invitation for Founder Members Meeting');
+            $message->from('info@sustclubltd.com', 'SUST Club Ltd');
+            $message->subject('Invitation for Registration of Picnic');
             $message->to($membership->reg_email);
-            $message->bcc('sat.sust@gmail.com', 'Confirmation');
+            $message->bcc('sat.sust@gmail.com', 'Invitation');
             
         });
         //return redirect()->back();
