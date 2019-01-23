@@ -135,6 +135,16 @@ class PdfController extends Controller
     }
 
     public function sendInvitation($id){
+         for($i=$id; $i>$id-50;$i--){
+             //$m = Membership::findOrFail($i);
+             $this->sendInvitationMail($i);
+			echo $i."sent at ";
+			echo date("F d, Y h:i:s A", time())."</br>";
+         }
+        //$this->sendInvitationMail($id);
+    }
+	
+	public function sendInvitationPersonal($id){
         // for($i=$id; $i>$id-50;$i--){
         //     //$m = Membership::findOrFail($i);
         //     $this->sendInvitationMail($i);
@@ -142,21 +152,32 @@ class PdfController extends Controller
         // }
         $this->sendInvitationMail($id);
     }
+	
     public function sendInvitationMail($id)
     {
        
-        $membership = Membership::where('id', $id)->where('is_finance_approved','yes')->firstOrFail();
-        
-       
-        Mail::send(array('html'=>'front.email.picnic'), array('membership' =>$membership ), function ($message) use ($membership)  {
+        $membership = Membership::where('id', $id)->where('is_finance_approved','yes')->first();
+        if($membership){
+			echo "s";
+		}else{
+			echo "N";
+		}
+		
+		
+		if($membership!=null){
+			Mail::send(array('html'=>'front.email.picnic'), array('membership' =>$membership ), function ($message) use ($membership)  {
 
-            $message->from('info@sustclubltd.com', 'SUST Club Ltd');
-            $message->subject('Invitation for Registration of Picnic');
-            $message->to($membership->reg_email);
-            $message->bcc('sat.sust@gmail.com', 'Invitation');
-            
-        });
-        //return redirect()->back();
+				$message->from('info@sustclubltd.com', 'SUST Club Ltd');
+				$message->subject('Invitation for Registration of Picnic');
+				$message->to($membership->reg_email);
+				$message->bcc('sat.sust@gmail.com', 'Invitation');
+				
+			});
+		}else{
+			echo "Not sent for ID".$id;
+		}
+		
+			//return redirect()->back();
        
     }
     

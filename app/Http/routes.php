@@ -57,6 +57,7 @@ Route::group(['middleware' => ['throttle']], function () {
 		Route::get('mailtest/{id}','PdfController@sendEmailReminder');
 		Route::get('confirmmail/{id}','PdfController@sendConfirmEmail');
 		Route::get('admin/invitationmail/{id}','PdfController@sendInvitation');
+		Route::get('admin/invitationmailPersonal/{id}','PdfController@sendInvitationPersonal');
 
 
 		
