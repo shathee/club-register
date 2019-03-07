@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Membership;
+use App\Models\NewMembership;
 use App\User;
 use DB;
 use Charts;
@@ -39,7 +39,7 @@ class ReportsController extends Controller
 		
 		
         if (!empty($keyword)) {
-            $membership = Membership::where('membership_no', "$keyword")
+            $membership = NewMembership::where('membership_no', "$keyword")
                 ->orWhere('reg_email', "$keyword")
                 ->orWhere('mobile_no', "$keyword")
                 ->orWhere('sust_reg_no', "$keyword")
@@ -53,14 +53,14 @@ class ReportsController extends Controller
 			
         }else {
 			if(!empty($membership_type)){
-                $memberships = Membership::where('membership_type',$membership_type)->orderBy('id')->get();
+                $memberships = NewMembership::where('membership_type',$membership_type)->orderBy('id')->get();
             }
 			
 			if(!empty($sust_session)){
-                $memberships = Membership::where('sust_session',$sust_session)->orderBy('id')->get();
+                $memberships = NewMembership::where('sust_session',$sust_session)->orderBy('id')->get();
             }
 			if(!empty($sust_department)){
-                $memberships = Membership::where('sust_department',$sust_department)->orderBy('id')->get();
+                $memberships = NewMembership::where('sust_department',$sust_department)->orderBy('id')->get();
             }
 			
             return view('admin.reports.index', compact('memberships','departments','batch','sessions'));
@@ -79,30 +79,30 @@ class ReportsController extends Controller
 		$batch_path = storage_path() . "/json/batch.json";
         $batch = json_decode(file_get_contents($batch_path), true);
 
-        $members_by_gender = DB::table('memberships')
+        $members_by_gender = DB::table('new_memberships')
          ->select('gender', DB::raw('count(*) as total'))
          ->groupBy('gender')
          ->pluck('total','gender');
 
-         $members_by_department = DB::table('memberships')
+         $members_by_department = DB::table('new_memberships')
                  ->select('sust_department', DB::raw('count(*) as total'))
                  ->groupBy('sust_department')
 				 ->pluck('total','sust_department');
 		
-		$members_by_batch = DB::table('memberships')
+		$members_by_batch = DB::table('new_memberships')
 		 ->select('sust_session', DB::raw('count(*) as total'))
 		 ->groupBy('sust_session')
 		 ->pluck('total','sust_session');
 		
 		
-    	$trend_chart = Charts::database(Membership::all(), 'line', 'highcharts')
+    	$trend_chart = Charts::database(NewMembership::all(), 'line', 'highcharts')
 	    ->title("Registration Trend")
 	    ->dimensions(1000, 500)
 		->elementLabel("No of Registrants")
         ->responsive(true)
 	    ->lastByDay(18, false);
 
-    	$department_chart = Charts::database(Membership::orderBy('sust_department')->get(), 'bar', 'google')
+    	$department_chart = Charts::database(NewMembership::orderBy('sust_department')->get(), 'bar', 'google')
 		->title("Registration Vs Department")
 		->elementLabel("No of Registrants")
 	    ->dimensions(1000, 500)
@@ -111,7 +111,7 @@ class ReportsController extends Controller
 	    ->groupBy('sust_department', null, $department_array);
 		
 		
-	    $batch_chart = Charts::database(Membership::orderBy('sust_session')->get(), 'pie', 'highcharts')
+	    $batch_chart = Charts::database(NewMembership::orderBy('sust_session')->get(), 'pie', 'highcharts')
 	    ->elementLabel("Batch vs Registrant")
 		->title("Batch vs Registrant")
 	    ->dimensions(1000, 500)
@@ -120,7 +120,7 @@ class ReportsController extends Controller
 	    ->groupBy('sust_session', null, $batch);
 
          
-	    $session_chart = Charts::database(Membership::orderBy('sust_session')->get(), 'pie', 'highcharts')
+	    $session_chart = Charts::database(NewMembership::orderBy('sust_session')->get(), 'pie', 'highcharts')
 	    ->elementLabel("Session vs Registrant")
 	    ->dimensions(1000, 500)
 	    ->responsive(false)
@@ -148,38 +148,38 @@ class ReportsController extends Controller
 		$life_fee = 75000;
 		$general_fee = 10000;
 
-		$data['total_member_count'] = Membership::count();
-		$data['general_member_count'] = Membership::where('membership_type','general')->count();
-		$data['life_member_count'] = Membership::where('membership_type','life')->count();
+		$data['total_member_count'] = NewMembership::count();
+		$data['general_member_count'] = NewMembership::where('membership_type','general')->count();
+		$data['life_member_count'] = NewMembership::where('membership_type','life')->count();
 
 		$data['general_member_total_fee'] = $data['general_member_count'] * $general_fee;
 		$data['life_member_total_fee'] = $data['life_member_count'] * $life_fee;
 
 
-		$data['total_member_confirmed_count'] = Membership::where('is_finance_approved','yes')->count();
-		$data['general_member_confirmed_count'] = Membership::where('membership_type','general')->where('is_finance_approved','yes')->count();
-		$data['life_member_confirmed_count'] = Membership::where('membership_type','life')->where('is_finance_approved','yes')->count();
+		$data['total_member_confirmed_count'] = NewMembership::where('is_finance_approved','yes')->count();
+		$data['general_member_confirmed_count'] = NewMembership::where('membership_type','general')->where('is_finance_approved','yes')->count();
+		$data['life_member_confirmed_count'] = NewMembership::where('membership_type','life')->where('is_finance_approved','yes')->count();
 		$data['general_member_confirmed_total_fee'] = $data['general_member_confirmed_count'] * $general_fee;
 		$data['life_member_confirmed_total_fee'] = $data['life_member_confirmed_count'] * $life_fee;
 
 
-		$data['total_member_onhold_count'] = Membership::where('is_finance_approved','hold')->count();
-		$data['general_member_onhold_count'] = Membership::where('membership_type','general')->where('is_finance_approved','hold')->count();
-		$data['life_member_onhold_count'] = Membership::where('membership_type','life')->where('is_finance_approved','hold')->count();
+		$data['total_member_onhold_count'] = NewMembership::where('is_finance_approved','hold')->count();
+		$data['general_member_onhold_count'] = NewMembership::where('membership_type','general')->where('is_finance_approved','hold')->count();
+		$data['life_member_onhold_count'] = NewMembership::where('membership_type','life')->where('is_finance_approved','hold')->count();
 		$data['general_member_onhold_total_fee'] = $data['general_member_onhold_count'] * $general_fee;
 		$data['life_member_onhold_total_fee'] = $data['life_member_onhold_count'] * $life_fee;
 
 
-		$data['total_member_nostatus_count'] = Membership::where('is_finance_approved','no')->count();
-		$data['general_member_nostatus_count'] = Membership::where('membership_type','general')->where('is_finance_approved','no')->count();
-		$data['life_member_nostatus_count'] = Membership::where('membership_type','life')->where('is_finance_approved','no')->count();
+		$data['total_member_nostatus_count'] = NewMembership::where('is_finance_approved','no')->count();
+		$data['general_member_nostatus_count'] = NewMembership::where('membership_type','general')->where('is_finance_approved','no')->count();
+		$data['life_member_nostatus_count'] = NewMembership::where('membership_type','life')->where('is_finance_approved','no')->count();
 		$data['general_member_nostatus_total_fee'] = $data['general_member_nostatus_count'] * $general_fee;
 		$data['life_member_nostatus_total_fee'] = $data['life_member_nostatus_count'] * $life_fee;
 
 
-		$data['total_member_rejected_count'] = Membership::where('is_finance_approved','rejected')->count();
-		$data['general_member_rejected_count'] = Membership::where('membership_type','general')->where('is_finance_approved','rejected')->count();
-		$data['life_member_rejected_count'] = Membership::where('membership_type','life')->where('is_finance_approved','rejected')->count();
+		$data['total_member_rejected_count'] = NewMembership::where('is_finance_approved','rejected')->count();
+		$data['general_member_rejected_count'] = NewMembership::where('membership_type','general')->where('is_finance_approved','rejected')->count();
+		$data['life_member_rejected_count'] = NewMembership::where('membership_type','life')->where('is_finance_approved','rejected')->count();
 		$data['general_member_rejected_total_fee'] = $data['general_member_rejected_count'] * $general_fee;
 		$data['life_member_rejected_total_fee'] = $data['life_member_rejected_count'] * $life_fee;
 		//dd($data);
@@ -199,27 +199,27 @@ class ReportsController extends Controller
         $batch = json_decode(file_get_contents($batch_path), true);
 		
 
-        $members_confirmed_by_department = DB::table('memberships')
+        $members_confirmed_by_department = DB::table('new_memberships')
                  ->select('sust_department', DB::raw('count(*) as total'))
                  ->where('is_finance_approved','yes')
                  ->groupBy('sust_department')
                  ->pluck('total','sust_department');
         
         
-        $members_confirmed_by_batch = DB::table('memberships')
+        $members_confirmed_by_batch = DB::table('new_memberships')
          ->select('sust_session', DB::raw('count(*) as total'))
          ->where('is_finance_approved','yes')
          ->groupBy('sust_session')
          ->pluck('total','sust_session');
 
 
-        $members_confirmed_by_gender = DB::table('memberships')
+        $members_confirmed_by_gender = DB::table('new_memberships')
          ->select('gender', DB::raw('count(*) as total'))
          ->where('is_finance_approved','yes')
          ->groupBy('gender')
          ->pluck('total','gender');
 
-         $members_confirmed_by_type = DB::table('memberships')
+         $members_confirmed_by_type = DB::table('new_memberships')
          ->select('gender', DB::raw('count(*) as total'))
          ->where('is_finance_approved','yes')
          ->groupBy('gender')
@@ -235,7 +235,7 @@ class ReportsController extends Controller
 		
 		
 
-    	$department_chart = Charts::database(Membership::where('is_finance_approved','yes')->orderBy('sust_department')->get(), 'bar', 'google')
+    	$department_chart = Charts::database(NewMembership::where('is_finance_approved','yes')->orderBy('sust_department')->get(), 'bar', 'google')
 		->title("Registration Vs Department")
 		->elementLabel("No of Registrants")
 	    ->dimensions(1000, 500)
@@ -244,7 +244,7 @@ class ReportsController extends Controller
 	    ->groupBy('sust_department', null, $department_array);
 		
 		
-	    $batch_chart = Charts::database(Membership::where('is_finance_approved','yes')->orderBy('sust_session')->get(), 'pie', 'highcharts')
+	    $batch_chart = Charts::database(NewMembership::where('is_finance_approved','yes')->orderBy('sust_session')->get(), 'pie', 'highcharts')
 	    ->elementLabel("Batch vs Registrant")
 		->title("Batch vs Registrant")
 	    ->dimensions(1000, 500)
@@ -253,14 +253,14 @@ class ReportsController extends Controller
 	    ->groupBy('sust_session', null, $batch);
 
          
-	    $session_chart = Charts::database(Membership::where('is_finance_approved','yes')->orderBy('sust_session')->get(), 'pie', 'highcharts')
+	    $session_chart = Charts::database(NewMembership::where('is_finance_approved','yes')->orderBy('sust_session')->get(), 'pie', 'highcharts')
 	    ->elementLabel("Session vs Registrant")
 	    ->dimensions(1000, 500)
 	    ->responsive(false)
 	    ->colors($this->rand_color(30))
 	    ->groupBy('sust_session', null, $sessions);  
 
-	    $gender_chart = Charts::database(Membership::where('is_finance_approved','yes')->get(), 'donut', 'highcharts')
+	    $gender_chart = Charts::database(NewMembership::where('is_finance_approved','yes')->get(), 'donut', 'highcharts')
 	    ->elementLabel("Male vs Female")
 	    ->title("Male vs Female")
 	    ->dimensions(1000, 500)
@@ -281,7 +281,7 @@ class ReportsController extends Controller
 		$batch_path = storage_path() . "/json/batch.json";
         $batch = json_decode(file_get_contents($batch_path), true);
 //        $members_address = Membership::all();
-        $members_address = DB::table('memberships')
+        $members_address = DB::table('new_memberships')
         ->where('present_district', '=', '')
         ->orWhereNull('present_district')
         ->where('is_finance_approved','yes')

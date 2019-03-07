@@ -109,16 +109,17 @@
                 <p class="text-danger">
                     Please Make sure that you have deposited 
                     <ul class="list-unstyled text-info">
-                        <li>BDT 75000.00(for Life Membership) or</li>
-                        <li>BDT 10000.00(for General Membership)</li>
+                        <li>BDT 80000.00(for Life Membership) or</li>
+                        <li>BDT 15000.00(for General Membership)</li>
                     </ul> in favor of the following account -
                 </p>
                 <p class="text-danger">
                     <ul class="list-unstyled b-acc-form text-primary">
-                        <li>Account Title: Md Muklasur Rahman, Rashed Rafiuddin & Kazi Gulam Kadar</li>
-                        <li>Account Number: 2161510170000</li>
-                        <li>Branch: Ashulia Branch</li>
-                        <li>Bank: Dutch-Bangla Bank Ltd.</li>
+                         <li>Account Title: SUST Club Ltd.
+                          </li>
+                          <li>Account Number: 0940320000108</li>
+                          <li>Branch: Malibagh Chowdhurypara </li>
+                          <li>Bank: Mutual Trust Bank Ltd</li>
                     </ul> 
 
                 </p>

@@ -81,18 +81,19 @@
                             
                             <p class="lead">You Must Deposit the Membership Fee Before Submiting this form.</p>
                             <p>
-                            Fees for <strong>Life Membership</strong> is <strong>BDT 75000.00(Seventy Five Thousand Only)</strong> with no annual subscription fee.
+                            Fees for <strong>Life Membership</strong> is <strong>BDT 80000.00(Eighty Thousand Only)[75000 Membership Appplication fee + 5000 Annual Subscription fee]</strong> 
                             </p>
                             <p>
-                            Fees for <strong>General Membership</strong> is <strong>BDT 10000.00(Ten Thousand Only)</strong>  with annual Subscription Fee.
+                            Fees for <strong>General Membership</strong> is <strong>BDT 15000.00(Fifteen Thousand Only)[10000 Membership Appplication fee + 5000 Annual Subscription fee]</strong>  
                             </p>
                             <p class="lead">
                                 So please deposit the required amount in favor of the following account - 
                                 <ul class="list-unstyled b-acc info">
-                                  <li>Account Title: Md Muklasur Rahman, Rashed Rafiuddin & Kazi Gulam Kadar</li>
-                                  <li>Account Number: 2161510170000</li>
-                                  <li>Branch: Ashulia Branch</li>
-                                  <li>Bank: Dutch-Bangla Bank Ltd.</li>
+                                  <li>Account Title: SUST Club Ltd.
+                                  </li>
+                                  <li>Account Number: 0940320000108</li>
+                                  <li>Branch: Malibagh Chowdhurypara </li>
+                                  <li>Bank: Mutual Trust Bank Ltd</li>
                                 </ul>
                             </p>
                             <p> For Query <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a></p>

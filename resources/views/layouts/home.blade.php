@@ -27,14 +27,20 @@
   
 
   <!-- Bootstrap CSS File -->
+ <!--
   <link href="{{ asset('homepage/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="{{ asset('homepage/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  {{-- <link href="{{ asset('homepage/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
   <!-- Main Stylesheet File -->
   <link href="{{ asset('homepage/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 
@@ -49,11 +55,11 @@
   		
   		<!-- The social media icon bar -->
 		<div class="icon-bar">
-		  <a href="https://www.facebook.com/sustclublimited" class="facebook"><i class="fa fa-facebook"></i></a> 
-		  <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> 
-		  <a href="#" class="google"><i class="fa fa-google"></i></a> 
-		  <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-		  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
+		  <a href="https://www.facebook.com/sustclublimited" class="facebook"><i class="fab fa-facebook"></i></a> 
+		  <a href="#" class="twitter"><i class="fab fa-twitter"></i></a> 
+		  <a href="#" class="google"><i class="fab fa-google"></i></a> 
+		  <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
+		  <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
 
 		</div>
   		
@@ -105,14 +111,14 @@
 					Membership
 					</a>
 					<div class="dropdown-menu" aria-labelledby="Membership-DropDown">
-						<a class="dropdown-item" href="#">Founder Members</a>
-			            <a class="dropdown-item" href="#">Life Members</a>
-			            <a class="dropdown-item" href="#">General Members</a>
+						<a class="dropdown-item" href="{{ action('MemberListController@index') }}">Founder Members</a>
+			            <a class="dropdown-item" href="{{ action('MemberListController@index') }}">Life Members</a>
+			            <a class="dropdown-item" href="{{ action('MemberListController@index') }}">General Members</a>
 			            <a class="dropdown-item" href="#">Membership Criteria</a>
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Contact Us</a>
+					<a class="nav-link" href="{{ url('contact')}}">Contact Us</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">FAQ</a>
@@ -261,6 +267,10 @@
 	});
 	**/
   </script>
+  	<script src="siema.min.js"></script>
+	<script>
+	  new Siema();
+	</script>
 
 </body>
 </html>

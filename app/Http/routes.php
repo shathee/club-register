@@ -16,9 +16,15 @@
 
 
 Route::group(['middleware' => ['throttle']], function () {
-  Route::get('/',function(){
-  	 return view('welcome'); 
+  Route::get('/','PagesController@welcome');
+  Route::get('/contact',function(){
+  	 return view('front.pages.contact'); 
   });
+  Route::post('/contact',function(){
+  	 
+  	 return view('front.pages.contact'); 
+  });
+    
     
 		//$dt1 = Carbon\Carbon::now();
         //$dt2 = Carbon\Carbon::create(2018, 04, 19, 0, 0, 0);
@@ -28,21 +34,30 @@ Route::group(['middleware' => ['throttle']], function () {
         //}else {
         	// Route::get('/apply','MembershipController@create');
        // }
-        
+    
+    Route::get('/apply','NewMembershipController@create');
+    //Route::get('/apply','MembershipController@create');
+     
+
+  	Route::get('founder-member-list','MemberListController@index');
   	Route::get('member-list','MemberListController@index');
+  	Route::get('new-member-list','NewMemberListController@index');
 	
 
 
-	Route::resource('membership', 'MembershipController');
+	Route::resource('membership', 'NewMembershipController');
+	//Route::resource('membership', 'MembershipController');
 
 
 
-	Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
+	//Route::put('submission-confirm/{id}','MembershipController@submissionConfirm');
+	Route::put('submission-confirm/{id}','NewMembershipController@submissionConfirm');
 
 
-	Route::get('submission-messages','MembershipController@messages');
+	//Route::get('submission-messages','MembershipController@messages');
+	Route::get('submission-messages','NewMembershipController@messages');
 	
-	Route::get('admin', 'HomeController@index');
+	//Route::get('admin', 'HomeController@index');
 		Route::get('/admin/dashboard', 'HomeController@index');
 
 

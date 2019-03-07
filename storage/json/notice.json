@@ -1,0 +1,17 @@
+{            
+    "Notices": [
+            {
+                "Date":"15-02-2019",
+                "Title":"সাস্ট ক্লাব লিঃ এর ১৫ ফেব্রুয়ারি ২০১৯ এ অনুষ্ঠিত সভার কার্যবিবরনী",
+                "Link":"<a href='https://bit.ly/2VjmvkG'>Read More</a> ",
+                "img":"http://localhost/club-register/public/img/notice/n1.png"
+            },
+            {
+                "Date":"03-06-2018",
+                "Title":"Draft List of Founder members has been Published",
+                "Link":"http://sustclubltd.com/member-list",
+                "img":"http://localhost/club-register/public/img/notice/n2.jpg"
+
+            }
+        ]
+}

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Membership;
+//use App\Models\Membership;
+use App\Models\NewMembership;
 use Illuminate\Http\Request;
 
 class MembershipManageController extends Controller
@@ -34,7 +35,7 @@ class MembershipManageController extends Controller
 
 
         if (!empty($keyword)) {
-            $membershipmanage = Membership::where('membership_type', 'LIKE', "%$keyword%")
+            $membershipmanage = NewMembership::where('membership_type', 'LIKE', "%$keyword%")
                 ->orWhere('reg_email', 'LIKE', "%$keyword%")
                 ->orWhere('reg_email_repeat', 'LIKE', "%$keyword%")
                 ->orWhere('fullname', 'LIKE', "%$keyword%")
@@ -61,14 +62,14 @@ class MembershipManageController extends Controller
         } else {
 
             if(!empty($membership_type)){
-                $Membership = Membership::where('membership_type',$membership_type)->paginate($perPage)->appends(request()->query());
+                $Membership = NewMembership::where('membership_type',$membership_type)->paginate($perPage)->appends(request()->query());
                 
             }else{
 
                 if(!empty($is_finance_approved)){
-                $Membership = Membership::where('is_finance_approved',$is_finance_approved)->paginate($perPage);
+                $Membership = NewMembership::where('is_finance_approved',$is_finance_approved)->paginate($perPage);
                     }else{
-                        $Membership = Membership::paginate($perPage);
+                        $Membership = NewMembership::paginate($perPage);
                     }
                 
             }
@@ -167,7 +168,7 @@ class MembershipManageController extends Controller
             }
 
             
-            $id= Membership::create($requestData)->id;
+            $id= NewMembership::create($requestData)->id;
             
             if($request['membership_type']=='life'){
                 $requestData['membership_no'] = "LM".date("Ymd").sprintf('%06d',$id);
@@ -175,7 +176,7 @@ class MembershipManageController extends Controller
                 $requestData['membership_no'] = "GM".date("Ymd").sprintf('%06d',$id);
             }
 
-            Membership::where('id', $id)
+            NewMembership::where('id', $id)
               ->update(['membership_no' => $requestData['membership_no'] ]);
 
             app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
@@ -194,7 +195,7 @@ class MembershipManageController extends Controller
      */
     public function show($id)
     {
-        $Membership = Membership::findOrFail($id);
+        $Membership = NewMembership::findOrFail($id);
         $department_path = storage_path() . "/json/department.json";
         $departments = json_decode(file_get_contents($department_path), true);
 
@@ -225,7 +226,7 @@ class MembershipManageController extends Controller
         $religions_path = storage_path() . "/json/religions.json";
         $religions = json_decode(file_get_contents($religions_path), true);
 
-        $membership = Membership::findOrFail($id);
+        $membership = NewMembership::findOrFail($id);
 
         return view('admin.membership-manage.edit', compact('membership','districts','departments','sessions','blood_groups','question','religions'));
     }
@@ -286,7 +287,7 @@ class MembershipManageController extends Controller
             }
         }
         */
-        $Membership = Membership::findOrFail($id);
+        $Membership = NewMembership::findOrFail($id);
         $Membership->update($requestData);
 		
 		//app(\App\Http\Controllers\PdfController::class)->sendConfirmEmail($id);
@@ -311,7 +312,7 @@ class MembershipManageController extends Controller
 
     public function paymentConfirm(Request $request)
     {
-       $Membership = Membership::findOrFail($request->id);
+       $Membership = NewMembership::findOrFail($request->id);
        $Membership->update(['is_finance_approved'=>'yes']);
        //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
 	   return redirect()->back();
@@ -320,7 +321,7 @@ class MembershipManageController extends Controller
 
     public function paymentReject(Request $request)
     {
-       $Membership = Membership::findOrFail($request->id);
+       $Membership = NewMembership::findOrFail($request->id);
        $Membership->update(['is_finance_approved'=>'rejected']);
        //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
        return redirect()->back();
@@ -329,7 +330,7 @@ class MembershipManageController extends Controller
 
     public function paymentHold(Request $request)
     {
-       $Membership = Membership::findOrFail($request->id);
+       $Membership = NewMembership::findOrFail($request->id);
        $Membership->update(['is_finance_approved'=>'hold']);
        //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
        return redirect()->back();

@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Membership;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+
+use App\Http\Controllers\Controller;
+use App\Models\NewMembership;
+
 use Input;
 use Session;
 
-class MembershipController extends Controller {
-
-    /**
+class NewMembershipController extends Controller
+{
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
@@ -33,7 +38,7 @@ class MembershipController extends Controller {
         $batch = json_decode(file_get_contents($batch_path), true);
 
         if (!empty($keyword)) {
-            $membership = Membership::where('membership_no', "$keyword")
+            $membership = NewMembership::where('membership_no', "$keyword")
                 ->orWhere('reg_email', "$keyword")
                 ->orWhere('mobile_no', "$keyword")
                 ->orWhere('sust_reg_no', "$keyword")
@@ -46,14 +51,14 @@ class MembershipController extends Controller {
 
         } else {
             if (!empty($membership_type)) {
-                $memberships = Membership::where('membership_type', $membership_type)->orderBy('id')->get();
+                $memberships = NewMembership::where('membership_type', $membership_type)->orderBy('id')->get();
             }
 
             if (!empty($sust_session)) {
-                $memberships = Membership::where('sust_session', $sust_session)->orderBy('id')->get();
+                $memberships = NewMembership::where('sust_session', $sust_session)->orderBy('id')->get();
             }
 
-            $memberships = Membership::paginate($perPage);
+            $memberships = NewMembership::paginate($perPage);
             return view('front.membership.index', compact('memberships', 'departments', 'batch', 'sessions'));
         }
 
@@ -65,7 +70,7 @@ class MembershipController extends Controller {
      * @return \Illuminate\View\View
      */
     public function create() {
-        dd();
+        //dd();
 
         $district_path = storage_path() . "/json/districts.json";
         $districts = json_decode(file_get_contents($district_path), true);
@@ -97,7 +102,7 @@ class MembershipController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request) {
-        dd();
+        //dd();
         $this->validate($request, [
             'membership_type' => 'required',
             'reg_email' => 'required|unique:memberships',
@@ -129,7 +134,7 @@ class MembershipController extends Controller {
             if ($request->hasFile('member_payment_doc')) {
                 //foreach($request['member_payment_doc'] as $file){
                 $file = $request['member_payment_doc'];
-                $uploadPath = public_path('uploads');
+                $uploadPath = public_path('new_uploads');
 
                 $extension = $file->getClientOriginalExtension();
                 //$fileName = $request->sust_reg_no. '_payment.' . $extension;
@@ -142,7 +147,7 @@ class MembershipController extends Controller {
             if ($request->hasFile('member_photo')) {
                 //foreach($request['member_photo'] as $file){
                 $file = $request['member_photo'];
-                $uploadPath = public_path('uploads');
+                $uploadPath = public_path('new_uploads');
 
                 $extension = $file->getClientOriginalExtension();
                 //$fileName = $request->sust_reg_no . '_photo.' . $extension;
@@ -153,7 +158,7 @@ class MembershipController extends Controller {
 
             }
 
-            $id = Membership::create($requestData)->id;
+            $id = NewMembership::create($requestData)->id;
 
             if ($request['membership_type'] == 'life') {
                 $requestData['membership_no'] = "LM" . date("Ymd") . sprintf('%06d', $id);
@@ -161,7 +166,7 @@ class MembershipController extends Controller {
                 $requestData['membership_no'] = "GM" . date("Ymd") . sprintf('%06d', $id);
             }
 
-            Membership::where('id', $id)
+            NewMembership::where('id', $id)
                 ->update(['membership_no' => $requestData['membership_no']]);
 
             app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
@@ -185,7 +190,7 @@ class MembershipController extends Controller {
         //dd();
         //die($id);
         if(Session::has('mid')){
-            $membership = Membership::findOrFail($id);
+            $membership = NewMembership::findOrFail($id);
             $department_path = storage_path() . "/json/department.json";
             $departments = json_decode(file_get_contents($department_path), true);
             return view('front.membership.show', compact('membership', 'departments'));
@@ -276,7 +281,7 @@ class MembershipController extends Controller {
             }
         }
 
-        $membership = Membership::findOrFail($id);
+        $membership = NewMembership::findOrFail($id);
         $membership->update($requestData);
 
         return redirect('membership')->with('flash_message', 'Membership updated!');
@@ -302,7 +307,7 @@ class MembershipController extends Controller {
 
     public function submissionConfirm(Request $request, $id) {
 
-        Membership::where('id', $id)
+        NewMembership::where('id', $id)
             ->update(['is_submission_confirmed' => 'yes']);
 
         return redirect('submission-messages')->with('flash_message', 'Dear Sustian Your Submission has been completed!');
