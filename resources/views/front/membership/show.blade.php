@@ -12,21 +12,20 @@
 						<p class="alert alert-info">{{ Session::get('flash_message') }}</p>
 					@endif
 					<p class="info">
-						For any query please contact membership@sustclubltd.com
+						For any query please contact membership@sustclubltd.com  <button class="btn btn-primary hidden-print pull-right" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
 					</p>
                     </div>
                     <div class="card-body">
                         {{-- <a href="{{ url('/membership') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a> --}}
-                         <button class="btn btn-primary hidden-print pull-right" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-                        <br/>
-                        <br/>
+                        
+                       
 
                         <div class="table-responsive">
                             <table class="table membership-form-view">
                                 <tbody>
                                    
                                     <tr>
-										<th>Applied Membership Type </th>
+										<th width="20%">Applied Membership Type </th>
 										<td> {{ ucfirst($membership->membership_type) }} </td>
 										<td>&nbsp;</td>
 										<td rowspan="6" class="text-right">
@@ -70,31 +69,46 @@
 									<th> Blood Group </th><td> {{ strtoupper($membership->blood_group) }} </td>
 									</tr>
 									<tr>
-										<th> Present Address </th><td> {{ $membership->present_address }}, {{ $membership->present_district }}  </td>
-										<th> Permanent Address </th><td> {{ $membership->permanent_address }}, {{ $membership->permanent_district }}  </td>
+										<th> Present Address </th>
+										<td> {{ $membership->present_address }}, {{ $membership->present_district }}  </td>
+										<th> Permanent Address </th>
+										<td> {{ $membership->permanent_address }}, {{ $membership->permanent_district }}  </td>
 									</tr>
 									
 									<tr>
-										<th> Payment Information Given </th>
-										<td colspan="3"> {{ $membership->member_payment_info }} </td>
+										<th colspan="2"> Payment Information Given </th>
+										<td colspan="2"> {{ $membership->member_payment_info }} </td>
 									</tr>
 									<tr>
-										<th>Payment Document Uploaded</th>
-										<td colspan="3">{{ link_to_asset('new_uploads/'.$membership->member_payment_doc,'Click Here To Download', array('class'=>'hidden-print', 'download' => $membership->member_payment_doc)) }} </td>
+										<th colspan="4"> <h4>Introducers</h4></th>
 									</tr>
-									
+									<tr>
+										<td>
+										Proposer
+										</td>
+										<td>
+										{{ $membership->name_of_proposer }} ({{ sprintf('%03d',$membership->membership_no_of_proposer) }})
+										</td>
+										<td>
+										Seconder
+										</td>
+										<td>
+										{{ $membership->name_of_seconder }} ({{ sprintf('%03d',$membership->membership_no_of_seconder) }})
+										</td>
+									</tr>
+									<tr>
+										<th colspan="4"> <h4>Declaration</h4></th>
+									</tr>
+									<tr>
+										<td colspan="4">
+											<p>
+												I hereby declare that I have read and understood the Memorendum of Assocation, Articles of Association and By Laws of SUST Club Limited and will adhere to those documents. I confirm the detail information given above are true and correct to the best of my knowledge and belief.
+											</p>
+										</td>
 									</tr>
                                 </tbody>
 								<tfoot>
-									<tr>
-										<td>
-											{{-- <form method="POST" action="{{ url('submission-confirm' . '/' . $membership->id) }}" accept-charset="UTF-8" style="display:inline">
-											{{ method_field('PUT') }}
-											{{ csrf_field() }}
-											<button type="submit" class="btn btn-warning btn-sm" title="Confirm Submission" onclick="return confirm(&quot;Confirm Submission?&quot;)"> Confirm Submission</button>
-											</form> --}}
-										</td>
-									</tr>
+									
 								</tfoot>
                             </table>
                         </div>

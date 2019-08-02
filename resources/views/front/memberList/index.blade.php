@@ -9,7 +9,7 @@
                 <div class="card">
                 	
                 	<div class="card-body">
-                		<div class="alert alert-info">
+                		{{-- <div class="alert alert-info">
                 			<h3 class="text-center">Draft List of Founder members</h3>
                 			<p>
                 				
@@ -21,10 +21,10 @@
                 			<p>
                 				If you have submitted all your documents properly but your name is not in the list, please mail to  <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a>
                 			</p>
-                		</div>	
-                		<div class="text-left alert alert-danger">
+                		</div> --}}	
+                		{{-- <div class="text-left alert alert-danger">
                 			<p>
-                				This is for information of all primary members, if it is found later that any of the primary members --- 
+                				This is for information of all primary members, if it is found later that any of the primary members  
                 			</p>
                 			<p>
                 				<ol>
@@ -39,13 +39,15 @@
                 			<p>
                 				Also we request everyone  that if anyone has any knowledge regarding any members who might be ineligible according to the article 11(c) & (d) of Articles of Association, Please let us know(membership@sustclubltd.com).
                 			</p>
-                		</div>
-                		<div class="row">
+                		</div> --}}
+                		{{-- <div class="row">
                 			<div class="col-md-2">
-								<a class="nav-link" href="{{ url('/member-list') }}"><strong>Show ALL</strong></a>
+								<a class="nav-link" href="{{ url('/member-list/all') }}"><strong>Show ALL</strong></a>
 							</div>
                 			<div class="col-md-4 ">
-				                    <form method="GET" action="{{ url('/member-list') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
+				                    <form method="GET" action="{{ url('/member-list/all') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
+
+				                    
 											<span>Show by batch/session &nbsp;</span>
 											<select name="sust_session" class="form-control" id="sust_session" required>
 											@foreach ($sessions as $optionKey => $optionValue)
@@ -56,7 +58,8 @@
 							</div>
 							<div class="col-md-6">
 							
-				                    <form method="GET" action="{{ url('/member-list') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">
+				                    <form method="GET" action="{{ url('/member-list/all') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0" role="">	
+				                    		
 											<span>Show by Department &nbsp;</span>
 											<select name="sust_department" class="form-control" id="sust_department" required>
 												@foreach ($departments as $optionKey => $optionValue)
@@ -66,7 +69,7 @@
 									</form>
 							</div>
 							
-						</div>
+						</div> --}}
 						<div>&nbsp;</div>
 						<div class="row">
 							<div class="col-md-8">
@@ -86,12 +89,13 @@
 								<thead class="thead-light">	
 									   <tr>
 										   <th style="width: 5%;">#</th>
+										   
 										   <th>Name</th>
 										   <th>Department</th>
 										   <th>Session</th>
 										   <th>Batch</th>
 										   <th>Membership Type</th>
-										   <th>Temporary Identification No</th>
+										  {{--  <th>Temporary Identification No</th> --}}
 										   
 									   </tr> 
 								</thead>
@@ -99,13 +103,14 @@
 									@foreach ($memberships as $membership)
 										<tr>
 											<td>{{ $i }}</td>
+											
 											<td>{{ ucfirst($membership->fullname) }}</td>
 											<td>{{ $departments[$membership->sust_department] }}</td>
 											
 											<td>{{ $membership->sust_session }}-<?php $s2 = $membership->sust_session +1 ?> {{$s2}}</td>
 											<td>{{ $batch[$membership->sust_session] }}</td>
 											<td>{{ ucfirst($membership->membership_type) }}</td>
-											<td>{{ ucfirst($membership->membership_no) }}</td>
+											{{-- <td>{{ ucfirst($membership->membership_no) }}</td> --}}
 										
 										</tr>
 									<?php $i++; ?>

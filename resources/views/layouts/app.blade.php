@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('homepage/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,9 +22,9 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               {{--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </button>
+                </button> --}}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -64,24 +65,28 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <a class="thumbnil logo" href="{{ url('/') }}">
+                    <div class="col-md-12 text-center" id="header">
+                        {{-- <a class="thumbnil logo" href="{{ url('/') }}">
                             <img src="{{ url('img/sust.png')}}" />
+                        </a> --}}
+                       <!-- Brand -->
+                        <a id="logo" href="{{ url('/')}}">
+                            <img src="{{ asset('homepage/img/sustt.png')}}" alt="" title="" /></img></a>
+                            <br>
+
+                        <a href="#" id="logo-text" class="scrollto">&nbsp;SUST<span>&nbsp;Club Limited</span>
                         </a>
+
                     </div>
                     @if(!isset($membership))
-                    <div class="col-md-8">
+                    
+                   {{--  <div class="col-md-8">
                         
-                        <div class="alert alert-warning hidden-print" role="alert">
-                            {{-- <h3>
-                            <p>Dear Primary Members</p>
-                            <p>List of Submissions for founder members has been published here.</p>
-                            <p class="text-danger">Please note that the actual numbers of founding members will be confirmed after payment verification.</p>
-                            </h3> --}}
+                       <div class="alert alert-warning hidden-print" role="alert">
                             
                             <p class="lead">You Must Deposit the Membership Fee Before Submiting this form.</p>
                             <p>
-                            Fees for <strong>Life Membership</strong> is <strong>BDT 80000.00(Eighty Thousand Only)[75000 Membership Appplication fee + 5000 Annual Subscription fee]</strong> 
+                            Fees for <strong>Life Membership</strong> is <strong>BDT 75000.00(Seventy Five Thousand Only)</strong> 
                             </p>
                             <p>
                             Fees for <strong>General Membership</strong> is <strong>BDT 15000.00(Fifteen Thousand Only)[10000 Membership Appplication fee + 5000 Annual Subscription fee]</strong>  
@@ -99,9 +104,10 @@
                             <p> For Query <a href="mailto:membership@sustclubltd.com">membership@sustclubltd.com</a></p>
                              
 
-                        </div>
-                   
-                    </div>
+                        </div>                  
+                    </div> --}}
+
+                    
                     @endif
                    
                 </div>
@@ -158,6 +164,14 @@
         function myFunction() {
             window.print();
         }
+
+        $( "#renewal_id_check" ).change(function() {
+          alert( "Handler for .change() called." );
+        });
+        
+
+
+ 
     </script>
 </body>
 </html>

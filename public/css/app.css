@@ -60,3 +60,40 @@ height: 180px;
 .recent-post a {text-decoration: none;color:#34495E;transition: 0.5s;}
 .post-img, .recent-post a:hover{color:#F39C12;}
 .post-img img:hover{border: 5px solid #F39C12;}
+
+
+.member-application-form{
+	background-color: #EAE5F1;
+}
+
+.btn-sq {
+  /*width: 250px !important;
+  height: 200px !important;*/
+  width: 100% !important;
+  height: 200px !important;
+  font-size: 20px;
+  text-align: center;
+}
+ 
+nav{
+    border-bottom: 1px solid #361dc4;
+    padding: 0px 10px 10px 10px !important;
+    border-left: 1px solid #361dc4;
+    border-right: 1px solid #361dc4;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+}    
+
+.span4 img {
+    margin-right: 10px;
+    width: 200px;
+    height: 220px;
+}
+.span4 .img-left {
+    float: left;
+     width: 200px;
+    height: 220px;
+}
+.span4 .img-right {
+    float: right;
+}

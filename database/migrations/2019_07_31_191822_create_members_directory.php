@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewMembershipsTable extends Migration
+class CreateMembersDirectory extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateNewMembershipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('new_memberships', function (Blueprint $table) {
+        Schema::create('memberdirectories', function (Blueprint $table) {
             $table->increments('id');
-            
+            $table->string('membership_no');
             $table->string('membership_type');
             $table->string('reg_email')->nullable();
-            $table->string('reg_email_repeat')->nullable();
             $table->string('fullname')->nullable();
             $table->string('fullname_bn')->nullable();
             $table->string('mothers_name')->nullable();
@@ -33,22 +32,12 @@ class CreateNewMembershipsTable extends Migration
             $table->string('sust_department');
             $table->string('sust_reg_no')->nullable();
             $table->string('sust_session');
-            $table->string('sust_graduation_year');
+            //$table->string('sust_graduation_year');
             $table->string('blood_group');
             $table->string('member_photo')->nullable();
-            $table->string('member_payment_doc')->nullable();
-            $table->text('member_payment_info')->nullable();
-            $table->string('membership_no');
-            $table->string('name_of_proposer');
-            $table->string('membership_no_of_proposer');
-            $table->string('name_of_seconder');
-            $table->string('membership_no_of_seconder');
-            $table->string('is_declaration_given')->default('yes');
-            $table->string('is_submission_confirmed')->default('yes');
-            $table->string('is_finance_approved')->default('no');
             $table->timestamps();
             $table->softDeletes();
-        });
+            });
     }
 
     /**
@@ -58,6 +47,6 @@ class CreateNewMembershipsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('new_memberships');
+        Schema::drop('memberdirectories');
     }
 }

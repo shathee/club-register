@@ -72,7 +72,8 @@
 		</button>
 
 		<!-- Brand -->
-		<a id="logo" href="{{ url('/')}}"><img src="{{ asset('homepage/img/sustt.png')}}" alt="" title="" /></img></a>
+		<a id="logo" href="{{ url('/')}}">
+			<img src="{{ asset('homepage/img/sustt.png')}}" alt="" title="" /></img></a>
 
 		<a href="#" id="logo-text" class="scrollto">&nbsp;SUST<span>&nbsp;Club Limited</span>
 		</a>
@@ -86,12 +87,12 @@
 					About Us
 					</a>
 					<div class="dropdown-menu" aria-labelledby="About-DropDown">
-						<a class="dropdown-item" href="#">About SUST Club</a>
-						<!--
-		             	<a class="dropdown-item" href="#">Executive Commitee</a>
-		             	<a class="dropdown-item" href="#">Awareness Team</a>
+						<a class="dropdown-item" href="{{ url('/about')}}">About SUST Club</a>
+						
+		             	<a class="dropdown-item" href="#">Club Management </a>
+		             	{{-- <a class="dropdown-item" href="#">Awareness Team</a> --}}
 		             	<a class="dropdown-item" href="#"></a>
-		             	-->
+		             	
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -111,11 +112,11 @@
 					Membership
 					</a>
 					<div class="dropdown-menu" aria-labelledby="Membership-DropDown">
-						<a class="dropdown-item" href="{{ action('MemberListController@index') }}">Founder Members</a>
-			            <a class="dropdown-item" href="{{ action('MemberListController@index') }}">Life Members</a>
-			            <a class="dropdown-item" href="{{ action('MemberListController@index') }}">General Members</a>
-			            <a class="dropdown-item" href="#">Membership Criteria</a>
-					</div>
+						<a class="dropdown-item" href="{{ url('member-list/founder') }}">Founder Members</a>
+			            <a class="dropdown-item" href="{{ url('member-list/life') }}">Life Members</a>
+			            <a class="dropdown-item" href="{{ url('member-list/general') }}">General Members</a>
+			            <a class="dropdown-item" href="{{ url('member-list/all') }}">All Members</a>
+			        </div>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('contact')}}">Contact Us</a>

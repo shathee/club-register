@@ -112,7 +112,7 @@
           </form>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/logout') }}" class="nav-link" >
+          <a href="{{ url('logout') }}" class="nav-link" >
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>

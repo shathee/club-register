@@ -119,6 +119,11 @@ class NewMembershipController extends Controller
             'member_photo' => 'required|image|max:5000',
             'member_payment_info' => 'required',
             'member_payment_doc' => 'required|max:5000',
+            'name_of_proposer' => 'required',
+            'membership_no_of_proposer' => 'required',
+            'name_of_seconder' => 'required',
+            'membership_no_of_seconder' => 'required',
+            'is_declaration_given' => 'required'
         ], [
             'membership_type.required' => 'Please Select Your Membership Type.',
             'reg_email.unique' => 'Sorry, This Email Address Is Already Used By Another User. Please Try With Different One, Thank You.',
@@ -126,9 +131,15 @@ class NewMembershipController extends Controller
             'member_photo.max' => 'Maximum Allowable size of photograph is 5MB.',
             'member_payment_doc.required' => 'You Must Upload Reference Document of Payment.',
             'member_payment_doc.max' => 'Maximum Allowable size of document is 5MB.',
+            'name_of_proposer' => 'You Must mention The name of the proposer ',
+            'membership_no_of_proposer' => 'You Must mention The Membership No of the proposer',
+            'name_of_seconder' => 'You Must mention The name of the Seconder',
+            'membership_no_of_seconder' => 'You Must mention The Membership No of the Seconder',
+            'is_declaration_given' => 'You must agree with the declaration'
         ]);
         $requestData = $request->all();
 
+       // dd($requestData);
         $answer = $request->answer;
         if ($answer == Mc::getMcAnswer()) {
             if ($request->hasFile('member_payment_doc')) {
@@ -169,7 +180,7 @@ class NewMembershipController extends Controller
             NewMembership::where('id', $id)
                 ->update(['membership_no' => $requestData['membership_no']]);
 
-            app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
+           // app(\App\Http\Controllers\PdfController::class)->sendEmailReminder($id);
 
 
             Session::flash('mid', $id);
@@ -189,16 +200,16 @@ class NewMembershipController extends Controller
     public function show($id) {
         //dd();
         //die($id);
-        if(Session::has('mid')){
+        //if(Session::has('mid')){
             $membership = NewMembership::findOrFail($id);
             $department_path = storage_path() . "/json/department.json";
             $departments = json_decode(file_get_contents($department_path), true);
             return view('front.membership.show', compact('membership', 'departments'));
 
-        }else{
+       // }else{
             abort(403,'You dont have permission to access this ');
 
-        }
+        //}
     }
 
     /**

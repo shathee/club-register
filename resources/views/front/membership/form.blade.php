@@ -16,7 +16,7 @@
         <div class="form-group {{ $errors->has('reg_email') ? 'has-error' : ''}}">
             <label for="reg_email" class="col-md-5 control-label">{{ 'Email Address*' }}</label>
             <div class="col-md-7">
-                <input class="form-control" name="reg_email" type="text" id="reg_email" value="{{ $membership->reg_email or old('reg_email') }}" required>
+                <input class="form-control" name="reg_email" type="text" id="reg_email" value="{{ old('reg_email') }}" required>
                 {!! $errors->first('reg_email', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
@@ -109,7 +109,7 @@
                 <p class="text-danger">
                     Please Make sure that you have deposited 
                     <ul class="list-unstyled text-info">
-                        <li>BDT 80000.00(for Life Membership) or</li>
+                        <li>BDT 75000.00(for Life Membership) or</li>
                         <li>BDT 15000.00(for General Membership)</li>
                     </ul> in favor of the following account -
                 </p>
@@ -259,7 +259,58 @@
             </div>
         </div>-->
     </div>
-    
+    <div class="row">
+        <h4 class="text-center">Introducers</h4>
+      <div class="col-md-6">
+
+        <div class="form-group {{ $errors->has('name_of_proposer') ? 'has-error' : ''}}">
+            <label for="name_of_proposer" class="col-md-5 control-label">{{ 'Name of Proposer*' }}</label>
+            <div class="col-md-7">
+                <input class="form-control" name="name_of_proposer" type="text" id="name_of_proposer" value="{{ old('name_of_proposer') }}" required>
+                {!! $errors->first('name_of_proposer', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group {{ $errors->has('membership_no_of_proposer') ? 'has-error' : ''}}">
+            <label for="membership_no_of_proposer" class="col-md-5 control-label">{{ 'Membership ID of Proposer*' }}</label>
+            <div class="col-md-7">
+                <input class="form-control" name="membership_no_of_proposer" type="text" id="membership_no_of_proposer" value="{{ old('membership_no_of_proposer') }}" required>
+                {!! $errors->first('membership_no_of_proposer', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+      </div> 
+      <div class="col-md-6">
+        <div class="form-group {{ $errors->has('name_of_seconder') ? 'has-error' : ''}}">
+            <label for="name_of_seconder" class="col-md-5 control-label">{{ 'Name of Seconder*' }}</label>
+            <div class="col-md-7">
+                <input class="form-control" name="name_of_seconder" type="text" id="name_of_seconder" value="{{ old('name_of_seconder') }}" required>
+                {!! $errors->first('name_of_seconder', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group {{ $errors->has('membership_no_of_seconder') ? 'has-error' : ''}}">
+            <label for="membership_no_of_seconder" class="col-md-5 control-label">{{ 'Membership ID of Seconder*' }}</label>
+            <div class="col-md-7">
+                <input class="form-control" name="membership_no_of_seconder" type="text" id="membership_no_of_seconder" value="{{ old('membership_no_of_seconder') }}" required>
+                {!! $errors->first('membership_no_of_seconder', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+      </div> 
+    </div>
+
+    <div class="row bg-info" style="padding:10px;">
+        <h4 class="text-center">Declaration</h4>
+        <div class="col-md-2 col-md-offset-1">
+            <div class="text-center form-group {{ $errors->has('is_declaration_given') ? 'has-error' : ''}}">
+                <label for="is_declaration_given" class="">{{ 'Agreed*' }}</label><br>
+                <input style="height:34px;width: 34px;" name="is_declaration_given" type="checkbox" id="is_declaration_given" value="Yes" required>
+                    {!! $errors->first('is_declaration_given', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <p class="info "> I hereby declare that I have read and understood the Memorendum of Assocation, Articles of Association and By Laws of SUST Club Limited and will adhere to those documents. I confirm the detail information given above are true and correct to the best of my knowledge and belief.</p>
+            
+        </div>
+    </div>
+    <div class="row"> &nbsp;</div>
     <div class="col-md-offset-1 col-md-10">
         <div class="text-center form-group my-captcha">
             <label for="answer" class="col-md-5 control-label">{{ $question.' *' }}</label>
@@ -267,8 +318,6 @@
                 <input class="form-control" name="answer" type="text" id="answer" value="" placeholder="Put Your answer here" required>
                 {!! $errors->first('answer', '<p class="help-block">:message</p>') !!}
             </div>  
-                
-            
         </div>
         <div class="text-center form-group">
             <input class="btn btn-primary" type="submit" value="{{ $submitButtonText or 'Submit' }}">

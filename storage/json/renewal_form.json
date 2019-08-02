@@ -1,0 +1,59 @@
+{
+    "fields": [
+        {
+            "name": "id",
+            "type": "string"
+        },
+        {
+            "name": "renewal_type",
+            "type": "select",
+            "options": {
+                "": "Select",
+                "annual": "Annual Fee",
+                "upgrade": "Upgrade to Life Member"
+            }
+        },
+        {
+            "name": "member_payment_info",
+            "type": "text"
+        },
+        {
+            "name": "member_payment_doc",
+            "type": "file"
+        },
+        {
+            "name": "is_submission_confirmed",
+            "type": "select",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        {
+            "name": "is_finance_approved",
+            "type": "select",
+            "options": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        }
+    ],
+    "validations": [
+        {
+            "field": "id",
+            "rules": "required|max:10"
+        },
+        {
+            "field": "renewal_type",
+            "rules": "required"
+        },
+        {
+            "field": "member_payment_info",
+            "rules": "required"
+        },
+        {
+            "field": "member_payment_doc",
+            "rules": "required"
+        }
+    ]
+}

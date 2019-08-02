@@ -17,6 +17,21 @@
 
 Route::group(['middleware' => ['throttle']], function () {
   Route::get('/','PagesController@welcome');
+  Route::get('/about',function(){
+  	 return view('front.pages.about'); 
+  });
+  Route::get('/management',function(){
+  		$department_path = storage_path() . "/json/department.json";
+        $departments = json_decode(file_get_contents($department_path), true);
+
+
+  	 $user_path = storage_path() . "/json/management.json";
+  	 
+     $user = json_decode(file_get_contents($user_path), true);
+     //$user = file_get_contents($user_path);
+  	dd($user);
+  	 return view('front.pages.management'); 
+  });
   Route::get('/contact',function(){
   	 return view('front.pages.contact'); 
   });
@@ -37,11 +52,15 @@ Route::group(['middleware' => ['throttle']], function () {
     
     Route::get('/apply','NewMembershipController@create');
     //Route::get('/apply','MembershipController@create');
-     
+    Route::resource('membership-renewal', 'MembershipRenewalController');
 
-  	Route::get('founder-member-list','MemberListController@index');
-  	Route::get('member-list','MemberListController@index');
-  	Route::get('new-member-list','NewMemberListController@index');
+  	//Route::get('member-list/{key}','MemberListController@index');
+  	//Route::post('member-list/{key}','MemberListController@index');
+  	Route::get('member-list/all','MemberListController@index');
+  	Route::get('member-list/founder','MemberListController@founders');
+  	Route::get('member-list/life','MemberListController@life');
+  	Route::get('member-list/general','MemberListController@general');
+  	//Route::get('new-member-list','NewMemberListController@index');
 	
 
 
@@ -102,5 +121,6 @@ Route::group(['middleware' => ['throttle']], function () {
 
 
 });
+
 
 
