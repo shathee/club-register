@@ -200,16 +200,16 @@ class NewMembershipController extends Controller
     public function show($id) {
         //dd();
         //die($id);
-        //if(Session::has('mid')){
+        if(Session::has('mid')){
             $membership = NewMembership::findOrFail($id);
             $department_path = storage_path() . "/json/department.json";
             $departments = json_decode(file_get_contents($department_path), true);
             return view('front.membership.show', compact('membership', 'departments'));
 
-       // }else{
+        }else{
             abort(403,'You dont have permission to access this ');
 
-        //}
+        }
     }
 
     /**

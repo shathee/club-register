@@ -62,6 +62,12 @@
             <span class="nav-link-text">Member Management</span>
           </a>
         </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="{{url('admin/membership-renewal-management')}}">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Renewal Information Management</span>
+          </a>
+        </li>
        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>

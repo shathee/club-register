@@ -98,6 +98,7 @@ Route::group(['middleware' => ['throttle']], function () {
 
 		Route::resource('admin/users', 'Admin\UsersController');
 		Route::resource('admin/membership-manage', 'Admin\MembershipManageController');
+		Route::resource('admin/membership-renewal-management', 'Admin\\MembershipRenewalManagementController');
 		
 		Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
 		Route::post('admin/membership-manage/payment-confirm', 'Admin\MembershipManageController@paymentConfirm');
@@ -106,6 +107,7 @@ Route::group(['middleware' => ['throttle']], function () {
 
 		Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
 		Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');
+
 
 
 		Route::get('admin/reports/custom', 'Admin\ReportsController@index');
@@ -121,6 +123,7 @@ Route::group(['middleware' => ['throttle']], function () {
 
 
 });
+
 
 
 

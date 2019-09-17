@@ -28,5 +28,9 @@ class MembershipRenewal extends Model
      */
     protected $fillable = ['membership_no', 'renewal_type', 'member_payment_period', 'member_payment_info', 'member_payment_doc', 'is_submission_confirmed', 'is_finance_approved'];
 
+    public function memberProfile()
+    {
+        return $this->belongsTo('App\Models\Memberdirectory', 'membership_no','membership_no');
+    }
     
 }
