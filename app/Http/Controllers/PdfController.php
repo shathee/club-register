@@ -10,6 +10,7 @@ use PDF;
 use File;
 use Mail;
 use Carbon\Carbon;
+use App\Models\Memberdirectory;
 
 class PdfController extends Controller
 {
@@ -179,6 +180,26 @@ class PdfController extends Controller
 		
 			//return redirect()->back();
        
+    }
+
+
+
+    public function sendEmailPaymentConfirm($id)
+    {
+        
+
+        $membership = Memberdirectory::findOrFail($id);
+      
+        Mail::send('front.email.renewal', array('membership' =>$membership ), function ($message) use ($membership)  {
+
+            $message->from('membership@sustclubltd.com', 'SUST Club Ltd');
+            $message->subject('Annual Subscription fee ');
+            $message->bcc('sat.sust@gmail.com', 'Annual Subscription fee');
+           
+            $message->to($membership->reg_email);
+        });
+
+        return redirect('membership/'.$id);
     }
     
 }

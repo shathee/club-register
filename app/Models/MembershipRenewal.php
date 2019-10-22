@@ -26,7 +26,7 @@ class MembershipRenewal extends Model
      *
      * @var array
      */
-    protected $fillable = ['membership_no', 'renewal_type', 'member_payment_period', 'member_payment_info', 'member_payment_doc', 'is_submission_confirmed', 'is_finance_approved'];
+    protected $fillable = ['membership_no', 'renewal_type', 'member_payment_period', 'member_payment_info', 'member_payment_doc'];
 
     public function memberProfile()
     {

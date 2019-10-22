@@ -157,6 +157,42 @@ class MembershipRenewalManagementController extends Controller
         return redirect('membership-renewal-management')->with('flash_message', 'MembershipRenewalManagement updated!');
     }
 
+
+
+     public function paymentConfirm(Request $request)
+    {
+
+        // MembershipRenewal::where('id', $request->id)
+        //   ->update(['is_finance_approved' => 'yes']);
+    $r = MembershipRenewal::find($request->id);
+    $r->is_finance_approved = 'yes';
+    $r->save();
+    app(\App\Http\Controllers\PdfController::class)->sendEmailPaymentConfirm($r->membership_no);
+            
+       return redirect()->back();
+    }
+
+
+    public function paymentReject(Request $request)
+    {
+      MembershipRenewal::where('id', $request->id)
+          ->update(['is_finance_approved' => 'rejected']);
+       //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
+       return redirect()->back();
+    }
+
+
+    public function paymentHold(Request $request)
+    {
+        MembershipRenewal::where('id', $request->id)
+          ->update(['is_finance_approved' => 'hold']);
+      
+       //return redirect('admin/membership-manage')->with('flash_message', 'Payment has been Confirmed By Finance Team');
+       return redirect()->back();
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *

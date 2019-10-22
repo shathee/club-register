@@ -70,13 +70,19 @@ class MembershipRenewalController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			//'id' => 'required|max:10',
-			'renewal_type' => 'required',
-			'member_payment_info' => 'required',
-			'member_payment_doc' => 'required'
-		]);
-        $requestData = $request->all();
+            //'id' => 'required|max:10',
+            'renewal_type' => 'required',
+            'member_payment_info' => 'required',
+            'member_payment_doc' => 'required'
+        ]);
+        //$requestData = $request->all();
         
+    $requestData['membership_no'] = $request['membership_no'];
+    $requestData['renewal_type'] = $request['renewal_type'];
+    $requestData['member_payment_period'] = $request['member_payment_period'];
+    $requestData['member_payment_info'] = $request['member_payment_info'];
+    $requestData['member_payment_doc'] = $request['member_payment_doc'];
+
         //dd($requestData);
         if ($request->hasFile('member_payment_doc')) {
             
@@ -92,7 +98,7 @@ class MembershipRenewalController extends Controller
             
         }
         
-        MembershipRenewal::create($requestData);
+        MembershipRenewal::firstOrCreate($requestData);
 
         $member = Memberdirectory::find($request['membership_no']);
         return redirect('membership-renewal')->with(['flash_message'=> 'Your  Renewal info submitted successfully!', 'name' => $member->fullname ]);
@@ -138,11 +144,11 @@ class MembershipRenewalController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'id' => 'required|max:10',
-			'renewal_type' => 'required',
-			'member_payment_info' => 'required',
-			'member_payment_doc' => 'required'
-		]);
+            'id' => 'required|max:10',
+            'renewal_type' => 'required',
+            'member_payment_info' => 'required',
+            'member_payment_doc' => 'required'
+        ]);
         $requestData = $request->all();
         
 

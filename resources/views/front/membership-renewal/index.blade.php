@@ -46,7 +46,6 @@
                         
                     </div>
                 @endif
-{{ crypt('1', 'st') }}
                 <div class="card">
                     <div class="card-header">
                         <h2 style="margin-bottom: 5px;" class="text-center">Please Give your Membership ID</h2>
@@ -54,8 +53,9 @@
                     <div class="card-body text-center">
                         <form method="GET" action="{{ url('/membership-renewal/create') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             
+
                             <div class="form-group col-md-8 col-md-offset-2" style="padding:15px">
-                                <input type="text" style="padding:15px 45px;" class="col-md-12" name="" id="search"placeholder="Search..." value="{{ request('search') }}">
+                                <input type="text" style="padding:15px 45px;" class="col-md-12" name="search" id="search" placeholder="Search..." value="{{ request('search') }}">
 
                               
 

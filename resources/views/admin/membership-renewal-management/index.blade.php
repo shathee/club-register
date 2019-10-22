@@ -28,10 +28,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Id</th>
+                                        <th>#</th><th>Membership No</th>
                                         <th>Name</th><th>Department</th>
                                         <th>Session</th>
-                                        <th>Renewal Type</th><th>Member Payment Info</th><th>Actions</th>
+                                        <th>Renewal Type</th>
+                                        {{-- <th>Member Payment Info</th> --}}
+                                        <th>View</th>
+                                        <th>Confirmed by Finance?</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,17 +49,84 @@
                                         <td>{{ $sessions[$item->memberProfile->sust_session] }}</td>
                                        
 
-                                        <td>{{ $item->renewal_type }}</td><td>{{ $item->member_payment_info }}</td>
+                                        {{-- <td>{{ $item->renewal_type }}</td><td>{{ $item->member_payment_info }}</td> --}}
+                                        
                                         <td>
                                             <a href="{{ url('admin/membership-renewal-management/' . $item->id) }}" title="View MembershipRenewalManagement"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('admin/membership-renewal-management/' . $item->id . '/edit') }}" title="Edit MembershipRenewalManagement"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                       </td>
 
-                                            <form method="POST" action="{{ url('admin/membership-renewal-management' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete MembershipRenewalManagement" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
+                                        <!-- Special buttons -->
+                                            
+
+                                            @if($item->is_finance_approved == 'yes' or $item->is_finance_approved == 'YES')
+                                            <td >
+                                                <button class="btn-success">{{ ucfirst('confirmed') }}</button>
+                                            </td>
+                                             <td >
+                                                <form method="POST" action="{{ url('/admin/membership-renewal-management/payment-reject') }}" accept-charset="UTF-8" style="display:inline">
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Teject Payment?" onclick="return confirm(&quot;Reject Payment? &quot;)"><i class="" aria-hidden="true"></i> Reject Payment</button>
+                                                </form>
+                                            </td>
+
+                                             <td >
+                                                <form method="POST" action="{{ url('/admin/membership-renewal-management/payment-hold') }}" accept-charset="UTF-8" style="display:inline">
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                                    <button type="submit" class="btn btn-warning btn-sm" title="Hold Payment?" onclick="return confirm(&quot;Hold Payment? &quot;)"><i class="" aria-hidden="true"></i> Hold Payment</button>
+                                                </form>
+                                            </td>
+                                            
+                                        @else
+
+                                        <td>
+                                            @php if($item->is_finance_approved == '') $item->is_finance_approved = 'no' ; @endphp
+                                            <button class="btn-danger">
+                                            {{ ucfirst($item->is_finance_approved) }}</button> 
                                         </td>
+                                        <td >
+                                           
+                                            <form method="POST" action="{{ url('/admin/membership-renewal-management/payment-confirm') }}" accept-charset="UTF-8" style="display:inline">
+                                                
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <button type="submit" class="btn btn-primary btn-sm" title="Confirm Payment?" onclick="return confirm(&quot;Confirm Payment? &quot;)"><i class="" aria-hidden="true"></i> Confirm Payment</button>
+                                            </form>
+                                           
+                                        </td>
+                                        <td >
+                                             @if($item->is_finance_approved == 'no')
+                                            <form method="POST" action="{{ url('/admin/membership-renewal-management/payment-hold') }}" accept-charset="UTF-8" style="display:inline">
+                                                
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <button type="submit" class="btn btn-warning btn-sm" title="Hold Payment?" onclick="return confirm(&quot;Hold Payment? &quot;)"><i class="" aria-hidden="true"></i> Hold Payment</button>
+                                            </form>
+                                            @elseif($item->is_finance_approved == 'rejected')
+                                            <form method="POST" action="{{ url('/admin/membership-renewal-management/payment-hold') }}" accept-charset="UTF-8" style="display:inline">
+                                                
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id" value="{{$item->id}}">
+                                                <button type="submit" class="btn btn-warning btn-sm" title="Hold Payment?" onclick="return confirm(&quot;Hold Payment? &quot;)"><i class="" aria-hidden="true"></i> Hold Payment</button>
+                                            </form>
+
+                                            @else
+                                            <form method="POST" action="{{ url('/admin/membership-renewal-management/payment-reject') }}" accept-charset="UTF-8" style="display:inline">
+                                                    
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Teject Payment?" onclick="return confirm(&quot;Reject Payment? &quot;)"><i class="" aria-hidden="true"></i> Reject Payment</button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                        @endif
+
+                                        <!-- Special Buttons end-->
+
+                                    
                                     </tr>
                                 @endforeach
                                 </tbody>

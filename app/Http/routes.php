@@ -105,6 +105,13 @@ Route::group(['middleware' => ['throttle']], function () {
 		Route::post('admin/membership-manage/payment-reject', 'Admin\MembershipManageController@paymentReject');
 		Route::post('admin/membership-manage/payment-hold', 'Admin\MembershipManageController@paymentHold');
 
+
+
+		Route::post('admin/membership-renewal-management/payment-confirm', 'Admin\MembershipRenewalManagementController@paymentConfirm');
+		Route::post('admin/membership-renewal-management/payment-reject', 'Admin\MembershipRenewalManagementController@paymentReject');
+		Route::post('admin/membership-renewal-management/payment-hold', 'Admin\MembershipRenewalManagementController@paymentHold');
+
+
 		Route::get('admin/reports/member-statistics', 'Admin\ReportsController@memberStatistics');
 		Route::get('admin/reports/finance-statistics', 'Admin\ReportsController@financeStatistics');
 
